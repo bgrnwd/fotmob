@@ -1,52 +1,56 @@
 # fotmob
 
-FotMob API
+JavaScript wrapper for the unofficial [FotMob](https://www.fotmob.com/) API
 
 ## Endpoints
 
-### Current Day's Matches
+### Matches by Date
 
 `GET`
 
 <https://www.fotomob/com/matches?date={date}>
 
+Dates are formatted like so: `20200814`
+
 ### Leagues
 
-`POST`
+`GET`
 
 <https://www.fotmob.com/leagues>
 
-#### Request Body
+#### URL Parameters
 
 ```json
 {
-    "id": "42",
-    "tab": "overview",
-    "type": "league",
-    "timeZone": "America/New_York"
+  "id": "42",
+  "tab": "overview",
+  "type": "league",
+  "timeZone": "America/New_York"
 }
 ```
 
-* `tab`: overview | matches | stats
+- `tab`: overview | matches | stats
 
 ### Team
 
-`POST`
+`GET`
 
 <https://www.fotmob.com/teams>
 
-#### Request Body
+<!-- markdownlint-disable MD024 -->
+#### URL Parameters
+<!-- markdownlint-enable MD024 -->
 
 ```json
 {
-    "id": "6017",
-    "tab": "overview",
-    "type": "team",
-    "timeZone": "America/New_York"
+  "id": "6017",
+  "tab": "overview",
+  "type": "team",
+  "timeZone": "America/New_York"
 }
 ```
 
-* `tab`: overview | squad | fixtures | transfers
+- `tab`: overview | squad | fixtures | transfers
 
 #### Example Response
 

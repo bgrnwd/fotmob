@@ -1,0 +1,37 @@
+{
+  "name": "fotmob",
+  "version": "1.0.0",
+  "description": "A JavaScript wrapper around the unofficial FotMob API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --config=jest.config.json",
+    "prepublish": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bgrnwd/fotmob.git"
+  },
+  "keywords": [
+    "fotmob",
+    "soccer",
+    "api"
+  ],
+  "author": "Brian Greenwood",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bgrnwd/fotmob/issues"
+  },
+  "homepage": "https://github.com/bgrnwd/fotmob#readme",
+  "dependencies": {
+    "got": "^11.5.2"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.1.4",
+    "@types/node": "^9.4.6",
+    "jest": "^22.4.2",
+    "ts-jest": "^22.4.1",
+    "typescript": "^2.7.2"
+  }
+}
