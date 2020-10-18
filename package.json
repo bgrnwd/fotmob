@@ -16,7 +16,8 @@
   "keywords": [
     "fotmob",
     "soccer",
-    "api"
+    "api",
+    "football"
   ],
   "author": "Brian Greenwood",
   "license": "MIT",
@@ -33,5 +34,8 @@
     "jest": "^22.4.2",
     "ts-jest": "^22.4.1",
     "typescript": "^2.7.2"
-  }
+  },
+  "files": [
+    "dist/**/*"
+  ]
 }

@@ -10,6 +10,7 @@ class fotmob {
   playerUrl: string;
   matchDetailsUrl: string;
   searchUrl: string;
+  map = new Map();
 
   constructor() {
     this.matchesUrl = baseUrl + "/matches?";
@@ -30,7 +31,8 @@ class fotmob {
       let url = this.matchesUrl + `date=${date}`;
       (async () => {
         try {
-          const response = await got(url);
+          const response = await got(url, { cache: this.map });
+          console.log(response.isFromCache);
           console.log(response.body);
           return response.body;
         } catch (error) {
@@ -46,7 +48,8 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url);
+        const response = await got(url, {cache: this.map});
+        console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
       } catch (error) {
@@ -61,7 +64,8 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url);
+        const response = await got(url, {cache: this.map});
+        console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
       } catch (error) {
@@ -75,7 +79,8 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url);
+        const response = await got(url, {cache: this.map});
+        console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
       } catch (error) {
@@ -89,7 +94,8 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url);
+        const response = await got(url, {cache: this.map});
+        console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
       } catch (error) {
