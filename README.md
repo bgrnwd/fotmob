@@ -36,5 +36,5 @@ Feel free to [open an issue](https://github.com/bgrnwd/fotmob/issues/new) or sub
 
 ## License
 
-[MIT](./LICENSE.md) © Brian Greenwood
+[MIT](./LICENSE) © Brian Greenwood
 
