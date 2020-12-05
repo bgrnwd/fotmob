@@ -1,73 +1,40 @@
 # fotmob
 
-JavaScript wrapper for the unofficial [FotMob](https://www.fotmob.com/) API
+[![license](https://img.shields.io/github/license/bgrnwd/fotmob.svg)](LICENSE)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-## Endpoints
+A JavaScript wrapper around the unofficial FotMob API
 
-### Matches by Date
+## Table of Contents
 
-`GET`
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-<https://www.fotomob/com/matches?date={date}>
+## Background
 
-Dates are formatted like so: `20200814`
+## Install
 
-### Leagues
-
-`GET`
-
-<https://www.fotmob.com/leagues>
-
-#### URL Parameters
-
-```json
-{
-  "id": "42",
-  "tab": "overview",
-  "type": "league",
-  "timeZone": "America/New_York"
-}
+```sh
+npm install fotmob
 ```
 
-- `tab`: overview | matches | stats
+## Usage
 
-### Team
+```ts
+import Fotmob from 'fotmob';
+const fotmob = new Fotmob();
 
-`GET`
-
-<https://www.fotmob.com/teams>
-
-<!-- markdownlint-disable MD024 -->
-#### URL Parameters
-<!-- markdownlint-enable MD024 -->
-
-```json
-{
-  "id": "6017",
-  "tab": "overview",
-  "type": "team",
-  "timeZone": "America/New_York"
-}
+fotmob.getMatchesByDate('20201020');
 ```
 
-- `tab`: overview | squad | fixtures | transfers
+## Contributing
 
-#### Example Response
+Feel free to [open an issue](https://github.com/bgrnwd/fotmob/issues/new) or submit a pull request.
 
-### Player
+## License
 
-`GET`
+[MIT](./LICENSE.md) © Brian Greenwood
 
-<https://www.fotmob.com/playerData?id={id}>
-
-### Match Details
-
-`GET`
-
-<https://www.fotmob.com/matchDetails?matchId={matchId}>
-
-### Search
-
-`GET`
-
-<https://apigw.fotmob.com/searchapi/suggest?term={term}&lang={lang}>
