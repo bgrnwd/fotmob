@@ -117,8 +117,3 @@ dist
 
 # Ignore compiled js
 *.js
-
-# Test data
-scratch.ts
-matches.json
-details.json
