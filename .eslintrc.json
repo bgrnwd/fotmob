@@ -1,0 +1,21 @@
+{
+  "env": {
+    "es6": true,
+    "jest": true,
+    "node": true
+  },
+  "extends": [
+    "prettier/@typescript-eslint"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"]
+}
