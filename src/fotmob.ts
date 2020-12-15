@@ -3,7 +3,7 @@
 const got = require("got");
 const baseUrl = "https://www.fotmob.com";
 
-class fotmob {
+class Fotmob {
   matchesUrl: string;
   leaguesUrl: string;
   teamsUrl: string;
@@ -48,7 +48,7 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url, {cache: this.map});
+        const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
@@ -64,7 +64,7 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url, {cache: this.map});
+        const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
@@ -79,7 +79,7 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url, {cache: this.map});
+        const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
@@ -94,7 +94,7 @@ class fotmob {
     console.log(url);
     (async () => {
       try {
-        const response = await got(url, {cache: this.map});
+        const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
         console.log(response.body);
         return response.body;
@@ -105,4 +105,4 @@ class fotmob {
   }
 }
 
-module.exports = fotmob;
+module.exports = Fotmob;
