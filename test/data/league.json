@@ -1,0 +1,1124 @@
+{
+    "tabs": [
+        "Overview",
+        "News",
+        "Table",
+        "Matches",
+        "Stats",
+        "Transfers"
+    ],
+    "details": {
+        "id": 130,
+        "type": "league",
+        "name": "MLS",
+        "country": "United States"
+    },
+    "tab": "stats",
+    "action": {
+        "type": "redirect",
+        "data": {
+            "path": "/leagues/130/stats/mls",
+            "tab": "stats"
+        }
+    },
+    "seostr": "MLS",
+    "datasets": {
+        "news": true,
+        "fixtures": true,
+        "tableData": true,
+        "topPlayers": true
+    },
+    "stats": {
+        "tabs": [
+            "Players",
+            "Teams",
+            "Trophies"
+        ],
+        "players": [
+            {
+                "header": "Goals",
+                "participant": {
+                    "id": 743534,
+                    "name": "Diego Rossi",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 867280,
+                    "teamName": "Los Angeles Football Club",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 16
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/goals.json"
+            },
+            {
+                "header": "Minute pr goal",
+                "participant": {
+                    "id": 432175,
+                    "name": "Erik Hurtado",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6604,
+                    "teamName": "Sporting Kansas City",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 85
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/mins_played_goal.json"
+            },
+            {
+                "header": "Assists",
+                "participant": {
+                    "id": 797871,
+                    "name": "Emanuel Reynoso",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 207242,
+                    "teamName": "Minnesota United FC",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 12
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/goal_assist.json"
+            },
+            {
+                "header": "Best average rating",
+                "participant": {
+                    "id": 743534,
+                    "name": "Diego Rossi",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 867280,
+                    "teamName": "Los Angeles Football Club",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": "7.62"
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/rating.json"
+            },
+            {
+                "header": "Shots on target pr. match",
+                "participant": {
+                    "id": 743534,
+                    "name": "Diego Rossi",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 867280,
+                    "teamName": "Los Angeles Football Club",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 1.9
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/ontarget_scoring_att.json"
+            },
+            {
+                "header": "Accurate dribbles pr. match",
+                "participant": {
+                    "id": 320672,
+                    "name": "Younes Namli",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 8314,
+                    "teamName": "Colorado Rapids",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 3.8
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/won_contest.json"
+            },
+            {
+                "header": "Key passes pr. match",
+                "participant": {
+                    "id": 18384,
+                    "name": "Diego Valeri",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 307690,
+                    "teamName": "Portland Timbers",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 3
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/total_att_assist.json"
+            },
+            {
+                "header": "Chances pr. match",
+                "participant": {
+                    "id": 18384,
+                    "name": "Diego Valeri",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 307690,
+                    "teamName": "Portland Timbers",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 16
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/big_chance_created.json"
+            },
+            {
+                "header": "Chances missed pr. match",
+                "participant": {
+                    "id": 743534,
+                    "name": "Diego Rossi",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 867280,
+                    "teamName": "Los Angeles Football Club",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 17
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/big_chance_missed.json"
+            },
+            {
+                "header": "Accurate passes pr. match",
+                "participant": {
+                    "id": 26472,
+                    "name": "Michael Bradley",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 56453,
+                    "teamName": "Toronto FC",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 74
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/accurate_pass.json"
+            },
+            {
+                "header": "Clean sheets",
+                "participant": {
+                    "id": 254980,
+                    "name": "Joe Willis",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 915807,
+                    "teamName": "Nashville SC",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 11
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/clean_sheet.json"
+            },
+            {
+                "header": "Possession won final 3rd",
+                "participant": {
+                    "id": 520462,
+                    "name": "Lewis Morgan",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 960720,
+                    "teamName": "Inter Miami CF",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 42
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/poss_won_att_3rd.json"
+            },
+            {
+                "header": "Saves pr. match",
+                "participant": {
+                    "id": 967915,
+                    "name": "Daniel Vega",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6603,
+                    "teamName": "San Jose Earthquakes",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 3.9
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/saves.json"
+            },
+            {
+                "header": "Clearances pr. match",
+                "participant": {
+                    "id": 431956,
+                    "name": "Walker Zimmerman",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 915807,
+                    "teamName": "Nashville SC",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 5.6
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/effective_clearance.json"
+            },
+            {
+                "header": "Accurate tackles pr. match",
+                "participant": {
+                    "id": 575317,
+                    "name": "Judson",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6603,
+                    "teamName": "San Jose Earthquakes",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 2.4
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/won_tackle.json"
+            },
+            {
+                "header": "Penalties conceded",
+                "participant": {
+                    "id": 111976,
+                    "name": "Harrison Afful",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6001,
+                    "teamName": "Columbus Crew SC",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 2
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/penalty_conceded.json"
+            },
+            {
+                "header": "Penalties won",
+                "participant": {
+                    "id": 547251,
+                    "name": "Tommy Thompson",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6603,
+                    "teamName": "San Jose Earthquakes",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 3
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/penalty_won.json"
+            },
+            {
+                "header": "Yellow cards",
+                "participant": {
+                    "id": 169217,
+                    "name": "Alejandro Bedoya",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 191716,
+                    "teamName": "Philadelphia Union",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 10
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/yellow_card.json"
+            },
+            {
+                "header": "Red cards",
+                "participant": {
+                    "id": 1053717,
+                    "name": "Andrés Reyes",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 960720,
+                    "teamName": "Inter Miami CF",
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 2
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/red_card.json"
+            }
+        ],
+        "teams": [
+            {
+                "header": "Best average rating",
+                "participant": {
+                    "id": 0,
+                    "name": "Columbus Crew SC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6001,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 6.89
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/rating_team.json"
+            },
+            {
+                "header": "Shots on target pr. match",
+                "participant": {
+                    "id": 0,
+                    "name": "New York City FC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 546238,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 6.2
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/ontarget_scoring_att_team.json"
+            },
+            {
+                "header": "Accurate passes pr. match",
+                "participant": {
+                    "id": 0,
+                    "name": "Toronto FC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 56453,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 461.8
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/accurate_pass_team.json"
+            },
+            {
+                "header": "Chances pr. match",
+                "participant": {
+                    "id": 0,
+                    "name": "Seattle Sounders FC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 130394,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 57
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/big_chance_created_team.json"
+            },
+            {
+                "header": "Possession",
+                "participant": {
+                    "id": 0,
+                    "name": "San Jose Earthquakes",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6603,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 56.3
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/possession_percentage.json"
+            },
+            {
+                "header": "Goals conceded per match",
+                "participant": {
+                    "id": 0,
+                    "name": "Nashville SC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 915807,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 0.9
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/goals_conceded_team_match.json"
+            },
+            {
+                "header": "Possession won final 3rd",
+                "participant": {
+                    "id": 0,
+                    "name": "Los Angeles Football Club",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 867280,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 169
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/poss_won_att_3rd_team.json"
+            },
+            {
+                "header": "Goals pr match",
+                "participant": {
+                    "id": 0,
+                    "name": "Los Angeles Football Club",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 867280,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 2.1
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/goals_team_match.json"
+            },
+            {
+                "header": "Penalties won",
+                "participant": {
+                    "id": 0,
+                    "name": "San Jose Earthquakes",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6603,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 8
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/penalty_won_team.json"
+            },
+            {
+                "header": "Penalties conceded",
+                "participant": {
+                    "id": 0,
+                    "name": "Minnesota United FC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 207242,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 7
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/penalty_conceded_team.json"
+            },
+            {
+                "header": "Big chances missed pr. match",
+                "participant": {
+                    "id": 0,
+                    "name": "Los Angeles Football Club",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 867280,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 47
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/big_chance_missed_team.json"
+            },
+            {
+                "header": "Clean sheets",
+                "participant": {
+                    "id": 0,
+                    "name": "Columbus Crew SC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 6001,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 12
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/clean_sheet_team.json"
+            },
+            {
+                "header": "Saves pr. match",
+                "participant": {
+                    "id": 0,
+                    "name": "Vancouver Whitecaps FC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 307691,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 4.1
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/saves_team.json"
+            },
+            {
+                "header": "Yellow cards",
+                "participant": {
+                    "id": 0,
+                    "name": "Orlando City SC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 267810,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 64
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/total_yel_card.json"
+            },
+            {
+                "header": "Clearances pr. match",
+                "participant": {
+                    "id": 0,
+                    "name": "Vancouver Whitecaps FC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 307691,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 22.4
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/effective_clearance_team.json"
+            },
+            {
+                "header": "Red cards",
+                "participant": {
+                    "id": 0,
+                    "name": "Orlando City SC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 267810,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 5
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/total_red_card.json"
+            },
+            {
+                "header": "Accurate tackles pr. match",
+                "participant": {
+                    "id": 0,
+                    "name": "New York City FC",
+                    "goals": null,
+                    "assists": null,
+                    "rating": null,
+                    "positionId": null,
+                    "ccode": null,
+                    "cname": null,
+                    "teamId": 546238,
+                    "teamName": null,
+                    "showRole": null,
+                    "showCountryFlag": null,
+                    "showTeamFlag": true,
+                    "value": 11.9
+                },
+                "fetchAllUrl": "https://data.fotmob.com/stats/130/won_tackle_team.json"
+            }
+        ],
+        "trophies": [
+            {
+                "seasonName": "2019",
+                "winner": {
+                    "id": 130394,
+                    "seasonName": "2019",
+                    "name": "Seattle Sounders FC",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 56453,
+                    "seasonName": "2019",
+                    "name": "Toronto FC",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2018",
+                "winner": {
+                    "id": 773958,
+                    "seasonName": "2018",
+                    "name": "Atlanta United",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 307690,
+                    "seasonName": "2018",
+                    "name": "Portland Timbers",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2017",
+                "winner": {
+                    "id": 56453,
+                    "seasonName": "2017",
+                    "name": "Toronto FC",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 130394,
+                    "seasonName": "2017",
+                    "name": "Seattle Sounders FC",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2016",
+                "winner": {
+                    "id": 130394,
+                    "seasonName": "2016",
+                    "name": "Seattle Sounders FC",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 56453,
+                    "seasonName": "2016",
+                    "name": "Toronto FC",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2015",
+                "winner": {
+                    "id": 307690,
+                    "seasonName": "2015",
+                    "name": "Portland Timbers",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6001,
+                    "seasonName": "2015",
+                    "name": "Columbus Crew",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2014",
+                "winner": {
+                    "id": 6637,
+                    "seasonName": "2014",
+                    "name": "LA Galaxy",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6580,
+                    "seasonName": "2014",
+                    "name": "New England Revolution",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2013",
+                "winner": {
+                    "id": 6604,
+                    "seasonName": "2013",
+                    "name": "Sporting Kansas City",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6606,
+                    "seasonName": "2013",
+                    "name": "Real Salt Lake",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2012",
+                "winner": {
+                    "id": 6637,
+                    "seasonName": "2012",
+                    "name": "LA Galaxy",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 8259,
+                    "seasonName": "2012",
+                    "name": "Houston Dynamo FC",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2011",
+                "winner": {
+                    "id": 6637,
+                    "seasonName": "2011",
+                    "name": "LA Galaxy",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 8259,
+                    "seasonName": "2011",
+                    "name": "Houston Dynamo FC",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2010",
+                "winner": {
+                    "id": 8314,
+                    "seasonName": "2010",
+                    "name": "Colorado Rapids",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6399,
+                    "seasonName": "2010",
+                    "name": "FC Dallas",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2009",
+                "winner": {
+                    "id": 6606,
+                    "seasonName": "2009",
+                    "name": "Real Salt Lake",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6637,
+                    "seasonName": "2009",
+                    "name": "LA Galaxy",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2008",
+                "winner": {
+                    "id": 6001,
+                    "seasonName": "2008",
+                    "name": "Columbus Crew",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6514,
+                    "seasonName": "2008",
+                    "name": "New York Red Bulls",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2007",
+                "winner": {
+                    "id": 8259,
+                    "seasonName": "2007",
+                    "name": "Houston Dynamo FC",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6580,
+                    "seasonName": "2007",
+                    "name": "New England Revolution",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2006",
+                "winner": {
+                    "id": 8259,
+                    "seasonName": "2006",
+                    "name": "Houston Dynamo FC",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6580,
+                    "seasonName": "2006",
+                    "name": "New England Revolution",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2005",
+                "winner": {
+                    "id": 6637,
+                    "seasonName": "2005",
+                    "name": "LA Galaxy",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6580,
+                    "seasonName": "2005",
+                    "name": "New England Revolution",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2004",
+                "winner": {
+                    "id": 6602,
+                    "seasonName": "2004",
+                    "name": "DC United",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6604,
+                    "seasonName": "2004",
+                    "name": "Sporting Kansas City",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2003",
+                "winner": {
+                    "id": 6603,
+                    "seasonName": "2003",
+                    "name": "San Jose Earthquakes",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6397,
+                    "seasonName": "2003",
+                    "name": "Chicago Fire",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2002",
+                "winner": {
+                    "id": 6637,
+                    "seasonName": "2002",
+                    "name": "LA Galaxy",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6580,
+                    "seasonName": "2002",
+                    "name": "New England Revolution",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2001",
+                "winner": {
+                    "id": 6603,
+                    "seasonName": "2001",
+                    "name": "San Jose Earthquakes",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6637,
+                    "seasonName": "2001",
+                    "name": "LA Galaxy",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "2000",
+                "winner": {
+                    "id": 6604,
+                    "seasonName": "2000",
+                    "name": "Sporting Kansas City",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6397,
+                    "seasonName": "2000",
+                    "name": "Chicago Fire",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "1999",
+                "winner": {
+                    "id": 6602,
+                    "seasonName": "1999",
+                    "name": "DC United",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6637,
+                    "seasonName": "1999",
+                    "name": "LA Galaxy",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "1998",
+                "winner": {
+                    "id": 6397,
+                    "seasonName": "1998",
+                    "name": "Chicago Fire",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6602,
+                    "seasonName": "1998",
+                    "name": "DC United",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "1997",
+                "winner": {
+                    "id": 6602,
+                    "seasonName": "1997",
+                    "name": "DC United",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 8314,
+                    "seasonName": "1997",
+                    "name": "Colorado Rapids",
+                    "winner": false
+                }
+            },
+            {
+                "seasonName": "1996",
+                "winner": {
+                    "id": 6602,
+                    "seasonName": "1996",
+                    "name": "DC United",
+                    "winner": true
+                },
+                "loser": {
+                    "id": 6637,
+                    "seasonName": "1996",
+                    "name": "LA Galaxy",
+                    "winner": false
+                }
+            }
+        ]
+    }
+}

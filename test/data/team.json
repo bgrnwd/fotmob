@@ -1,0 +1,252 @@
+{
+    "tabs": [
+        "Overview",
+        "News",
+        "Table",
+        "Squad",
+        "Fixtures",
+        "Transfers"
+    ],
+    "details": {
+        "id": 191716,
+        "type": "team",
+        "name": "Philadelphia Union",
+        "country": "United States"
+    },
+    "tab": "squad",
+    "action": {
+        "type": "render tab",
+        "data": {
+            "tab": "squad"
+        }
+    },
+    "seostr": "philadelphia-union",
+    "datasets": {
+        "news": true,
+        "fixtures": true,
+        "tableData": true,
+        "topPlayers": true
+    },
+    "squad": [
+        [
+            "coach",
+            [
+                {
+                    "id": 556734,
+                    "name": "Jim Curtin",
+                    "ccode": "USA",
+                    "cname": "USA"
+                }
+            ]
+        ],
+        [
+            "goalkeepers",
+            [
+                {
+                    "id": 199909,
+                    "name": "Joe Bendik",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "goalkeepers"
+                },
+                {
+                    "id": 525631,
+                    "name": "Andre Blake",
+                    "ccode": "JAM",
+                    "cname": "Jamaica",
+                    "role": "goalkeepers"
+                },
+                {
+                    "id": 1026065,
+                    "name": "Matt Freese",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "goalkeepers"
+                }
+            ]
+        ],
+        [
+            "defenders",
+            [
+                {
+                    "id": 46228,
+                    "name": "Aurelien Collin",
+                    "ccode": "FRA",
+                    "cname": "France",
+                    "role": "defenders"
+                },
+                {
+                    "id": 259484,
+                    "name": "Jakob Glesnes",
+                    "ccode": "NOR",
+                    "cname": "Norway",
+                    "role": "defenders"
+                },
+                {
+                    "id": 307762,
+                    "name": "Raymon Gaddis",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "defenders"
+                },
+                {
+                    "id": 440646,
+                    "name": "R. J. Allen",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "defenders"
+                },
+                {
+                    "id": 728417,
+                    "name": "Matej Oravec",
+                    "ccode": "SVK",
+                    "cname": "Slovakia",
+                    "role": "defenders"
+                },
+                {
+                    "id": 791819,
+                    "name": "Olivier Mbaizo",
+                    "ccode": "CMR",
+                    "cname": "Cameroon",
+                    "role": "defenders"
+                },
+                {
+                    "id": 830664,
+                    "name": "Jack Elliott",
+                    "ccode": "ENG",
+                    "cname": "England",
+                    "role": "defenders"
+                },
+                {
+                    "id": 862284,
+                    "name": "Kai Wagner",
+                    "ccode": "GER",
+                    "cname": "Germany",
+                    "role": "defenders"
+                },
+                {
+                    "id": 889478,
+                    "name": "Matthew Real",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "defenders"
+                },
+                {
+                    "id": 924485,
+                    "name": "Mark McKenzie",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "defenders"
+                }
+            ]
+        ],
+        [
+            "midfielders",
+            [
+                {
+                    "id": 169217,
+                    "name": "Alejandro Bedoya",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "midfielders"
+                },
+                {
+                    "id": 315278,
+                    "name": "Warren Creavalle",
+                    "ccode": "GUY",
+                    "cname": "Guyana",
+                    "role": "midfielders"
+                },
+                {
+                    "id": 680905,
+                    "name": "Jamiro Monteiro",
+                    "ccode": "CPV",
+                    "cname": "Cape Verde",
+                    "role": "midfielders"
+                },
+                {
+                    "id": 739536,
+                    "name": "Jose Andres Martinez",
+                    "ccode": "VEN",
+                    "cname": "Venezuela",
+                    "role": "midfielders"
+                },
+                {
+                    "id": 924483,
+                    "name": "Anthony Fontana",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "midfielders"
+                },
+                {
+                    "id": 952322,
+                    "name": "Brenden Aaronson",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "midfielders"
+                },
+                {
+                    "id": 1078066,
+                    "name": "Cole Turner",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "midfielders"
+                },
+                {
+                    "id": 1078085,
+                    "name": "Jack De Vries",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "midfielders"
+                }
+            ]
+        ],
+        [
+            "attackers",
+            [
+                {
+                    "id": 45455,
+                    "name": "Ilsinho",
+                    "ccode": "BRA",
+                    "cname": "Brazil",
+                    "role": "attackers"
+                },
+                {
+                    "id": 291644,
+                    "name": "Kacper Przybylko",
+                    "ccode": "POL",
+                    "cname": "Poland",
+                    "role": "attackers"
+                },
+                {
+                    "id": 308236,
+                    "name": "Andrew Wooten",
+                    "ccode": "USA",
+                    "cname": "USA",
+                    "role": "attackers"
+                },
+                {
+                    "id": 604410,
+                    "name": "Sergio Santos",
+                    "ccode": "BRA",
+                    "cname": "Brazil",
+                    "role": "attackers"
+                },
+                {
+                    "id": 694617,
+                    "name": "Cory Burke",
+                    "ccode": "JAM",
+                    "cname": "Jamaica",
+                    "role": "attackers"
+                },
+                {
+                    "id": 941144,
+                    "name": "Michee Ngalina",
+                    "ccode": "CGO",
+                    "cname": "Congo",
+                    "role": "attackers"
+                }
+            ]
+        ]
+    ]
+}
