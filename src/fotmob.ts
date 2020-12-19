@@ -42,7 +42,7 @@ class Fotmob {
     }
   }
 
-  getLeague(id: number, tab: string, type: string, timeZone: string) {
+  getLeague(id: number, tab: string="overview", type: string="league", timeZone: string="America/New_York") {
     let url =
       this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
     console.log(url);
@@ -58,7 +58,7 @@ class Fotmob {
     })();
   }
 
-  getTeam(id: number, tab: string, type: string, timeZone: string) {
+  getTeam(id: number, tab: string="overview", type: string="team", timeZone: string="America/New_York") {
     let url =
       this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
     console.log(url);
