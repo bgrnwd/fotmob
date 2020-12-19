@@ -6,7 +6,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "test": "jest --config=jest.config.js"
+    "test": "jest --config=jest.config.js",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --fix --ext .ts"
   },
   "repository": {
     "type": "git",
