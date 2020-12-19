@@ -29,6 +29,10 @@ import Fotmob from 'fotmob';
 const fotmob = new Fotmob();
 
 fotmob.getMatchesByDate('20201020');
+fotmob.getLeague("42","overview","league","America/New_York")
+fotmob.getTeam("6017", "overview","team","America/New_York")
+fotmob.getPlayer("1071179")
+fotmob.getMatchDetails("3399269")
 ```
 
 ## Contributing
