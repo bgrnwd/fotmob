@@ -1,5 +1,3 @@
-import { platform } from "os";
-
 const mob = require("fotmob");
 const matchData = require("./data/matchesByDate.json")
 const leagueData = require("./data/league.json")
