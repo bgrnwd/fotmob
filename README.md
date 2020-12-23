@@ -2,6 +2,7 @@
 
 [![license](https://img.shields.io/github/license/bgrnwd/fotmob.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+![npm](https://img.shields.io/npm/v/fotmob?color=green)
 ![Node.js CI](https://github.com/bgrnwd/fotmob/workflows/Node.js%20CI/badge.svg)
 ![Node.js Package](https://github.com/bgrnwd/fotmob/workflows/Node.js%20Package/badge.svg)
 
@@ -28,9 +29,9 @@ npm install fotmob
 import Fotmob from 'fotmob';
 const fotmob = new Fotmob();
 
-fotmob.getMatchesByDate('20201020');
-fotmob.getLeague("42","overview","league","America/New_York")
-fotmob.getTeam("6017", "overview","team","America/New_York")
+fotmob.getMatchesByDate("20201020");
+fotmob.getLeague("42", "overview", "league", "America/New_York")
+fotmob.getTeam("6017", "overview", "team", "America/New_York")
 fotmob.getPlayer("1071179")
 fotmob.getMatchDetails("3399269")
 ```
