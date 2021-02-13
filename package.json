@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A JavaScript wrapper around the unofficial FotMob API",
   "main": "dist/fotmob.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/fotmob.d.ts",
   "scripts": {
     "build": "rimraf dist && tsc",
     "test": "jest --config=jest.config.js",
