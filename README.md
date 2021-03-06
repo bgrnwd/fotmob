@@ -4,7 +4,6 @@
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 ![npm](https://img.shields.io/npm/v/fotmob?color=green)
 ![Node.js CI](https://github.com/bgrnwd/fotmob/workflows/Node.js%20CI/badge.svg)
-![Node.js Package](https://github.com/bgrnwd/fotmob/workflows/Node.js%20Package/badge.svg)
 
 A JavaScript wrapper around the unofficial [FotMob](https://www.fotmob.com/) API
 
