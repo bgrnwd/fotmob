@@ -31,7 +31,6 @@ class Fotmob {
                 try {
                     const response = yield got(url, { cache: this.map });
                     console.log(response.isFromCache);
-                    console.log(response.body);
                     return response.body;
                 }
                 catch (error) {
@@ -47,7 +46,6 @@ class Fotmob {
             try {
                 const response = yield got(url, { cache: this.map });
                 console.log(response.isFromCache);
-                console.log(response.body);
                 return response.body;
             }
             catch (error) {
@@ -62,7 +60,6 @@ class Fotmob {
             try {
                 const response = yield got(url, { cache: this.map });
                 console.log(response.isFromCache);
-                console.log(response.body);
                 return response.body;
             }
             catch (error) {
@@ -77,7 +74,6 @@ class Fotmob {
             try {
                 const response = yield got(url, { cache: this.map });
                 console.log(response.isFromCache);
-                console.log(response.body);
                 return response.body;
             }
             catch (error) {
@@ -92,7 +88,6 @@ class Fotmob {
             try {
                 const response = yield got(url, { cache: this.map });
                 console.log(response.isFromCache);
-                console.log(response.body);
                 return response.body;
             }
             catch (error) {

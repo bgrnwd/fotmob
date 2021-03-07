@@ -33,7 +33,6 @@ class Fotmob {
         try {
           const response = await got(url, { cache: this.map });
           console.log(response.isFromCache);
-          console.log(response.body);
           return response.body;
         } catch (error) {
           console.log(error.response.body);
@@ -50,7 +49,6 @@ class Fotmob {
       try {
         const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
-        console.log(response.body);
         return response.body;
       } catch (error) {
         console.log(error.response.body);
@@ -66,7 +64,6 @@ class Fotmob {
       try {
         const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
-        console.log(response.body);
         return response.body;
       } catch (error) {
         console.log(error.response.body);
@@ -81,7 +78,6 @@ class Fotmob {
       try {
         const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
-        console.log(response.body);
         return response.body;
       } catch (error) {
         console.log(error.response.body);
@@ -96,7 +92,6 @@ class Fotmob {
       try {
         const response = await got(url, { cache: this.map });
         console.log(response.isFromCache);
-        console.log(response.body);
         return response.body;
       } catch (error) {
         console.log(error.response.body);
