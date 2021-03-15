@@ -6,7 +6,7 @@
 
 `GET`
 
-<https://www.fotomob/com/matches?date={date}>
+<https://www.fotomob.com/matches?date={date}>
 
 Dates are formatted like so: `20200814`
 
