@@ -30,7 +30,7 @@
     "got": "^11.8.1"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.19",
+    "@types/jest": "^27.0.0",
     "@typescript-eslint/eslint-plugin": "^4.11.0",
     "@typescript-eslint/parser": "^4.11.0",
     "eslint": "^7.16.0",
