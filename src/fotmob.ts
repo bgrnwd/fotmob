@@ -1,6 +1,8 @@
 "use strict";
 
-const got = require("got");
+import { HTTPError } from 'got/dist/source';
+import got from 'got';
+
 const baseUrl = "https://www.fotmob.com";
 
 class Fotmob {
@@ -26,6 +28,15 @@ class Fotmob {
     return re.exec(date);
   }
 
+  printError(error: unknown) {
+    if (error instanceof HTTPError) {
+      console.log(error.response.body);
+    }
+    else {
+      console.log(error);
+    }
+  }
+
   getMatchesByDate(date: number) {
     if (this.checkDate(date) != null) {
       let url = this.matchesUrl + `date=${date}`;
@@ -35,7 +46,7 @@ class Fotmob {
           console.log(response.isFromCache);
           return response.body;
         } catch (error) {
-          console.log(error.response.body);
+          this.printError(error);
         }
       })();
     }
@@ -51,7 +62,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        this.printError(error);
       }
     })();
   }
@@ -66,7 +77,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        this.printError(error);
       }
     })();
   }
@@ -80,7 +91,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        this.printError(error);
       }
     })();
   }
@@ -94,7 +105,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        this.printError(error);
       }
     })();
   }

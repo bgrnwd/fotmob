@@ -8,6 +8,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+Object.defineProperty(exports, "__esModule", { value: true });
+const source_1 = require("got/dist/source");
 const got = require("got");
 const baseUrl = "https://www.fotmob.com";
 class Fotmob {
@@ -34,7 +36,9 @@ class Fotmob {
                     return response.body;
                 }
                 catch (error) {
-                    console.log(error.response.body);
+                    if (error instanceof source_1.HTTPError) {
+                        console.log(error.response.body);
+                    }
                 }
             }))();
         }
@@ -49,7 +53,9 @@ class Fotmob {
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof source_1.HTTPError) {
+                    console.log(error.response.body);
+                }
             }
         }))();
     }
@@ -63,7 +69,9 @@ class Fotmob {
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof source_1.HTTPError) {
+                    console.log(error.response.body);
+                }
             }
         }))();
     }
@@ -77,7 +85,9 @@ class Fotmob {
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof source_1.HTTPError) {
+                    console.log(error.response.body);
+                }
             }
         }))();
     }
@@ -91,7 +101,9 @@ class Fotmob {
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof source_1.HTTPError) {
+                    console.log(error.response.body);
+                }
             }
         }))();
     }
