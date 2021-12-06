@@ -1,6 +1,7 @@
 "use strict";
 
-const got = require("got");
+import got from 'got';
+
 const baseUrl = "https://www.fotmob.com";
 
 class Fotmob {
@@ -35,7 +36,12 @@ class Fotmob {
           console.log(response.isFromCache);
           return response.body;
         } catch (error) {
-          console.log(error.response.body);
+          if (error instanceof got.HTTPError) { 
+            console.log(error.response.body);
+          }
+          else {
+            console.log(error);
+          }
         }
       })();
     }
@@ -51,7 +57,12 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        if (error instanceof got.HTTPError) { 
+          console.log(error.response.body);
+        }
+        else {
+          console.log(error);
+        }
       }
     })();
   }
@@ -66,7 +77,12 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        if (error instanceof got.HTTPError) { 
+          console.log(error.response.body);
+        }
+        else {
+          console.log(error);
+        }
       }
     })();
   }
@@ -80,7 +96,12 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        if (error instanceof got.HTTPError) { 
+          console.log(error.response.body);
+        }
+        else {
+          console.log(error);
+        }
       }
     })();
   }
@@ -94,7 +115,12 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        console.log(error.response.body);
+        if (error instanceof got.HTTPError) { 
+          console.log(error.response.body);
+        }
+        else {
+          console.log(error);
+        }
       }
     })();
   }
