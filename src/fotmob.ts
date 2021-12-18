@@ -1,6 +1,6 @@
 "use strict";
 
-import got from 'got';
+import got, { HTTPError } from 'got';
 
 const baseUrl = "https://www.fotmob.com";
 
@@ -36,7 +36,7 @@ class Fotmob {
           console.log(response.isFromCache);
           return response.body;
         } catch (error) {
-          if (error instanceof got.HTTPError) { 
+          if (error instanceof HTTPError) { 
             console.log(error.response.body);
           }
           else {
@@ -57,7 +57,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        if (error instanceof got.HTTPError) { 
+        if (error instanceof HTTPError) { 
           console.log(error.response.body);
         }
         else {
@@ -77,7 +77,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        if (error instanceof got.HTTPError) { 
+        if (error instanceof HTTPError) { 
           console.log(error.response.body);
         }
         else {
@@ -96,7 +96,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        if (error instanceof got.HTTPError) { 
+        if (error instanceof HTTPError) { 
           console.log(error.response.body);
         }
         else {
@@ -115,7 +115,7 @@ class Fotmob {
         console.log(response.isFromCache);
         return response.body;
       } catch (error) {
-        if (error instanceof got.HTTPError) { 
+        if (error instanceof HTTPError) { 
           console.log(error.response.body);
         }
         else {
