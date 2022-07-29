@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/bgrnwd/fotmob#readme",
   "dependencies": {
-    "got": "^11.8.1"
+    "got": "^12.3.0"
   },
   "devDependencies": {
     "@types/jest": "^27.0.0",
