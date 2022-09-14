@@ -2,7 +2,7 @@
 
 import got from 'got';
 
-const baseUrl = "https://www.fotmob.com";
+const baseUrl = "https://www.fotmob.com/api";
 
 class Fotmob {
   matchesUrl: string;
