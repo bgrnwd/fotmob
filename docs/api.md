@@ -6,7 +6,7 @@
 
 `GET`
 
-<https://www.fotomob.com/matches?date={date}>
+<https://www.fotomob.com/api/matches?date={date}>
 
 Dates are formatted like so: `20200814`
 
@@ -14,7 +14,7 @@ Dates are formatted like so: `20200814`
 
 `GET`
 
-<https://www.fotmob.com/leagues>
+<https://www.fotmob.com/api/leagues>
 
 #### URL Parameters
 
@@ -33,7 +33,7 @@ Dates are formatted like so: `20200814`
 
 `GET`
 
-<https://www.fotmob.com/teams>
+<https://www.fotmob.com/api/teams>
 
 <!-- markdownlint-disable MD024 -->
 #### URL Parameters
@@ -50,19 +50,17 @@ Dates are formatted like so: `20200814`
 
 - `tab`: overview | squad | fixtures | transfers
 
-#### Example Response
-
 ### Player
 
 `GET`
 
-<https://www.fotmob.com/playerData?id={id}>
+<https://www.fotmob.com/api/playerData?id={id}>
 
 ### Match Details
 
 `GET`
 
-<https://www.fotmob.com/matchDetails?matchId={matchId}>
+<https://www.fotmob.com/api/matchDetails?matchId={matchId}>
 
 ### Search
 
