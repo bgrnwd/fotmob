@@ -8,8 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const got = require("got");
-const baseUrl = "https://www.fotmob.com";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const got_1 = __importDefault(require("got"));
+const baseUrl = "https://www.fotmob.com/api";
 class Fotmob {
     constructor() {
         this.map = new Map();
@@ -29,12 +33,17 @@ class Fotmob {
             let url = this.matchesUrl + `date=${date}`;
             (() => __awaiter(this, void 0, void 0, function* () {
                 try {
-                    const response = yield got(url, { cache: this.map });
+                    const response = yield (0, got_1.default)(url, { cache: this.map });
                     console.log(response.isFromCache);
                     return response.body;
                 }
                 catch (error) {
-                    console.log(error.response.body);
+                    if (error instanceof got_1.default.HTTPError) {
+                        console.log(error.response.body);
+                    }
+                    else {
+                        console.log(error);
+                    }
                 }
             }))();
         }
@@ -44,12 +53,17 @@ class Fotmob {
         console.log(url);
         (() => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield got(url, { cache: this.map });
+                const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof got_1.default.HTTPError) {
+                    console.log(error.response.body);
+                }
+                else {
+                    console.log(error);
+                }
             }
         }))();
     }
@@ -58,12 +72,17 @@ class Fotmob {
         console.log(url);
         (() => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield got(url, { cache: this.map });
+                const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof got_1.default.HTTPError) {
+                    console.log(error.response.body);
+                }
+                else {
+                    console.log(error);
+                }
             }
         }))();
     }
@@ -72,12 +91,17 @@ class Fotmob {
         console.log(url);
         (() => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield got(url, { cache: this.map });
+                const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof got_1.default.HTTPError) {
+                    console.log(error.response.body);
+                }
+                else {
+                    console.log(error);
+                }
             }
         }))();
     }
@@ -86,12 +110,17 @@ class Fotmob {
         console.log(url);
         (() => __awaiter(this, void 0, void 0, function* () {
             try {
-                const response = yield got(url, { cache: this.map });
+                const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
                 return response.body;
             }
             catch (error) {
-                console.log(error.response.body);
+                if (error instanceof got_1.default.HTTPError) {
+                    console.log(error.response.body);
+                }
+                else {
+                    console.log(error);
+                }
             }
         }))();
     }
