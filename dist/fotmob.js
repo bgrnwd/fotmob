@@ -29,8 +29,31 @@ class Fotmob {
         return re.exec(date);
     }
     getMatchesByDate(date) {
-        if (this.checkDate(date) != null) {
-            let url = this.matchesUrl + `date=${date}`;
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.checkDate(date) != null) {
+                let url = this.matchesUrl + `date=${date}`;
+                (() => __awaiter(this, void 0, void 0, function* () {
+                    try {
+                        const response = yield (0, got_1.default)(url, { cache: this.map });
+                        console.log(response.isFromCache);
+                        return response.body;
+                    }
+                    catch (error) {
+                        if (error instanceof got_1.default.HTTPError) {
+                            console.log(error.response.body);
+                        }
+                        else {
+                            console.log(error);
+                        }
+                    }
+                }))();
+            }
+        });
+    }
+    getLeague(id, tab = "overview", type = "league", timeZone = "America/New_York") {
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
+            console.log(url);
             (() => __awaiter(this, void 0, void 0, function* () {
                 try {
                     const response = yield (0, got_1.default)(url, { cache: this.map });
@@ -46,83 +69,70 @@ class Fotmob {
                     }
                 }
             }))();
-        }
-    }
-    getLeague(id, tab = "overview", type = "league", timeZone = "America/New_York") {
-        let url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
-                }
-                else {
-                    console.log(error);
-                }
-            }
-        }))();
+        });
     }
     getTeam(id, tab = "overview", type = "team", timeZone = "America/New_York") {
-        let url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
+            console.log(url);
+            (() => __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const response = yield (0, got_1.default)(url, { cache: this.map });
+                    console.log(response.isFromCache);
+                    return response.body;
                 }
-                else {
-                    console.log(error);
+                catch (error) {
+                    if (error instanceof got_1.default.HTTPError) {
+                        console.log(error.response.body);
+                    }
+                    else {
+                        console.log(error);
+                    }
                 }
-            }
-        }))();
+            }))();
+        });
     }
     getPlayer(id) {
-        let url = this.playerUrl + `id=${id}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.playerUrl + `id=${id}`;
+            console.log(url);
+            (() => __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const response = yield (0, got_1.default)(url, { cache: this.map });
+                    console.log(response.isFromCache);
+                    return response.body;
                 }
-                else {
-                    console.log(error);
+                catch (error) {
+                    if (error instanceof got_1.default.HTTPError) {
+                        console.log(error.response.body);
+                    }
+                    else {
+                        console.log(error);
+                    }
                 }
-            }
-        }))();
+            }))();
+        });
     }
     getMatchDetails(matchId) {
-        let url = this.matchDetailsUrl + `matchId=${matchId}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.matchDetailsUrl + `matchId=${matchId}`;
+            console.log(url);
+            (() => __awaiter(this, void 0, void 0, function* () {
+                try {
+                    const response = yield (0, got_1.default)(url, { cache: this.map });
+                    console.log(response.isFromCache);
+                    return response.body;
                 }
-                else {
-                    console.log(error);
+                catch (error) {
+                    if (error instanceof got_1.default.HTTPError) {
+                        console.log(error.response.body);
+                    }
+                    else {
+                        console.log(error);
+                    }
                 }
-            }
-        }))();
+            }))();
+        });
     }
 }
 module.exports = Fotmob;
