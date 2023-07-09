@@ -1,6 +1,6 @@
 {
   "name": "fotmob",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "A JavaScript wrapper around the unofficial FotMob API",
   "main": "dist/fotmob.js",
   "types": "dist/fotmob.d.ts",
