@@ -27,103 +27,93 @@ class Fotmob {
     return re.exec(date);
   }
 
-  getMatchesByDate(date: number) {
+  async getMatchesByDate(date: string) {
     if (this.checkDate(date) != null) {
       let url = this.matchesUrl + `date=${date}`;
-      (async () => {
-        try {
-          const response = await got(url, { cache: this.map });
-          console.log(response.isFromCache);
-          return response.body;
-        } catch (error) {
-          if (error instanceof got.HTTPError) { 
-            console.log(error.response.body);
-          }
-          else {
-            console.log(error);
-          }
+      try {
+        const response = await got(url, { cache: this.map });
+        console.log(response.isFromCache);
+        return response.body;
+      } catch (error) {
+        if (error instanceof got.HTTPError) { 
+          console.log(error.response.body);
         }
-      })();
+        else {
+          console.log(error);
+        }
+      }
     }
   }
 
-  getLeague(id: number, tab: string="overview", type: string="league", timeZone: string="America/New_York") {
+  async getLeague(id: number, tab: string="overview", type: string="league", timeZone: string="America/New_York") {
     let url =
       this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
     console.log(url);
-    (async () => {
-      try {
-        const response = await got(url, { cache: this.map });
-        console.log(response.isFromCache);
-        return response.body;
-      } catch (error) {
-        if (error instanceof got.HTTPError) { 
-          console.log(error.response.body);
-        }
-        else {
-          console.log(error);
-        }
+    try {
+      const response = await got(url, { cache: this.map });
+      console.log(response.isFromCache);
+      return response.body;
+    } catch (error) {
+      if (error instanceof got.HTTPError) { 
+        console.log(error.response.body);
       }
-    })();
+      else {
+        console.log(error);
+      }
+    }
   }
 
-  getTeam(id: number, tab: string="overview", type: string="team", timeZone: string="America/New_York") {
+  async getTeam(id: number, tab: string="overview", type: string="team", timeZone: string="America/New_York") {
     let url =
       this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
     console.log(url);
-    (async () => {
-      try {
-        const response = await got(url, { cache: this.map });
-        console.log(response.isFromCache);
-        return response.body;
-      } catch (error) {
-        if (error instanceof got.HTTPError) { 
-          console.log(error.response.body);
-        }
-        else {
-          console.log(error);
-        }
+    try {
+      const response = await got(url, { cache: this.map });
+      console.log(response.isFromCache);
+      return response.body;
+    } catch (error) {
+      if (error instanceof got.HTTPError) { 
+        console.log(error.response.body);
       }
-    })();
+      else {
+        console.log(error);
+      }
+    }
   }
 
-  getPlayer(id: number) {
+  async getPlayer(id: number) {
     let url = this.playerUrl + `id=${id}`;
     console.log(url);
-    (async () => {
-      try {
-        const response = await got(url, { cache: this.map });
-        console.log(response.isFromCache);
-        return response.body;
-      } catch (error) {
-        if (error instanceof got.HTTPError) { 
-          console.log(error.response.body);
-        }
-        else {
-          console.log(error);
-        }
+    try {
+      const response = await got(url, { cache: this.map });
+      console.log(response.isFromCache);
+      return response.body;
+    } catch (error) {
+      if (error instanceof got.HTTPError) { 
+        console.log(error.response.body);
       }
-    })();
+      else {
+        console.log(error);
+      }
+    }
   }
 
-  getMatchDetails(matchId: number) {
+  async getMatchDetails(matchId: number) {
     let url = this.matchDetailsUrl + `matchId=${matchId}`;
     console.log(url);
-    (async () => {
-      try {
-        const response = await got(url, { cache: this.map });
-        console.log(response.isFromCache);
-        return response.body;
-      } catch (error) {
-        if (error instanceof got.HTTPError) { 
-          console.log(error.response.body);
-        }
-        else {
-          console.log(error);
-        }
+    try {
+      const response = await got(url, { cache: this.map });
+      console.log(response.isFromCache);
+      return response.body;
+    } catch (error) {
+      if (error instanceof got.HTTPError) { 
+        console.log(error.response.body);
       }
-    })();
+      else {
+        console.log(error);
+      }
+    }
   }
 }
 
-module.exports = Fotmob;
+export default Fotmob;

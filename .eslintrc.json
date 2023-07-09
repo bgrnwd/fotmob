@@ -1,11 +1,11 @@
 {
   "env": {
-    "es6": true,
+    "es2022": true,
     "jest": true,
     "node": true
   },
   "extends": [
-    "prettier/@typescript-eslint"
+    "prettier"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -14,8 +14,7 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json",
-    "ecmaVersion": 6,
+    "ecmaVersion": 2022,
     "sourceType": "module"
-  },
-  "plugins": ["@typescript-eslint"]
+  }
 }

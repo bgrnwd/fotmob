@@ -29,9 +29,9 @@ class Fotmob {
         return re.exec(date);
     }
     getMatchesByDate(date) {
-        if (this.checkDate(date) != null) {
-            let url = this.matchesUrl + `date=${date}`;
-            (() => __awaiter(this, void 0, void 0, function* () {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.checkDate(date) != null) {
+                let url = this.matchesUrl + `date=${date}`;
                 try {
                     const response = yield (0, got_1.default)(url, { cache: this.map });
                     console.log(response.isFromCache);
@@ -45,13 +45,13 @@ class Fotmob {
                         console.log(error);
                     }
                 }
-            }))();
-        }
+            }
+        });
     }
     getLeague(id, tab = "overview", type = "league", timeZone = "America/New_York") {
-        let url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
+            console.log(url);
             try {
                 const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
@@ -65,12 +65,12 @@ class Fotmob {
                     console.log(error);
                 }
             }
-        }))();
+        });
     }
     getTeam(id, tab = "overview", type = "team", timeZone = "America/New_York") {
-        let url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
+            console.log(url);
             try {
                 const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
@@ -84,12 +84,12 @@ class Fotmob {
                     console.log(error);
                 }
             }
-        }))();
+        });
     }
     getPlayer(id) {
-        let url = this.playerUrl + `id=${id}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.playerUrl + `id=${id}`;
+            console.log(url);
             try {
                 const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
@@ -103,12 +103,12 @@ class Fotmob {
                     console.log(error);
                 }
             }
-        }))();
+        });
     }
     getMatchDetails(matchId) {
-        let url = this.matchDetailsUrl + `matchId=${matchId}`;
-        console.log(url);
-        (() => __awaiter(this, void 0, void 0, function* () {
+        return __awaiter(this, void 0, void 0, function* () {
+            let url = this.matchDetailsUrl + `matchId=${matchId}`;
+            console.log(url);
             try {
                 const response = yield (0, got_1.default)(url, { cache: this.map });
                 console.log(response.isFromCache);
@@ -122,7 +122,7 @@ class Fotmob {
                     console.log(error);
                 }
             }
-        }))();
+        });
     }
 }
-module.exports = Fotmob;
+exports.default = Fotmob;
