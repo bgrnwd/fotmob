@@ -7,211 +7,342 @@
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
-import { CastingError } from '../type-cast-error';
-
 export interface Player {
-    id: number;
-    name: string;
-    origin: Origin;
-    playerProps: PlayerPlayerProp[];
-    lastLeague: LastLeague;
-    recentMatches: RecentMatches;
-    careerStatistics: CareerStatistic[];
-    careerHistory: CareerHistory;
-    relatedNews: any[];
-    meta: Meta;
+    id?: number;
+    name?: string;
+    birthDate?: BirthDate;
+    isCoach?: boolean;
+    isCaptain?: boolean;
+    primaryTeam?: PrimaryTeam;
+    positionDescription?: PositionDescription;
+    injuryInformation?: null;
+    playerInformation?: PlayerInformation[];
+    mainLeague?: MainLeague;
+    trophies?: Trophies;
+    recentMatches?: RecentMatch[];
+    careerHistory?: CareerHistory;
+    traits?: Traits;
+    meta?: Meta;
+    coachStats?: null;
+    statSeasons?: StatSeason[];
+}
+
+export interface BirthDate {
+    utcTime?: Date;
+    timezone?: string;
 }
 
 export interface CareerHistory {
-    fullCareer: boolean;
-    careerData: CareerData;
-}
-
-export interface CareerData {
-    showFootnote: boolean;
-    careerItems: CareerItems;
+    showFootnote?: boolean;
+    careerItems?: CareerItems;
+    fullCareer?: boolean;
 }
 
 export interface CareerItems {
-    senior: NationalTeam[];
-    youth: NationalTeam[];
-    "national team": NationalTeam[];
+    senior?: NationalTeam;
+    "national team"?: NationalTeam;
 }
 
 export interface NationalTeam {
-    participantId: number;
-    teamId: number;
-    team: string;
-    transferType: null | string;
-    startDate: string;
-    endDate: string;
-    role: null;
-    appearances: string;
-    goals: string;
-    hasUncertainData: boolean;
+    teamEntries?: TeamEntry[];
+    seasonEntries?: SeasonEntry[];
 }
 
-export interface CareerStatistic {
-    id: number;
-    name: string;
-    totalMatches: number;
-    totalSubIn: number;
-    totalGoals: number;
-    totalAssists: number;
-    totalYC: number;
-    totalRC: number;
-    seasons: Season[];
+export interface SeasonEntry {
+    seasonName?: string;
+    appearances?: string;
+    goals?: string;
+    assists?: string;
+    rating?: Rating;
+    tournamentStats?: TournamentStat[];
+    teamId?: number;
+    team?: TeamName;
+    teamGender?: TeamGender;
+    transferType?: TransferType | null;
 }
 
-export interface Season {
-    name: string;
-    matches: number;
-    subIn: number;
-    goals: number;
-    assists: number;
-    yc: number;
-    rc: number;
-    stats: Stat[];
-}
-
-export interface Stat {
-    startTS: number;
-    tournamentName: string;
-    statsArr: Array<Array<number | string>>;
-}
-
-export interface LastLeague {
-    leagueName: string;
-    leagueId: number;
-    playerProps: LastLeaguePlayerProp[];
-}
-
-export interface LastLeaguePlayerProp {
-    value: string;
-    title: string;
-    ratingProps?: PlayerPropRatingProps;
-}
-
-export interface PlayerPropRatingProps {
-    num: number;
-    bgcolor: Bgcolor;
+export interface Rating {
+    num?: string;
+    bgcolor?: Bgcolor | null;
 }
 
 export enum Bgcolor {
-    Ffa726 = "#ffa726",
-    The6Ecb5B = "#6ecb5b",
+    F08022 = "#f08022",
+    The0E87E0 = "#0e87e0",
+    The1Ec853 = "#1ec853",
     The989898 = "#989898",
 }
 
+export enum TeamName {
+    AlNassrFC = "Al Nassr FC",
+    Juventus = "Juventus",
+    ManchesterUnited = "Manchester United",
+    Portugal = "Portugal",
+    RealMadrid = "Real Madrid",
+    RiyadhSeasonTeamXI = "Riyadh Season Team XI",
+    SportingCP = "Sporting CP",
+}
+
+export enum TeamGender {
+    Male = "male",
+}
+
+export interface TournamentStat {
+    tournamentId?: number;
+    leagueName?: string;
+    isFriendly?: boolean;
+    seasonName?: string;
+    goals?: string;
+    assists?: string;
+    appearances?: string;
+    rating?: Rating;
+    leagueId?: number;
+    seasonRating?: number;
+}
+
+export interface TransferType {
+    text?: string;
+    localizationKey?: string;
+}
+
+export interface TeamEntry {
+    participantId?: number;
+    teamId?: number;
+    team?: TeamName;
+    teamGender?: TeamGender;
+    transferType?: TransferType | null;
+    startDate?: Date;
+    endDate?: Date | null;
+    active?: boolean;
+    role?: null;
+    appearances?: null | string;
+    goals?: null | string;
+    assists?: null | string;
+    hasUncertainData?: boolean;
+}
+
+export interface MainLeague {
+    leagueName?: string;
+    leagueId?: number;
+    playerProps?: PlayerProp[];
+}
+
+export interface PlayerProp {
+    value?: string;
+    title?: string;
+    key?: string;
+    ratingProps?: Rating;
+}
+
 export interface Meta {
-    seopath: string;
-    pageurl: string;
+    seopath?: string;
+    pageurl?: string;
+    faqJSONLD?: FAQJSONLD;
+    personJSONLD?: PersonJSONLD;
+    breadcrumbJSONLD?: BreadcrumbJSONLD;
 }
 
-export interface Origin {
-    teamId: number;
-    teamName: string;
-    teamColor: string;
-    positionDesc: PositionDesc;
+export interface BreadcrumbJSONLD {
+    "@context"?: string;
+    "@type"?: string;
+    itemListElement?: ItemListElement[];
 }
 
-export interface PositionDesc {
-    positions: Position[];
-    primaryPosition: string;
-    nonPrimaryPositions: string;
+export interface ItemListElement {
+    "@type"?: string;
+    position?: number;
+    name?: string;
+    item?: string;
 }
 
-export interface Position {
-    strPos: string;
-    strPosShort: string;
-    occurances: number;
-    position: string;
-    isMainPosition: boolean;
-    pitchPositionData: PitchPositionData;
+export interface FAQJSONLD {
+    "@context"?: string;
+    "@type"?: string;
+    mainEntity?: MainEntity[];
 }
 
-export interface PitchPositionData {
-    top: number;
-    right: number;
-    textColor: string;
-    backgroundColor: string;
+export interface MainEntity {
+    "@type"?: string;
+    name?: string;
+    acceptedAnswer?: AcceptedAnswer;
 }
 
-export interface PlayerPlayerProp {
-    value: number | string;
-    title: string;
+export interface AcceptedAnswer {
+    "@type"?: string;
+    text?: string;
+}
+
+export interface PersonJSONLD {
+    "@context"?: string;
+    "@type"?: string;
+    name?: string;
+    birthDate?: Date;
+    url?: string;
+    nationality?: Affiliation;
+    affiliation?: Affiliation;
+    gender?: string;
+    height?: Eight;
+    weight?: Eight;
+}
+
+export interface Affiliation {
+    "@type"?: string;
+    name?: TeamName;
+}
+
+export interface Eight {
+    "@type"?: string;
+    unitText?: string;
+    value?: string;
+}
+
+export interface PlayerInformation {
+    value?: Value;
+    title?: string;
+    translationKey?: string;
     icon?: Icon;
+    countryCode?: string;
 }
 
 export interface Icon {
-    type: string;
-    id: string;
+    type?: string;
+    id?: string;
 }
 
-export interface RecentMatches {
-    tabs: string[];
-    "Premier League": EuropaLeagueFinalStage[];
-    "UEFA Nations League A Grp. 3": UEFANationsLeagueAGrp3[];
-    "Europa League Final Stage": EuropaLeagueFinalStage[];
-    "Super League": SuperLeague[];
+export interface Value {
+    key?: null | string;
+    fallback?: number | string;
 }
 
-export interface EuropaLeagueFinalStage {
-    htName: string;
-    atName: string;
-    date: string;
-    versus: Versus;
-    minutesPlayed: number;
-    goals: number;
-    assists: number;
-    yellowCards: number;
-    redCards: number;
-    ratingProps: EuropaLeagueFinalStageRatingProps;
+export interface PositionDescription {
+    positions?: Position[];
+    primaryPosition?: PrimaryPosition;
+    nonPrimaryPositions?: PrimaryPosition[];
 }
 
-export interface EuropaLeagueFinalStageRatingProps {
-    num: number | string;
-    bgcolor: Bgcolor;
+export interface PrimaryPosition {
+    label?: string;
+    key?: string;
 }
 
-export interface Versus {
-    matchId: number;
-    opponentName: string;
-    opponentId: number;
-    homeTeamScore: number;
-    awayTeamScore: number;
-    highLightHomeTeam: boolean;
+export interface Position {
+    strPos?: PrimaryPosition;
+    strPosShort?: PrimaryPosition;
+    occurences?: number;
+    position?: string;
+    isMainPosition?: boolean;
+    pitchPositionData?: PitchPositionData | null;
 }
 
-export interface SuperLeague {
-    htName: string;
-    atName: string;
-    date: string;
-    versus: Versus;
-    minutesPlayed: number;
-    goals: number;
-    assists: number;
-    yellowCards: number;
-    redCards: number;
-    ratingProps: SuperLeagueRatingProps;
+export interface PitchPositionData {
+    right?: number;
+    top?: number;
+    ratio?: number;
 }
 
-export interface SuperLeagueRatingProps {
-    num: string;
-    bgcolor: Bgcolor;
+export interface PrimaryTeam {
+    teamId?: number;
+    teamName?: TeamName;
+    onLoan?: boolean;
+    teamColors?: TeamColors;
 }
 
-export interface UEFANationsLeagueAGrp3 {
-    htName: string;
-    atName: string;
-    date: string;
-    versus: Versus;
-    minutesPlayed: number;
-    goals: number;
-    assists: number;
-    yellowCards: number;
-    redCards: number;
-    ratingProps: PlayerPropRatingProps;
+export interface TeamColors {
+    color?: string;
+    colorAlternate?: string;
+    colorAway?: string;
+    colorAwayAlternate?: string;
+}
+
+export interface RecentMatch {
+    teamId?: number;
+    teamName?: RecentMatchTeamName;
+    opponentTeamId?: number;
+    opponentTeamName?: string;
+    isHomeTeam?: boolean;
+    id?: number;
+    matchDate?: MatchDate;
+    matchPageUrl?: string;
+    leagueId?: number;
+    leagueName?: LeagueName;
+    stage?: null | string;
+    homeScore?: number;
+    awayScore?: number;
+    minutesPlayed?: number;
+    goals?: number;
+    assists?: number;
+    yellowCards?: number;
+    redCards?: number;
+    ratingProps?: RatingProps;
+    playerOfTheMatch?: boolean;
+    onBench?: boolean;
+}
+
+export enum LeagueName {
+    AFCChampionsLeagueGrpE = "AFC Champions League Grp. E",
+    ArabClubChampionsCupFinalStage = "Arab Club Champions Cup Final Stage",
+    ArabClubChampionsCupGrpC = "Arab Club Champions Cup Grp. C",
+    ClubFriendlies = "Club Friendlies",
+    EUROQualificationGrpJ = "EURO Qualification Grp. J",
+    SaudiProfessionalLeague = "Saudi Professional League",
+}
+
+export interface MatchDate {
+    utcTime?: Date;
+}
+
+export interface RatingProps {
+    num?: number | string;
+    bgcolor?: Bgcolor;
+}
+
+export enum RecentMatchTeamName {
+    AlNassrFC = "Al Nassr FC",
+    Portugal = "Portugal",
+    RiyadhAllStar = "Riyadh All-Star",
+}
+
+export interface StatSeason {
+    seasonName?: string;
+    tournaments?: StatSeasonTournament[];
+}
+
+export interface StatSeasonTournament {
+    name?: string;
+    tournamentId?: number;
+    entryId?: string;
+}
+
+export interface Traits {
+    key?: string;
+    title?: string;
+    items?: Item[];
+}
+
+export interface Item {
+    key?: string;
+    title?: string;
+    value?: number;
+}
+
+export interface Trophies {
+    playerTrophies?: PlayerTrophy[];
+    coachTrophies?: any[];
+}
+
+export interface PlayerTrophy {
+    ccode?: string;
+    teamId?: number;
+    teamName?: TeamName;
+    tournaments?: PlayerTrophyTournament[];
+}
+
+export interface PlayerTrophyTournament {
+    ccode?: string;
+    leagueId?: number;
+    leagueName?: string;
+    seasonsWon?: string[];
+    seasonsRunnerUp?: string[];
 }
 
 // Converts JSON strings to/from your types
@@ -224,13 +355,325 @@ export class Convert {
     public static playerToJson(value: Player): string {
         return JSON.stringify(uncast(value, r("Player")), null, 2);
     }
+
+    public static toBirthDate(json: string): BirthDate {
+        return cast(JSON.parse(json), r("BirthDate"));
+    }
+
+    public static birthDateToJson(value: BirthDate): string {
+        return JSON.stringify(uncast(value, r("BirthDate")), null, 2);
+    }
+
+    public static toCareerHistory(json: string): CareerHistory {
+        return cast(JSON.parse(json), r("CareerHistory"));
+    }
+
+    public static careerHistoryToJson(value: CareerHistory): string {
+        return JSON.stringify(uncast(value, r("CareerHistory")), null, 2);
+    }
+
+    public static toCareerItems(json: string): CareerItems {
+        return cast(JSON.parse(json), r("CareerItems"));
+    }
+
+    public static careerItemsToJson(value: CareerItems): string {
+        return JSON.stringify(uncast(value, r("CareerItems")), null, 2);
+    }
+
+    public static toNationalTeam(json: string): NationalTeam {
+        return cast(JSON.parse(json), r("NationalTeam"));
+    }
+
+    public static nationalTeamToJson(value: NationalTeam): string {
+        return JSON.stringify(uncast(value, r("NationalTeam")), null, 2);
+    }
+
+    public static toSeasonEntry(json: string): SeasonEntry {
+        return cast(JSON.parse(json), r("SeasonEntry"));
+    }
+
+    public static seasonEntryToJson(value: SeasonEntry): string {
+        return JSON.stringify(uncast(value, r("SeasonEntry")), null, 2);
+    }
+
+    public static toRating(json: string): Rating {
+        return cast(JSON.parse(json), r("Rating"));
+    }
+
+    public static ratingToJson(value: Rating): string {
+        return JSON.stringify(uncast(value, r("Rating")), null, 2);
+    }
+
+    public static toTournamentStat(json: string): TournamentStat {
+        return cast(JSON.parse(json), r("TournamentStat"));
+    }
+
+    public static tournamentStatToJson(value: TournamentStat): string {
+        return JSON.stringify(uncast(value, r("TournamentStat")), null, 2);
+    }
+
+    public static toTransferType(json: string): TransferType {
+        return cast(JSON.parse(json), r("TransferType"));
+    }
+
+    public static transferTypeToJson(value: TransferType): string {
+        return JSON.stringify(uncast(value, r("TransferType")), null, 2);
+    }
+
+    public static toTeamEntry(json: string): TeamEntry {
+        return cast(JSON.parse(json), r("TeamEntry"));
+    }
+
+    public static teamEntryToJson(value: TeamEntry): string {
+        return JSON.stringify(uncast(value, r("TeamEntry")), null, 2);
+    }
+
+    public static toMainLeague(json: string): MainLeague {
+        return cast(JSON.parse(json), r("MainLeague"));
+    }
+
+    public static mainLeagueToJson(value: MainLeague): string {
+        return JSON.stringify(uncast(value, r("MainLeague")), null, 2);
+    }
+
+    public static toPlayerProp(json: string): PlayerProp {
+        return cast(JSON.parse(json), r("PlayerProp"));
+    }
+
+    public static playerPropToJson(value: PlayerProp): string {
+        return JSON.stringify(uncast(value, r("PlayerProp")), null, 2);
+    }
+
+    public static toMeta(json: string): Meta {
+        return cast(JSON.parse(json), r("Meta"));
+    }
+
+    public static metaToJson(value: Meta): string {
+        return JSON.stringify(uncast(value, r("Meta")), null, 2);
+    }
+
+    public static toBreadcrumbJSONLD(json: string): BreadcrumbJSONLD {
+        return cast(JSON.parse(json), r("BreadcrumbJSONLD"));
+    }
+
+    public static breadcrumbJSONLDToJson(value: BreadcrumbJSONLD): string {
+        return JSON.stringify(uncast(value, r("BreadcrumbJSONLD")), null, 2);
+    }
+
+    public static toItemListElement(json: string): ItemListElement {
+        return cast(JSON.parse(json), r("ItemListElement"));
+    }
+
+    public static itemListElementToJson(value: ItemListElement): string {
+        return JSON.stringify(uncast(value, r("ItemListElement")), null, 2);
+    }
+
+    public static toFAQJSONLD(json: string): FAQJSONLD {
+        return cast(JSON.parse(json), r("FAQJSONLD"));
+    }
+
+    public static fAQJSONLDToJson(value: FAQJSONLD): string {
+        return JSON.stringify(uncast(value, r("FAQJSONLD")), null, 2);
+    }
+
+    public static toMainEntity(json: string): MainEntity {
+        return cast(JSON.parse(json), r("MainEntity"));
+    }
+
+    public static mainEntityToJson(value: MainEntity): string {
+        return JSON.stringify(uncast(value, r("MainEntity")), null, 2);
+    }
+
+    public static toAcceptedAnswer(json: string): AcceptedAnswer {
+        return cast(JSON.parse(json), r("AcceptedAnswer"));
+    }
+
+    public static acceptedAnswerToJson(value: AcceptedAnswer): string {
+        return JSON.stringify(uncast(value, r("AcceptedAnswer")), null, 2);
+    }
+
+    public static toPersonJSONLD(json: string): PersonJSONLD {
+        return cast(JSON.parse(json), r("PersonJSONLD"));
+    }
+
+    public static personJSONLDToJson(value: PersonJSONLD): string {
+        return JSON.stringify(uncast(value, r("PersonJSONLD")), null, 2);
+    }
+
+    public static toAffiliation(json: string): Affiliation {
+        return cast(JSON.parse(json), r("Affiliation"));
+    }
+
+    public static affiliationToJson(value: Affiliation): string {
+        return JSON.stringify(uncast(value, r("Affiliation")), null, 2);
+    }
+
+    public static toEight(json: string): Eight {
+        return cast(JSON.parse(json), r("Eight"));
+    }
+
+    public static eightToJson(value: Eight): string {
+        return JSON.stringify(uncast(value, r("Eight")), null, 2);
+    }
+
+    public static toPlayerInformation(json: string): PlayerInformation {
+        return cast(JSON.parse(json), r("PlayerInformation"));
+    }
+
+    public static playerInformationToJson(value: PlayerInformation): string {
+        return JSON.stringify(uncast(value, r("PlayerInformation")), null, 2);
+    }
+
+    public static toIcon(json: string): Icon {
+        return cast(JSON.parse(json), r("Icon"));
+    }
+
+    public static iconToJson(value: Icon): string {
+        return JSON.stringify(uncast(value, r("Icon")), null, 2);
+    }
+
+    public static toValue(json: string): Value {
+        return cast(JSON.parse(json), r("Value"));
+    }
+
+    public static valueToJson(value: Value): string {
+        return JSON.stringify(uncast(value, r("Value")), null, 2);
+    }
+
+    public static toPositionDescription(json: string): PositionDescription {
+        return cast(JSON.parse(json), r("PositionDescription"));
+    }
+
+    public static positionDescriptionToJson(value: PositionDescription): string {
+        return JSON.stringify(uncast(value, r("PositionDescription")), null, 2);
+    }
+
+    public static toPrimaryPosition(json: string): PrimaryPosition {
+        return cast(JSON.parse(json), r("PrimaryPosition"));
+    }
+
+    public static primaryPositionToJson(value: PrimaryPosition): string {
+        return JSON.stringify(uncast(value, r("PrimaryPosition")), null, 2);
+    }
+
+    public static toPosition(json: string): Position {
+        return cast(JSON.parse(json), r("Position"));
+    }
+
+    public static positionToJson(value: Position): string {
+        return JSON.stringify(uncast(value, r("Position")), null, 2);
+    }
+
+    public static toPitchPositionData(json: string): PitchPositionData {
+        return cast(JSON.parse(json), r("PitchPositionData"));
+    }
+
+    public static pitchPositionDataToJson(value: PitchPositionData): string {
+        return JSON.stringify(uncast(value, r("PitchPositionData")), null, 2);
+    }
+
+    public static toPrimaryTeam(json: string): PrimaryTeam {
+        return cast(JSON.parse(json), r("PrimaryTeam"));
+    }
+
+    public static primaryTeamToJson(value: PrimaryTeam): string {
+        return JSON.stringify(uncast(value, r("PrimaryTeam")), null, 2);
+    }
+
+    public static toTeamColors(json: string): TeamColors {
+        return cast(JSON.parse(json), r("TeamColors"));
+    }
+
+    public static teamColorsToJson(value: TeamColors): string {
+        return JSON.stringify(uncast(value, r("TeamColors")), null, 2);
+    }
+
+    public static toRecentMatch(json: string): RecentMatch {
+        return cast(JSON.parse(json), r("RecentMatch"));
+    }
+
+    public static recentMatchToJson(value: RecentMatch): string {
+        return JSON.stringify(uncast(value, r("RecentMatch")), null, 2);
+    }
+
+    public static toMatchDate(json: string): MatchDate {
+        return cast(JSON.parse(json), r("MatchDate"));
+    }
+
+    public static matchDateToJson(value: MatchDate): string {
+        return JSON.stringify(uncast(value, r("MatchDate")), null, 2);
+    }
+
+    public static toRatingProps(json: string): RatingProps {
+        return cast(JSON.parse(json), r("RatingProps"));
+    }
+
+    public static ratingPropsToJson(value: RatingProps): string {
+        return JSON.stringify(uncast(value, r("RatingProps")), null, 2);
+    }
+
+    public static toStatSeason(json: string): StatSeason {
+        return cast(JSON.parse(json), r("StatSeason"));
+    }
+
+    public static statSeasonToJson(value: StatSeason): string {
+        return JSON.stringify(uncast(value, r("StatSeason")), null, 2);
+    }
+
+    public static toStatSeasonTournament(json: string): StatSeasonTournament {
+        return cast(JSON.parse(json), r("StatSeasonTournament"));
+    }
+
+    public static statSeasonTournamentToJson(value: StatSeasonTournament): string {
+        return JSON.stringify(uncast(value, r("StatSeasonTournament")), null, 2);
+    }
+
+    public static toTraits(json: string): Traits {
+        return cast(JSON.parse(json), r("Traits"));
+    }
+
+    public static traitsToJson(value: Traits): string {
+        return JSON.stringify(uncast(value, r("Traits")), null, 2);
+    }
+
+    public static toItem(json: string): Item {
+        return cast(JSON.parse(json), r("Item"));
+    }
+
+    public static itemToJson(value: Item): string {
+        return JSON.stringify(uncast(value, r("Item")), null, 2);
+    }
+
+    public static toTrophies(json: string): Trophies {
+        return cast(JSON.parse(json), r("Trophies"));
+    }
+
+    public static trophiesToJson(value: Trophies): string {
+        return JSON.stringify(uncast(value, r("Trophies")), null, 2);
+    }
+
+    public static toPlayerTrophy(json: string): PlayerTrophy {
+        return cast(JSON.parse(json), r("PlayerTrophy"));
+    }
+
+    public static playerTrophyToJson(value: PlayerTrophy): string {
+        return JSON.stringify(uncast(value, r("PlayerTrophy")), null, 2);
+    }
+
+    public static toPlayerTrophyTournament(json: string): PlayerTrophyTournament {
+        return cast(JSON.parse(json), r("PlayerTrophyTournament"));
+    }
+
+    public static playerTrophyTournamentToJson(value: PlayerTrophyTournament): string {
+        return JSON.stringify(uncast(value, r("PlayerTrophyTournament")), null, 2);
+    }
 }
 
 function invalidValue(typ: any, val: any, key: any, parent: any = ''): never {
     const prettyTyp = prettyTypeName(typ);
     const parentText = parent ? ` on ${parent}` : '';
     const keyText = key ? ` for key "${key}"` : '';
-    throw new CastingError(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
+    throw Error(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
 }
 
 function prettyTypeName(typ: any): string {
@@ -317,7 +760,7 @@ function transform(val: any, typ: any, getProps: any, key: any = '', parent: any
         });
         Object.getOwnPropertyNames(val).forEach(key => {
             if (!Object.prototype.hasOwnProperty.call(props, key)) {
-                result[key] = transform(val[key], additional, getProps, key, ref);
+                result[key] = val[key];
             }
         });
         return result;
@@ -380,182 +823,296 @@ function r(name: string) {
 
 const typeMap: any = {
     "Player": o([
-        { json: "id", js: "id", typ: 0 },
-        { json: "name", js: "name", typ: "" },
-        { json: "origin", js: "origin", typ: r("Origin") },
-        { json: "playerProps", js: "playerProps", typ: a(r("PlayerPlayerProp")) },
-        { json: "lastLeague", js: "lastLeague", typ: r("LastLeague") },
-        { json: "recentMatches", js: "recentMatches", typ: r("RecentMatches") },
-        { json: "careerStatistics", js: "careerStatistics", typ: a(r("CareerStatistic")) },
-        { json: "careerHistory", js: "careerHistory", typ: r("CareerHistory") },
-        { json: "relatedNews", js: "relatedNews", typ: a("any") },
-        { json: "meta", js: "meta", typ: r("Meta") },
+        { json: "id", js: "id", typ: u(undefined, 0) },
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "birthDate", js: "birthDate", typ: u(undefined, r("BirthDate")) },
+        { json: "isCoach", js: "isCoach", typ: u(undefined, true) },
+        { json: "isCaptain", js: "isCaptain", typ: u(undefined, true) },
+        { json: "primaryTeam", js: "primaryTeam", typ: u(undefined, r("PrimaryTeam")) },
+        { json: "positionDescription", js: "positionDescription", typ: u(undefined, r("PositionDescription")) },
+        { json: "injuryInformation", js: "injuryInformation", typ: u(undefined, null) },
+        { json: "playerInformation", js: "playerInformation", typ: u(undefined, a(r("PlayerInformation"))) },
+        { json: "mainLeague", js: "mainLeague", typ: u(undefined, r("MainLeague")) },
+        { json: "trophies", js: "trophies", typ: u(undefined, r("Trophies")) },
+        { json: "recentMatches", js: "recentMatches", typ: u(undefined, a(r("RecentMatch"))) },
+        { json: "careerHistory", js: "careerHistory", typ: u(undefined, r("CareerHistory")) },
+        { json: "traits", js: "traits", typ: u(undefined, r("Traits")) },
+        { json: "meta", js: "meta", typ: u(undefined, r("Meta")) },
+        { json: "coachStats", js: "coachStats", typ: u(undefined, null) },
+        { json: "statSeasons", js: "statSeasons", typ: u(undefined, a(r("StatSeason"))) },
+    ], false),
+    "BirthDate": o([
+        { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
+        { json: "timezone", js: "timezone", typ: u(undefined, "") },
     ], false),
     "CareerHistory": o([
-        { json: "fullCareer", js: "fullCareer", typ: true },
-        { json: "careerData", js: "careerData", typ: r("CareerData") },
-    ], false),
-    "CareerData": o([
-        { json: "showFootnote", js: "showFootnote", typ: true },
-        { json: "careerItems", js: "careerItems", typ: r("CareerItems") },
+        { json: "showFootnote", js: "showFootnote", typ: u(undefined, true) },
+        { json: "careerItems", js: "careerItems", typ: u(undefined, r("CareerItems")) },
+        { json: "fullCareer", js: "fullCareer", typ: u(undefined, true) },
     ], false),
     "CareerItems": o([
-        { json: "senior", js: "senior", typ: a(r("NationalTeam")) },
-        { json: "youth", js: "youth", typ: a(r("NationalTeam")) },
-        { json: "national team", js: "national team", typ: a(r("NationalTeam")) },
+        { json: "senior", js: "senior", typ: u(undefined, r("NationalTeam")) },
+        { json: "national team", js: "national team", typ: u(undefined, r("NationalTeam")) },
     ], false),
     "NationalTeam": o([
-        { json: "participantId", js: "participantId", typ: 0 },
-        { json: "teamId", js: "teamId", typ: 0 },
-        { json: "team", js: "team", typ: "" },
-        { json: "transferType", js: "transferType", typ: u(null, "") },
-        { json: "startDate", js: "startDate", typ: "" },
-        { json: "endDate", js: "endDate", typ: "" },
-        { json: "role", js: "role", typ: null },
-        { json: "appearances", js: "appearances", typ: "" },
-        { json: "goals", js: "goals", typ: "" },
-        { json: "hasUncertainData", js: "hasUncertainData", typ: true },
+        { json: "teamEntries", js: "teamEntries", typ: u(undefined, a(r("TeamEntry"))) },
+        { json: "seasonEntries", js: "seasonEntries", typ: u(undefined, a(r("SeasonEntry"))) },
     ], false),
-    "CareerStatistic": o([
-        { json: "id", js: "id", typ: 0 },
-        { json: "name", js: "name", typ: "" },
-        { json: "totalMatches", js: "totalMatches", typ: 0 },
-        { json: "totalSubIn", js: "totalSubIn", typ: 0 },
-        { json: "totalGoals", js: "totalGoals", typ: 0 },
-        { json: "totalAssists", js: "totalAssists", typ: 0 },
-        { json: "totalYC", js: "totalYC", typ: 0 },
-        { json: "totalRC", js: "totalRC", typ: 0 },
-        { json: "seasons", js: "seasons", typ: a(r("Season")) },
+    "SeasonEntry": o([
+        { json: "seasonName", js: "seasonName", typ: u(undefined, "") },
+        { json: "appearances", js: "appearances", typ: u(undefined, "") },
+        { json: "goals", js: "goals", typ: u(undefined, "") },
+        { json: "assists", js: "assists", typ: u(undefined, "") },
+        { json: "rating", js: "rating", typ: u(undefined, r("Rating")) },
+        { json: "tournamentStats", js: "tournamentStats", typ: u(undefined, a(r("TournamentStat"))) },
+        { json: "teamId", js: "teamId", typ: u(undefined, 0) },
+        { json: "team", js: "team", typ: u(undefined, r("TeamName")) },
+        { json: "teamGender", js: "teamGender", typ: u(undefined, r("TeamGender")) },
+        { json: "transferType", js: "transferType", typ: u(undefined, u(r("TransferType"), null)) },
     ], false),
-    "Season": o([
-        { json: "name", js: "name", typ: "" },
-        { json: "matches", js: "matches", typ: 0 },
-        { json: "subIn", js: "subIn", typ: 0 },
-        { json: "goals", js: "goals", typ: 0 },
-        { json: "assists", js: "assists", typ: 0 },
-        { json: "yc", js: "yc", typ: 0 },
-        { json: "rc", js: "rc", typ: 0 },
-        { json: "stats", js: "stats", typ: a(r("Stat")) },
+    "Rating": o([
+        { json: "num", js: "num", typ: u(undefined, "") },
+        { json: "bgcolor", js: "bgcolor", typ: u(undefined, u(r("Bgcolor"), null)) },
     ], false),
-    "Stat": o([
-        { json: "startTS", js: "startTS", typ: 0 },
-        { json: "tournamentName", js: "tournamentName", typ: "" },
-        { json: "statsArr", js: "statsArr", typ: a(a(u(3.14, ""))) },
+    "TournamentStat": o([
+        { json: "tournamentId", js: "tournamentId", typ: u(undefined, 0) },
+        { json: "leagueName", js: "leagueName", typ: u(undefined, "") },
+        { json: "isFriendly", js: "isFriendly", typ: u(undefined, true) },
+        { json: "seasonName", js: "seasonName", typ: u(undefined, "") },
+        { json: "goals", js: "goals", typ: u(undefined, "") },
+        { json: "assists", js: "assists", typ: u(undefined, "") },
+        { json: "appearances", js: "appearances", typ: u(undefined, "") },
+        { json: "rating", js: "rating", typ: u(undefined, r("Rating")) },
+        { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
+        { json: "seasonRating", js: "seasonRating", typ: u(undefined, 3.14) },
     ], false),
-    "LastLeague": o([
-        { json: "leagueName", js: "leagueName", typ: "" },
-        { json: "leagueId", js: "leagueId", typ: 0 },
-        { json: "playerProps", js: "playerProps", typ: a(r("LastLeaguePlayerProp")) },
+    "TransferType": o([
+        { json: "text", js: "text", typ: u(undefined, "") },
+        { json: "localizationKey", js: "localizationKey", typ: u(undefined, "") },
     ], false),
-    "LastLeaguePlayerProp": o([
-        { json: "value", js: "value", typ: "" },
-        { json: "title", js: "title", typ: "" },
-        { json: "ratingProps", js: "ratingProps", typ: u(undefined, r("PlayerPropRatingProps")) },
+    "TeamEntry": o([
+        { json: "participantId", js: "participantId", typ: u(undefined, 0) },
+        { json: "teamId", js: "teamId", typ: u(undefined, 0) },
+        { json: "team", js: "team", typ: u(undefined, r("TeamName")) },
+        { json: "teamGender", js: "teamGender", typ: u(undefined, r("TeamGender")) },
+        { json: "transferType", js: "transferType", typ: u(undefined, u(r("TransferType"), null)) },
+        { json: "startDate", js: "startDate", typ: u(undefined, Date) },
+        { json: "endDate", js: "endDate", typ: u(undefined, u(Date, null)) },
+        { json: "active", js: "active", typ: u(undefined, true) },
+        { json: "role", js: "role", typ: u(undefined, null) },
+        { json: "appearances", js: "appearances", typ: u(undefined, u(null, "")) },
+        { json: "goals", js: "goals", typ: u(undefined, u(null, "")) },
+        { json: "assists", js: "assists", typ: u(undefined, u(null, "")) },
+        { json: "hasUncertainData", js: "hasUncertainData", typ: u(undefined, true) },
     ], false),
-    "PlayerPropRatingProps": o([
-        { json: "num", js: "num", typ: 3.14 },
-        { json: "bgcolor", js: "bgcolor", typ: r("Bgcolor") },
+    "MainLeague": o([
+        { json: "leagueName", js: "leagueName", typ: u(undefined, "") },
+        { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
+        { json: "playerProps", js: "playerProps", typ: u(undefined, a(r("PlayerProp"))) },
+    ], false),
+    "PlayerProp": o([
+        { json: "value", js: "value", typ: u(undefined, "") },
+        { json: "title", js: "title", typ: u(undefined, "") },
+        { json: "key", js: "key", typ: u(undefined, "") },
+        { json: "ratingProps", js: "ratingProps", typ: u(undefined, r("Rating")) },
     ], false),
     "Meta": o([
-        { json: "seopath", js: "seopath", typ: "" },
-        { json: "pageurl", js: "pageurl", typ: "" },
+        { json: "seopath", js: "seopath", typ: u(undefined, "") },
+        { json: "pageurl", js: "pageurl", typ: u(undefined, "") },
+        { json: "faqJSONLD", js: "faqJSONLD", typ: u(undefined, r("FAQJSONLD")) },
+        { json: "personJSONLD", js: "personJSONLD", typ: u(undefined, r("PersonJSONLD")) },
+        { json: "breadcrumbJSONLD", js: "breadcrumbJSONLD", typ: u(undefined, r("BreadcrumbJSONLD")) },
     ], false),
-    "Origin": o([
-        { json: "teamId", js: "teamId", typ: 0 },
-        { json: "teamName", js: "teamName", typ: "" },
-        { json: "teamColor", js: "teamColor", typ: "" },
-        { json: "positionDesc", js: "positionDesc", typ: r("PositionDesc") },
+    "BreadcrumbJSONLD": o([
+        { json: "@context", js: "@context", typ: u(undefined, "") },
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "itemListElement", js: "itemListElement", typ: u(undefined, a(r("ItemListElement"))) },
     ], false),
-    "PositionDesc": o([
-        { json: "positions", js: "positions", typ: a(r("Position")) },
-        { json: "primaryPosition", js: "primaryPosition", typ: "" },
-        { json: "nonPrimaryPositions", js: "nonPrimaryPositions", typ: "" },
+    "ItemListElement": o([
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "position", js: "position", typ: u(undefined, 0) },
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "item", js: "item", typ: u(undefined, "") },
     ], false),
-    "Position": o([
-        { json: "strPos", js: "strPos", typ: "" },
-        { json: "strPosShort", js: "strPosShort", typ: "" },
-        { json: "occurances", js: "occurances", typ: 0 },
-        { json: "position", js: "position", typ: "" },
-        { json: "isMainPosition", js: "isMainPosition", typ: true },
-        { json: "pitchPositionData", js: "pitchPositionData", typ: r("PitchPositionData") },
+    "FAQJSONLD": o([
+        { json: "@context", js: "@context", typ: u(undefined, "") },
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "mainEntity", js: "mainEntity", typ: u(undefined, a(r("MainEntity"))) },
     ], false),
-    "PitchPositionData": o([
-        { json: "top", js: "top", typ: 3.14 },
-        { json: "right", js: "right", typ: 3.14 },
-        { json: "textColor", js: "textColor", typ: "" },
-        { json: "backgroundColor", js: "backgroundColor", typ: "" },
+    "MainEntity": o([
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "acceptedAnswer", js: "acceptedAnswer", typ: u(undefined, r("AcceptedAnswer")) },
     ], false),
-    "PlayerPlayerProp": o([
-        { json: "value", js: "value", typ: u(0, "") },
-        { json: "title", js: "title", typ: "" },
+    "AcceptedAnswer": o([
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "text", js: "text", typ: u(undefined, "") },
+    ], false),
+    "PersonJSONLD": o([
+        { json: "@context", js: "@context", typ: u(undefined, "") },
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "birthDate", js: "birthDate", typ: u(undefined, Date) },
+        { json: "url", js: "url", typ: u(undefined, "") },
+        { json: "nationality", js: "nationality", typ: u(undefined, r("Affiliation")) },
+        { json: "affiliation", js: "affiliation", typ: u(undefined, r("Affiliation")) },
+        { json: "gender", js: "gender", typ: u(undefined, "") },
+        { json: "height", js: "height", typ: u(undefined, r("Eight")) },
+        { json: "weight", js: "weight", typ: u(undefined, r("Eight")) },
+    ], false),
+    "Affiliation": o([
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "name", js: "name", typ: u(undefined, r("TeamName")) },
+    ], false),
+    "Eight": o([
+        { json: "@type", js: "@type", typ: u(undefined, "") },
+        { json: "unitText", js: "unitText", typ: u(undefined, "") },
+        { json: "value", js: "value", typ: u(undefined, "") },
+    ], false),
+    "PlayerInformation": o([
+        { json: "value", js: "value", typ: u(undefined, r("Value")) },
+        { json: "title", js: "title", typ: u(undefined, "") },
+        { json: "translationKey", js: "translationKey", typ: u(undefined, "") },
         { json: "icon", js: "icon", typ: u(undefined, r("Icon")) },
+        { json: "countryCode", js: "countryCode", typ: u(undefined, "") },
     ], false),
     "Icon": o([
-        { json: "type", js: "type", typ: "" },
-        { json: "id", js: "id", typ: "" },
+        { json: "type", js: "type", typ: u(undefined, "") },
+        { json: "id", js: "id", typ: u(undefined, "") },
     ], false),
-    "RecentMatches": o([
-        { json: "tabs", js: "tabs", typ: a("") },
-        { json: "Premier League", js: "Premier League", typ: a(r("EuropaLeagueFinalStage")) },
-        { json: "UEFA Nations League A Grp. 3", js: "UEFA Nations League A Grp. 3", typ: a(r("UEFANationsLeagueAGrp3")) },
-        { json: "Europa League Final Stage", js: "Europa League Final Stage", typ: a(r("EuropaLeagueFinalStage")) },
-        { json: "Super League", js: "Super League", typ: a(r("SuperLeague")) },
+    "Value": o([
+        { json: "key", js: "key", typ: u(undefined, u(null, "")) },
+        { json: "fallback", js: "fallback", typ: u(undefined, u(0, "")) },
     ], false),
-    "EuropaLeagueFinalStage": o([
-        { json: "htName", js: "htName", typ: "" },
-        { json: "atName", js: "atName", typ: "" },
-        { json: "date", js: "date", typ: "" },
-        { json: "versus", js: "versus", typ: r("Versus") },
-        { json: "minutesPlayed", js: "minutesPlayed", typ: 0 },
-        { json: "goals", js: "goals", typ: 0 },
-        { json: "assists", js: "assists", typ: 0 },
-        { json: "yellowCards", js: "yellowCards", typ: 0 },
-        { json: "redCards", js: "redCards", typ: 0 },
-        { json: "ratingProps", js: "ratingProps", typ: r("EuropaLeagueFinalStageRatingProps") },
+    "PositionDescription": o([
+        { json: "positions", js: "positions", typ: u(undefined, a(r("Position"))) },
+        { json: "primaryPosition", js: "primaryPosition", typ: u(undefined, r("PrimaryPosition")) },
+        { json: "nonPrimaryPositions", js: "nonPrimaryPositions", typ: u(undefined, a(r("PrimaryPosition"))) },
     ], false),
-    "EuropaLeagueFinalStageRatingProps": o([
-        { json: "num", js: "num", typ: u(3.14, "") },
-        { json: "bgcolor", js: "bgcolor", typ: r("Bgcolor") },
+    "PrimaryPosition": o([
+        { json: "label", js: "label", typ: u(undefined, "") },
+        { json: "key", js: "key", typ: u(undefined, "") },
     ], false),
-    "Versus": o([
-        { json: "matchId", js: "matchId", typ: 0 },
-        { json: "opponentName", js: "opponentName", typ: "" },
-        { json: "opponentId", js: "opponentId", typ: 0 },
-        { json: "homeTeamScore", js: "homeTeamScore", typ: 0 },
-        { json: "awayTeamScore", js: "awayTeamScore", typ: 0 },
-        { json: "highLightHomeTeam", js: "highLightHomeTeam", typ: true },
+    "Position": o([
+        { json: "strPos", js: "strPos", typ: u(undefined, r("PrimaryPosition")) },
+        { json: "strPosShort", js: "strPosShort", typ: u(undefined, r("PrimaryPosition")) },
+        { json: "occurences", js: "occurences", typ: u(undefined, 0) },
+        { json: "position", js: "position", typ: u(undefined, "") },
+        { json: "isMainPosition", js: "isMainPosition", typ: u(undefined, true) },
+        { json: "pitchPositionData", js: "pitchPositionData", typ: u(undefined, u(r("PitchPositionData"), null)) },
     ], false),
-    "SuperLeague": o([
-        { json: "htName", js: "htName", typ: "" },
-        { json: "atName", js: "atName", typ: "" },
-        { json: "date", js: "date", typ: "" },
-        { json: "versus", js: "versus", typ: r("Versus") },
-        { json: "minutesPlayed", js: "minutesPlayed", typ: 0 },
-        { json: "goals", js: "goals", typ: 0 },
-        { json: "assists", js: "assists", typ: 0 },
-        { json: "yellowCards", js: "yellowCards", typ: 0 },
-        { json: "redCards", js: "redCards", typ: 0 },
-        { json: "ratingProps", js: "ratingProps", typ: r("SuperLeagueRatingProps") },
+    "PitchPositionData": o([
+        { json: "right", js: "right", typ: u(undefined, 3.14) },
+        { json: "top", js: "top", typ: u(undefined, 3.14) },
+        { json: "ratio", js: "ratio", typ: u(undefined, 3.14) },
     ], false),
-    "SuperLeagueRatingProps": o([
-        { json: "num", js: "num", typ: "" },
-        { json: "bgcolor", js: "bgcolor", typ: r("Bgcolor") },
+    "PrimaryTeam": o([
+        { json: "teamId", js: "teamId", typ: u(undefined, 0) },
+        { json: "teamName", js: "teamName", typ: u(undefined, r("TeamName")) },
+        { json: "onLoan", js: "onLoan", typ: u(undefined, true) },
+        { json: "teamColors", js: "teamColors", typ: u(undefined, r("TeamColors")) },
     ], false),
-    "UEFANationsLeagueAGrp3": o([
-        { json: "htName", js: "htName", typ: "" },
-        { json: "atName", js: "atName", typ: "" },
-        { json: "date", js: "date", typ: "" },
-        { json: "versus", js: "versus", typ: r("Versus") },
-        { json: "minutesPlayed", js: "minutesPlayed", typ: 0 },
-        { json: "goals", js: "goals", typ: 0 },
-        { json: "assists", js: "assists", typ: 0 },
-        { json: "yellowCards", js: "yellowCards", typ: 0 },
-        { json: "redCards", js: "redCards", typ: 0 },
-        { json: "ratingProps", js: "ratingProps", typ: r("PlayerPropRatingProps") },
+    "TeamColors": o([
+        { json: "color", js: "color", typ: u(undefined, "") },
+        { json: "colorAlternate", js: "colorAlternate", typ: u(undefined, "") },
+        { json: "colorAway", js: "colorAway", typ: u(undefined, "") },
+        { json: "colorAwayAlternate", js: "colorAwayAlternate", typ: u(undefined, "") },
+    ], false),
+    "RecentMatch": o([
+        { json: "teamId", js: "teamId", typ: u(undefined, 0) },
+        { json: "teamName", js: "teamName", typ: u(undefined, r("RecentMatchTeamName")) },
+        { json: "opponentTeamId", js: "opponentTeamId", typ: u(undefined, 0) },
+        { json: "opponentTeamName", js: "opponentTeamName", typ: u(undefined, "") },
+        { json: "isHomeTeam", js: "isHomeTeam", typ: u(undefined, true) },
+        { json: "id", js: "id", typ: u(undefined, 0) },
+        { json: "matchDate", js: "matchDate", typ: u(undefined, r("MatchDate")) },
+        { json: "matchPageUrl", js: "matchPageUrl", typ: u(undefined, "") },
+        { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
+        { json: "leagueName", js: "leagueName", typ: u(undefined, r("LeagueName")) },
+        { json: "stage", js: "stage", typ: u(undefined, u(null, "")) },
+        { json: "homeScore", js: "homeScore", typ: u(undefined, 0) },
+        { json: "awayScore", js: "awayScore", typ: u(undefined, 0) },
+        { json: "minutesPlayed", js: "minutesPlayed", typ: u(undefined, 0) },
+        { json: "goals", js: "goals", typ: u(undefined, 0) },
+        { json: "assists", js: "assists", typ: u(undefined, 0) },
+        { json: "yellowCards", js: "yellowCards", typ: u(undefined, 0) },
+        { json: "redCards", js: "redCards", typ: u(undefined, 0) },
+        { json: "ratingProps", js: "ratingProps", typ: u(undefined, r("RatingProps")) },
+        { json: "playerOfTheMatch", js: "playerOfTheMatch", typ: u(undefined, true) },
+        { json: "onBench", js: "onBench", typ: u(undefined, true) },
+    ], false),
+    "MatchDate": o([
+        { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
+    ], false),
+    "RatingProps": o([
+        { json: "num", js: "num", typ: u(undefined, u(0, "")) },
+        { json: "bgcolor", js: "bgcolor", typ: u(undefined, r("Bgcolor")) },
+    ], false),
+    "StatSeason": o([
+        { json: "seasonName", js: "seasonName", typ: u(undefined, "") },
+        { json: "tournaments", js: "tournaments", typ: u(undefined, a(r("StatSeasonTournament"))) },
+    ], false),
+    "StatSeasonTournament": o([
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "tournamentId", js: "tournamentId", typ: u(undefined, 0) },
+        { json: "entryId", js: "entryId", typ: u(undefined, "") },
+    ], false),
+    "Traits": o([
+        { json: "key", js: "key", typ: u(undefined, "") },
+        { json: "title", js: "title", typ: u(undefined, "") },
+        { json: "items", js: "items", typ: u(undefined, a(r("Item"))) },
+    ], false),
+    "Item": o([
+        { json: "key", js: "key", typ: u(undefined, "") },
+        { json: "title", js: "title", typ: u(undefined, "") },
+        { json: "value", js: "value", typ: u(undefined, 3.14) },
+    ], false),
+    "Trophies": o([
+        { json: "playerTrophies", js: "playerTrophies", typ: u(undefined, a(r("PlayerTrophy"))) },
+        { json: "coachTrophies", js: "coachTrophies", typ: u(undefined, a("any")) },
+    ], false),
+    "PlayerTrophy": o([
+        { json: "ccode", js: "ccode", typ: u(undefined, "") },
+        { json: "teamId", js: "teamId", typ: u(undefined, 0) },
+        { json: "teamName", js: "teamName", typ: u(undefined, r("TeamName")) },
+        { json: "tournaments", js: "tournaments", typ: u(undefined, a(r("PlayerTrophyTournament"))) },
+    ], false),
+    "PlayerTrophyTournament": o([
+        { json: "ccode", js: "ccode", typ: u(undefined, "") },
+        { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
+        { json: "leagueName", js: "leagueName", typ: u(undefined, "") },
+        { json: "seasonsWon", js: "seasonsWon", typ: u(undefined, a("")) },
+        { json: "seasonsRunnerUp", js: "seasonsRunnerUp", typ: u(undefined, a("")) },
     ], false),
     "Bgcolor": [
-        "#ffa726",
-        "#6ecb5b",
+        "#f08022",
+        "#0e87e0",
+        "#1ec853",
         "#989898",
+    ],
+    "TeamName": [
+        "Al Nassr FC",
+        "Juventus",
+        "Manchester United",
+        "Portugal",
+        "Real Madrid",
+        "Riyadh Season Team XI",
+        "Sporting CP",
+    ],
+    "TeamGender": [
+        "male",
+    ],
+    "LeagueName": [
+        "AFC Champions League Grp. E",
+        "Arab Club Champions Cup Final Stage",
+        "Arab Club Champions Cup Grp. C",
+        "Club Friendlies",
+        "EURO Qualification Grp. J",
+        "Saudi Professional League",
+    ],
+    "RecentMatchTeamName": [
+        "Al Nassr FC",
+        "Portugal",
+        "Riyadh All-Star",
     ],
 };

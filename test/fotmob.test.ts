@@ -3,7 +3,7 @@ import leagueData from "./data/league.json";
 import teamData from "./data/team.json";
 import playerData from "./data/player.json";
 import matchDetailData from "./data/matchDetails.json";
-import Fotmob from "../dist/fotmob";
+import Fotmob from '../src/fotmob';
 
 let fot = new Fotmob();
 
@@ -17,8 +17,8 @@ fot.getMatchDetails = jest.fn().mockReturnValue(matchDetailData);
 describe("getMatchesByDate", () => {
     it('should load match data', async () => {
         const data = await fot.getMatchesByDate("20201020");
-        expect(data).toBeInstanceOf(Object);
         expect(data).toBeDefined();
+        expect(data).toBeInstanceOf(Object);
         expect("leagues" in Object(data)).toBeTruthy();
     })
 })

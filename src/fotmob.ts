@@ -1,12 +1,12 @@
 "use strict";
 
 import got from "got";
-import { Convert as ConvertTeam, type Team } from "./types/team";
+import { CastingError } from './type-cast-error';
 import { Convert as ConvertLeague, type League } from './types/league';
 import { Convert as ConvertMatchDetails, type MatchDetails } from './types/match-details';
-import { CastingError } from './type-cast-error';
-import { type Matches, Convert as ConvertMatches } from './types/matches';
-import { type Player, Convert as ConvertPlayer } from './types/player';
+import { Convert as ConvertMatches, type Matches } from './types/matches';
+import { Convert as ConvertPlayer, type Player } from './types/player';
+import { Convert as ConvertTeam, type Team } from "./types/team";
 
 const baseUrl = "https://www.fotmob.com/api";
 
@@ -32,14 +32,19 @@ class Fotmob {
     let re = /(20\d{2})(\d{2})(\d{2})/;
     return re.exec(date);
   }
-  async safeTypeCastFetch<T>(url: string, fn: (data: string) => T) {
-    const res = await got(url, { cache: this.map });
+  async safeTypeCastFetch<T>(url: string, fn: (data: string) => T): Promise<T> {
+    const res = await got.get(url, { cache: this.map });
+    const json = JSON.parse(res.body);
+    if (json?.error) {
+      throw new Error(json);
+    }
     try {
       return fn(res.body) as T;
     }
+
     catch (err) {
       if (err instanceof CastingError) {
-        return JSON.parse(res.body) as Record<string, unknown>;
+        return JSON.parse(res.body) satisfies T;
       } else {
         throw err;
       }

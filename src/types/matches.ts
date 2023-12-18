@@ -10,69 +10,83 @@
 import { CastingError } from '../type-cast-error';
 
 export interface Matches {
-    leagues: League[];
-    userSettings: null;
-    date: string;
+    leagues?: League[];
+    date?: string;
 }
 
 export interface League {
-    ccode: string;
-    id: number;
-    primaryId: number;
-    name: string;
-    matches: Match[];
-    internalRank: number;
-    liveRank: number;
-    simpleLeague: boolean;
-    parentLeagueId?: number;
     isGroup?: boolean;
     groupName?: string;
+    ccode?: string;
+    id?: number;
+    primaryId?: number;
+    name?: string;
+    matches?: Match[];
+    parentLeagueId?: number;
     parentLeagueName?: string;
+    internalRank?: number;
+    liveRank?: number;
+    simpleLeague?: boolean;
 }
 
 export interface Match {
-    id: number;
-    leagueId: number;
-    time: string;
-    home: Away;
-    away: Away;
-    statusId: number;
-    tournamentStage: string;
-    status: Status;
-    timeTS: number;
-    tv: null;
+    id?: number;
+    leagueId?: number;
+    time?: string;
+    home?: Away;
+    away?: Away;
+    eliminatedTeamId?: null;
+    statusId?: number;
+    tournamentStage?: string;
+    status?: Status;
+    timeTS?: number;
 }
 
 export interface Away {
-    id: number;
-    score: number;
-    name: string;
+    id?: number;
+    score?: number;
+    name?: string;
+    longName?: string;
 }
 
 export interface Status {
-    finished: boolean;
-    started: boolean;
-    cancelled: boolean;
-    scoreStr: string;
-    startDateStr: StartDateStr;
-    reason: Reason;
+    utcTime?: Date;
+    finished?: boolean;
+    started?: boolean;
+    cancelled?: boolean;
+    scoreStr?: string;
+    reason?: Reason;
 }
 
 export interface Reason {
-    short: Short;
-    long: Long;
+    short?: Short;
+    shortKey?: ShortKey;
+    long?: Long;
+    longKey?: LongKey;
 }
 
 export enum Long {
+    Cancelled = "Cancelled",
     FullTime = "Full-Time",
+    Postponed = "Postponed",
+}
+
+export enum LongKey {
+    Cancelled = "cancelled",
+    Finished = "finished",
+    Postponed = "postponed",
 }
 
 export enum Short {
+    Can = "Can",
     Ft = "FT",
+    Pp = "PP",
 }
 
-export enum StartDateStr {
-    Sep202020 = "Sep 20, 2020",
+export enum ShortKey {
+    CancelledShort = "cancelled_short",
+    FulltimeShort = "fulltime_short",
+    PostponedShort = "postponed_short",
 }
 
 // Converts JSON strings to/from your types
@@ -84,6 +98,46 @@ export class Convert {
 
     public static matchesToJson(value: Matches): string {
         return JSON.stringify(uncast(value, r("Matches")), null, 2);
+    }
+
+    public static toLeague(json: string): League {
+        return cast(JSON.parse(json), r("League"));
+    }
+
+    public static leagueToJson(value: League): string {
+        return JSON.stringify(uncast(value, r("League")), null, 2);
+    }
+
+    public static toMatch(json: string): Match {
+        return cast(JSON.parse(json), r("Match"));
+    }
+
+    public static matchToJson(value: Match): string {
+        return JSON.stringify(uncast(value, r("Match")), null, 2);
+    }
+
+    public static toAway(json: string): Away {
+        return cast(JSON.parse(json), r("Away"));
+    }
+
+    public static awayToJson(value: Away): string {
+        return JSON.stringify(uncast(value, r("Away")), null, 2);
+    }
+
+    public static toStatus(json: string): Status {
+        return cast(JSON.parse(json), r("Status"));
+    }
+
+    public static statusToJson(value: Status): string {
+        return JSON.stringify(uncast(value, r("Status")), null, 2);
+    }
+
+    public static toReason(json: string): Reason {
+        return cast(JSON.parse(json), r("Reason"));
+    }
+
+    public static reasonToJson(value: Reason): string {
+        return JSON.stringify(uncast(value, r("Reason")), null, 2);
     }
 }
 
@@ -178,7 +232,7 @@ function transform(val: any, typ: any, getProps: any, key: any = '', parent: any
         });
         Object.getOwnPropertyNames(val).forEach(key => {
             if (!Object.prototype.hasOwnProperty.call(props, key)) {
-                result[key] = transform(val[key], additional, getProps, key, ref);
+                result[key] = val[key];
             }
         });
         return result;
@@ -241,60 +295,73 @@ function r(name: string) {
 
 const typeMap: any = {
     "Matches": o([
-        { json: "leagues", js: "leagues", typ: a(r("League")) },
-        { json: "userSettings", js: "userSettings", typ: null },
-        { json: "date", js: "date", typ: "" },
+        { json: "leagues", js: "leagues", typ: u(undefined, a(r("League"))) },
+        { json: "date", js: "date", typ: u(undefined, "") },
     ], false),
     "League": o([
-        { json: "ccode", js: "ccode", typ: "" },
-        { json: "id", js: "id", typ: 0 },
-        { json: "primaryId", js: "primaryId", typ: 0 },
-        { json: "name", js: "name", typ: "" },
-        { json: "matches", js: "matches", typ: a(r("Match")) },
-        { json: "internalRank", js: "internalRank", typ: 0 },
-        { json: "liveRank", js: "liveRank", typ: 0 },
-        { json: "simpleLeague", js: "simpleLeague", typ: true },
-        { json: "parentLeagueId", js: "parentLeagueId", typ: u(undefined, 0) },
         { json: "isGroup", js: "isGroup", typ: u(undefined, true) },
         { json: "groupName", js: "groupName", typ: u(undefined, "") },
+        { json: "ccode", js: "ccode", typ: u(undefined, "") },
+        { json: "id", js: "id", typ: u(undefined, 0) },
+        { json: "primaryId", js: "primaryId", typ: u(undefined, 0) },
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "matches", js: "matches", typ: u(undefined, a(r("Match"))) },
+        { json: "parentLeagueId", js: "parentLeagueId", typ: u(undefined, 0) },
         { json: "parentLeagueName", js: "parentLeagueName", typ: u(undefined, "") },
+        { json: "internalRank", js: "internalRank", typ: u(undefined, 0) },
+        { json: "liveRank", js: "liveRank", typ: u(undefined, 0) },
+        { json: "simpleLeague", js: "simpleLeague", typ: u(undefined, true) },
     ], false),
     "Match": o([
-        { json: "id", js: "id", typ: 0 },
-        { json: "leagueId", js: "leagueId", typ: 0 },
-        { json: "time", js: "time", typ: "" },
-        { json: "home", js: "home", typ: r("Away") },
-        { json: "away", js: "away", typ: r("Away") },
-        { json: "statusId", js: "statusId", typ: 0 },
-        { json: "tournamentStage", js: "tournamentStage", typ: "" },
-        { json: "status", js: "status", typ: r("Status") },
-        { json: "timeTS", js: "timeTS", typ: 0 },
-        { json: "tv", js: "tv", typ: null },
+        { json: "id", js: "id", typ: u(undefined, 0) },
+        { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
+        { json: "time", js: "time", typ: u(undefined, "") },
+        { json: "home", js: "home", typ: u(undefined, r("Away")) },
+        { json: "away", js: "away", typ: u(undefined, r("Away")) },
+        { json: "eliminatedTeamId", js: "eliminatedTeamId", typ: u(undefined, null) },
+        { json: "statusId", js: "statusId", typ: u(undefined, 0) },
+        { json: "tournamentStage", js: "tournamentStage", typ: u(undefined, "") },
+        { json: "status", js: "status", typ: u(undefined, r("Status")) },
+        { json: "timeTS", js: "timeTS", typ: u(undefined, 0) },
     ], false),
     "Away": o([
-        { json: "id", js: "id", typ: 0 },
-        { json: "score", js: "score", typ: 0 },
-        { json: "name", js: "name", typ: "" },
+        { json: "id", js: "id", typ: u(undefined, 0) },
+        { json: "score", js: "score", typ: u(undefined, 0) },
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "longName", js: "longName", typ: u(undefined, "") },
     ], false),
     "Status": o([
-        { json: "finished", js: "finished", typ: true },
-        { json: "started", js: "started", typ: true },
-        { json: "cancelled", js: "cancelled", typ: true },
-        { json: "scoreStr", js: "scoreStr", typ: "" },
-        { json: "startDateStr", js: "startDateStr", typ: r("StartDateStr") },
-        { json: "reason", js: "reason", typ: r("Reason") },
+        { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
+        { json: "finished", js: "finished", typ: u(undefined, true) },
+        { json: "started", js: "started", typ: u(undefined, true) },
+        { json: "cancelled", js: "cancelled", typ: u(undefined, true) },
+        { json: "scoreStr", js: "scoreStr", typ: u(undefined, "") },
+        { json: "reason", js: "reason", typ: u(undefined, r("Reason")) },
     ], false),
     "Reason": o([
-        { json: "short", js: "short", typ: r("Short") },
-        { json: "long", js: "long", typ: r("Long") },
+        { json: "short", js: "short", typ: u(undefined, r("Short")) },
+        { json: "shortKey", js: "shortKey", typ: u(undefined, r("ShortKey")) },
+        { json: "long", js: "long", typ: u(undefined, r("Long")) },
+        { json: "longKey", js: "longKey", typ: u(undefined, r("LongKey")) },
     ], false),
     "Long": [
+        "Cancelled",
         "Full-Time",
+        "Postponed",
+    ],
+    "LongKey": [
+        "cancelled",
+        "finished",
+        "postponed",
     ],
     "Short": [
+        "Can",
         "FT",
+        "PP",
     ],
-    "StartDateStr": [
-        "Sep 20, 2020",
+    "ShortKey": [
+        "cancelled_short",
+        "fulltime_short",
+        "postponed_short",
     ],
 };
