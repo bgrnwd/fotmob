@@ -25,6 +25,8 @@ npm install fotmob
 
 ## Usage
 
+All methods return a promise that resolves to the JSON response from FotMob, with type definitions for the response included.
+
 ```ts
 import Fotmob from 'fotmob';
 const fotmob = new Fotmob();

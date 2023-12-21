@@ -8,11 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const got_1 = __importDefault(require("got"));
+import got from "got";
+import { CastingError } from './type-cast-error';
+import { Convert as ConvertLeague } from './types/league';
+import { Convert as ConvertMatchDetails } from './types/match-details';
+import { Convert as ConvertMatches } from './types/matches';
+import { Convert as ConvertPlayer } from './types/player';
+import { Convert as ConvertTeam } from "./types/team";
 const baseUrl = "https://www.fotmob.com/api";
 class Fotmob {
     constructor() {
@@ -28,101 +30,57 @@ class Fotmob {
         let re = /(20\d{2})(\d{2})(\d{2})/;
         return re.exec(date);
     }
+    safeTypeCastFetch(url, fn) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const res = yield got.get(url, { cache: this.map });
+            const json = JSON.parse(res.body);
+            if (json === null || json === void 0 ? void 0 : json.error) {
+                throw new Error(json);
+            }
+            try {
+                return fn(res.body);
+            }
+            catch (err) {
+                if (err instanceof CastingError) {
+                    return JSON.parse(res.body);
+                }
+                else {
+                    throw err;
+                }
+            }
+        });
+    }
     getMatchesByDate(date) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.checkDate(date) != null) {
                 let url = this.matchesUrl + `date=${date}`;
-                try {
-                    const response = yield (0, got_1.default)(url, { cache: this.map });
-                    console.log(response.isFromCache);
-                    return response.body;
-                }
-                catch (error) {
-                    if (error instanceof got_1.default.HTTPError) {
-                        console.log(error.response.body);
-                    }
-                    else {
-                        console.log(error);
-                    }
-                }
+                return yield this.safeTypeCastFetch(url, ConvertMatches.toMatches);
             }
         });
     }
     getLeague(id, tab = "overview", type = "league", timeZone = "America/New_York") {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-            console.log(url);
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
-                }
-                else {
-                    console.log(error);
-                }
-            }
+            return yield this.safeTypeCastFetch(url, ConvertLeague.toLeague);
         });
     }
     getTeam(id, tab = "overview", type = "team", timeZone = "America/New_York") {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-            console.log(url);
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
-                }
-                else {
-                    console.log(error);
-                }
-            }
+            return yield this.safeTypeCastFetch(url, ConvertTeam.toTeam);
         });
     }
     getPlayer(id) {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.playerUrl + `id=${id}`;
-            console.log(url);
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
-                }
-                else {
-                    console.log(error);
-                }
-            }
+            return yield this.safeTypeCastFetch(url, ConvertPlayer.toPlayer);
         });
     }
     getMatchDetails(matchId) {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.matchDetailsUrl + `matchId=${matchId}`;
-            console.log(url);
-            try {
-                const response = yield (0, got_1.default)(url, { cache: this.map });
-                console.log(response.isFromCache);
-                return response.body;
-            }
-            catch (error) {
-                if (error instanceof got_1.default.HTTPError) {
-                    console.log(error.response.body);
-                }
-                else {
-                    console.log(error);
-                }
-            }
+            return yield this.safeTypeCastFetch(url, ConvertMatchDetails.toMatchDetails);
         });
     }
 }
-exports.default = Fotmob;
+export default Fotmob;
