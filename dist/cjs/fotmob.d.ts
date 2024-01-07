@@ -3,7 +3,7 @@ import { type MatchDetails } from './types/match-details';
 import { type Matches } from './types/matches';
 import { type Player } from './types/player';
 import { type Team } from "./types/team";
-declare class Fotmob {
+export default class Fotmob {
     matchesUrl: string;
     leaguesUrl: string;
     teamsUrl: string;
@@ -20,4 +20,3 @@ declare class Fotmob {
     getPlayer(id: number): Promise<Player>;
     getMatchDetails(matchId: number): Promise<MatchDetails>;
 }
-export default Fotmob;
