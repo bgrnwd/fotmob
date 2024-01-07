@@ -12,11 +12,12 @@ export default class Fotmob {
     searchUrl: string;
     map: Map<any, any>;
     constructor();
-    checkDate(date: any): RegExpExecArray | null;
+    checkDate(date: string): RegExpExecArray | null;
     safeTypeCastFetch<T>(url: string, fn: (data: string) => T): Promise<T>;
     getMatchesByDate(date: string): Promise<Matches | undefined>;
     getLeague(id: number, tab?: string, type?: string, timeZone?: string): Promise<League>;
     getTeam(id: number, tab?: string, type?: string, timeZone?: string): Promise<Team>;
     getPlayer(id: number): Promise<Player>;
     getMatchDetails(matchId: number): Promise<MatchDetails>;
+    request<T>(path: string, params: Record<string, string>): Promise<T>;
 }
