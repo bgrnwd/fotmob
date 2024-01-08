@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -15,19 +14,19 @@ import { Convert as ConvertMatchDetails } from './types/match-details';
 import { Convert as ConvertMatches } from './types/matches';
 import { Convert as ConvertPlayer } from './types/player';
 import { Convert as ConvertTeam } from "./types/team";
-const baseUrl = "https://www.fotmob.com/api";
+const baseUrl = "https://www.fotmob.com/api/";
 export default class Fotmob {
     constructor() {
         this.map = new Map();
-        this.matchesUrl = baseUrl + "/matches?";
-        this.leaguesUrl = baseUrl + "/leagues?";
-        this.teamsUrl = baseUrl + "/teams?";
-        this.playerUrl = baseUrl + "/playerData?";
-        this.matchDetailsUrl = baseUrl + "/matchDetails?";
-        this.searchUrl = baseUrl + "/searchapi/";
+        this.matchesUrl = `${baseUrl}matches?`;
+        this.leaguesUrl = `${baseUrl}leagues?`;
+        this.teamsUrl = `${baseUrl}teams?`;
+        this.playerUrl = `${baseUrl}playerData?`;
+        this.matchDetailsUrl = `${baseUrl}matchDetails?`;
+        this.searchUrl = `${baseUrl}searchapi/`;
     }
     checkDate(date) {
-        let re = /(20\d{2})(\d{2})(\d{2})/;
+        const re = /(20\d{2})(\d{2})(\d{2})/;
         return re.exec(date);
     }
     safeTypeCastFetch(url, fn) {
@@ -44,42 +43,46 @@ export default class Fotmob {
                 if (err instanceof CastingError) {
                     return JSON.parse(res.body);
                 }
-                else {
-                    throw err;
-                }
+                throw err;
             }
         });
     }
     getMatchesByDate(date) {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.checkDate(date) != null) {
-                let url = this.matchesUrl + `date=${date}`;
+                const url = this.matchesUrl + `date=${date}`;
                 return yield this.safeTypeCastFetch(url, ConvertMatches.toMatches);
             }
         });
     }
     getLeague(id, tab = "overview", type = "league", timeZone = "America/New_York") {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
+            const url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
             return yield this.safeTypeCastFetch(url, ConvertLeague.toLeague);
         });
     }
     getTeam(id, tab = "overview", type = "team", timeZone = "America/New_York") {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
+            const url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
             return yield this.safeTypeCastFetch(url, ConvertTeam.toTeam);
         });
     }
     getPlayer(id) {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = this.playerUrl + `id=${id}`;
+            const url = this.playerUrl + `id=${id}`;
             return yield this.safeTypeCastFetch(url, ConvertPlayer.toPlayer);
         });
     }
     getMatchDetails(matchId) {
         return __awaiter(this, void 0, void 0, function* () {
-            let url = this.matchDetailsUrl + `matchId=${matchId}`;
+            const url = this.matchDetailsUrl + `matchId=${matchId}`;
             return yield this.safeTypeCastFetch(url, ConvertMatchDetails.toMatchDetails);
+        });
+    }
+    request(path, params) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = `${baseUrl + path}?${new URLSearchParams(params)}`;
+            return yield this.safeTypeCastFetch(url, (data) => JSON.parse(data));
         });
     }
 }

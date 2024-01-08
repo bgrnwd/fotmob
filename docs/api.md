@@ -67,3 +67,9 @@ Dates are formatted like so: `20200814`
 `GET`
 
 <https://apigw.fotmob.com/searchapi/suggest?term={term}&lang={lang}>
+
+### New Custom Endpoint
+
+`GET`
+
+<https://apigw.fotmob.com/{endpoint}?{query}>

@@ -36,6 +36,7 @@ let league = await fotmob.getLeague("42", "overview", "league", "America/New_Yor
 let team = await fotmob.getTeam("6017", "overview", "team", "America/New_York")
 let player = await fotmob.getPlayer("1071179")
 let details = await fotmob.getMatchDetails("3399269")
+let myCustomRequest = await fotmob.request("matches", { date: "20201020" })
 ```
 
 ## Contributing
