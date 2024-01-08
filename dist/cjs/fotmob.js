@@ -8,13 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import got from "got";
-import { CastingError } from './type-cast-error';
-import { Convert as ConvertLeague } from './types/league';
-import { Convert as ConvertMatchDetails } from './types/match-details';
-import { Convert as ConvertMatches } from './types/matches';
-import { Convert as ConvertPlayer } from './types/player';
-import { Convert as ConvertTeam } from "./types/team";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const got_1 = __importDefault(require("got"));
+const type_cast_error_1 = require("./type-cast-error");
+const league_1 = require("./types/league");
+const match_details_1 = require("./types/match-details");
+const matches_1 = require("./types/matches");
+const player_1 = require("./types/player");
+const team_1 = require("./types/team");
 const baseUrl = "https://www.fotmob.com/api";
 class Fotmob {
     constructor() {
@@ -32,7 +36,7 @@ class Fotmob {
     }
     safeTypeCastFetch(url, fn) {
         return __awaiter(this, void 0, void 0, function* () {
-            const res = yield got.get(url, { cache: this.map });
+            const res = yield got_1.default.get(url, { cache: this.map });
             const json = JSON.parse(res.body);
             if (json === null || json === void 0 ? void 0 : json.error) {
                 throw new Error(json);
@@ -41,7 +45,7 @@ class Fotmob {
                 return fn(res.body);
             }
             catch (err) {
-                if (err instanceof CastingError) {
+                if (err instanceof type_cast_error_1.CastingError) {
                     return JSON.parse(res.body);
                 }
                 else {
@@ -54,33 +58,33 @@ class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.checkDate(date) != null) {
                 let url = this.matchesUrl + `date=${date}`;
-                return yield this.safeTypeCastFetch(url, ConvertMatches.toMatches);
+                return yield this.safeTypeCastFetch(url, matches_1.Convert.toMatches);
             }
         });
     }
     getLeague(id, tab = "overview", type = "league", timeZone = "America/New_York") {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-            return yield this.safeTypeCastFetch(url, ConvertLeague.toLeague);
+            return yield this.safeTypeCastFetch(url, league_1.Convert.toLeague);
         });
     }
     getTeam(id, tab = "overview", type = "team", timeZone = "America/New_York") {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
-            return yield this.safeTypeCastFetch(url, ConvertTeam.toTeam);
+            return yield this.safeTypeCastFetch(url, team_1.Convert.toTeam);
         });
     }
     getPlayer(id) {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.playerUrl + `id=${id}`;
-            return yield this.safeTypeCastFetch(url, ConvertPlayer.toPlayer);
+            return yield this.safeTypeCastFetch(url, player_1.Convert.toPlayer);
         });
     }
     getMatchDetails(matchId) {
         return __awaiter(this, void 0, void 0, function* () {
             let url = this.matchDetailsUrl + `matchId=${matchId}`;
-            return yield this.safeTypeCastFetch(url, ConvertMatchDetails.toMatchDetails);
+            return yield this.safeTypeCastFetch(url, match_details_1.Convert.toMatchDetails);
         });
     }
 }
-export default Fotmob;
+exports.default = Fotmob;

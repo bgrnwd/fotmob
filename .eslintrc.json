@@ -4,9 +4,7 @@
     "jest": true,
     "node": true
   },
-  "extends": [
-    "prettier"
-  ],
+  "extends": ["prettier"],
   "globals": {
     "Atomics": "readonly",
     "SharedArrayBuffer": "readonly"
@@ -15,6 +13,6 @@
   "parserOptions": {
     "project": "./tsconfig.json",
     "ecmaVersion": 2022,
-    "sourceType": "module"
+    "sourceType": "commonjs"
   }
 }

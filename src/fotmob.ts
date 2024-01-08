@@ -10,7 +10,7 @@ import { Convert as ConvertTeam, type Team } from "./types/team";
 
 const baseUrl = "https://www.fotmob.com/api";
 
-class Fotmob {
+export default class Fotmob {
   matchesUrl: string;
   leaguesUrl: string;
   teamsUrl: string;
@@ -90,5 +90,3 @@ class Fotmob {
     return await this.safeTypeCastFetch<MatchDetails>(url, ConvertMatchDetails.toMatchDetails);
   }
 }
-
-export default Fotmob;

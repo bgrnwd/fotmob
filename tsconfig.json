@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es6",
-    "module": "ES6",
+    "target": "ES6",
+    "module": "ESNext",
     "declaration": true,
-    "outDir": "dist",
+    "outDir": "dist/esm",
     "strict": true,
-    "allowJs": true,
     "esModuleInterop": true,
     "removeComments": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "resolveJsonModule": true
   },
+  "exclude": ["src/**/*.test.ts"],
   "include": ["src/**/*"]
 }
