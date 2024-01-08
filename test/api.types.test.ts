@@ -8,8 +8,9 @@ import leagueJSON from './data/league.json';
 import matchDetailsJSON from './data/matchDetails.json';
 import teamJSON from './data/team.json';
 import playerJSON from './data/player.json';
-let fot = new Fotmob();
+const fot = new Fotmob();
 jest.mock('got');
+
 describe('safeTypeCastFetch', () => {
     it('MatchDetails should throw on empty', async () => {
         const mock = jest.mocked(got);
