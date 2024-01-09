@@ -14,6 +14,7 @@ import { Convert as ConvertMatchDetails } from './types/match-details';
 import { Convert as ConvertMatches } from './types/matches';
 import { Convert as ConvertPlayer } from './types/player';
 import { Convert as ConvertTeam } from "./types/team";
+import { Convert as ConvertWorldNews } from './types/world-news';
 const baseUrl = "https://www.fotmob.com/api/";
 export default class Fotmob {
     constructor() {
@@ -24,6 +25,7 @@ export default class Fotmob {
         this.playerUrl = `${baseUrl}playerData?`;
         this.matchDetailsUrl = `${baseUrl}matchDetails?`;
         this.searchUrl = `${baseUrl}searchapi/`;
+        this.worldNewsUrl = `${baseUrl}worldnews?`;
     }
     checkDate(date) {
         const re = /(20\d{2})(\d{2})(\d{2})/;
@@ -77,6 +79,12 @@ export default class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.matchDetailsUrl + `matchId=${matchId}`;
             return yield this.safeTypeCastFetch(url, ConvertMatchDetails.toMatchDetails);
+        });
+    }
+    getWorldNews({ page = 1, lang = "en" } = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = this.worldNewsUrl + `page=${page}&lang=${lang}`;
+            return yield this.safeTypeCastFetch(url, ConvertWorldNews.toWorldNews);
         });
     }
     request(path, params) {
