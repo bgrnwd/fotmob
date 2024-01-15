@@ -20,6 +20,7 @@ const matches_1 = require("./types/matches");
 const player_1 = require("./types/player");
 const team_1 = require("./types/team");
 const world_news_1 = require("./types/world-news");
+const transfers_1 = require("./types/transfers");
 const baseUrl = "https://www.fotmob.com/api/";
 class Fotmob {
     constructor() {
@@ -30,6 +31,7 @@ class Fotmob {
         this.playerUrl = `${baseUrl}playerData?`;
         this.matchDetailsUrl = `${baseUrl}matchDetails?`;
         this.searchUrl = `${baseUrl}searchapi/`;
+        this.transfersUrl = `${baseUrl}transfers?`;
         this.worldNewsUrl = `${baseUrl}worldnews?`;
     }
     checkDate(date) {
@@ -90,6 +92,12 @@ class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.worldNewsUrl + `page=${page}&lang=${lang}`;
             return yield this.safeTypeCastFetch(url, world_news_1.Convert.toWorldNews);
+        });
+    }
+    getTransfers({ page = 1, lang = "en" } = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = this.transfersUrl + `page=${page}&lang=${lang}`;
+            return yield this.safeTypeCastFetch(url, transfers_1.Convert.toTransfers);
         });
     }
     request(path, params) {

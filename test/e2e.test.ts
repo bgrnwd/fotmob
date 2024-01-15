@@ -5,3 +5,9 @@ describe('WorldNews', () => {
         await expect(fot.getWorldNews()).resolves.not.toThrow();
     })
 })
+
+describe('Transfers', () => {
+    it('should return Transfers', async () => {
+        await expect(fot.getTransfers()).resolves.not.toThrow();
+    })
+})

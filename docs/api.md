@@ -77,6 +77,22 @@ Dates are formatted like so: `20200814`
 
 <https://www.fotmob.com/api/matchDetails?matchId={matchId}>
 
+
+### World News
+
+`GET`
+
+<https://www.fotmob.com/api/transfer>
+
+#### URL Parameters
+
+```json
+{
+  "lang": "en",
+  "page": "1",
+}
+```
+
 ### Search
 
 `GET`
@@ -88,3 +104,4 @@ Dates are formatted like so: `20200814`
 `GET`
 
 <https://apigw.fotmob.com/{endpoint}?{query}>
+

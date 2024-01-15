@@ -1,11 +1,15 @@
 import got from "got";
-import { CastingError } from './type-cast-error';
-import { Convert as ConvertLeague, type League } from './types/league';
-import { Convert as ConvertMatchDetails, type MatchDetails } from './types/match-details';
-import { Convert as ConvertMatches, type Matches } from './types/matches';
-import { Convert as ConvertPlayer, type Player } from './types/player';
+import { CastingError } from "./type-cast-error";
+import { Convert as ConvertLeague, type League } from "./types/league";
+import {
+  Convert as ConvertMatchDetails,
+  type MatchDetails,
+} from "./types/match-details";
+import { Convert as ConvertMatches, type Matches } from "./types/matches";
+import { Convert as ConvertPlayer, type Player } from "./types/player";
 import { Convert as ConvertTeam, type Team } from "./types/team";
-import { Convert as ConvertWorldNews, WorldNews } from './types/world-news';
+import { Convert as ConvertWorldNews, WorldNews } from "./types/world-news";
+import { Convert as ConvertTransfers, type Transfers } from "./types/transfers";
 
 const baseUrl = "https://www.fotmob.com/api/";
 
@@ -16,6 +20,7 @@ export default class Fotmob {
   playerUrl: string;
   matchDetailsUrl: string;
   searchUrl: string;
+  transfersUrl: string;
   worldNewsUrl: string;
   map = new Map();
 
@@ -26,6 +31,7 @@ export default class Fotmob {
     this.playerUrl = `${baseUrl}playerData?`;
     this.matchDetailsUrl = `${baseUrl}matchDetails?`;
     this.searchUrl = `${baseUrl}searchapi/`;
+    this.transfersUrl = `${baseUrl}transfers?`;
     this.worldNewsUrl = `${baseUrl}worldnews?`;
   }
 
@@ -41,9 +47,7 @@ export default class Fotmob {
     }
     try {
       return fn(res.body) as T;
-    }
-
-    catch (err) {
+    } catch (err) {
       if (err instanceof CastingError) {
         return JSON.parse(res.body) satisfies T;
       }
@@ -54,7 +58,10 @@ export default class Fotmob {
   async getMatchesByDate(date: string) {
     if (this.checkDate(date) != null) {
       const url = this.matchesUrl + `date=${date}`;
-      return await this.safeTypeCastFetch<Matches>(url, ConvertMatches.toMatches);
+      return await this.safeTypeCastFetch<Matches>(
+        url,
+        ConvertMatches.toMatches,
+      );
     }
   }
 
@@ -87,17 +94,33 @@ export default class Fotmob {
 
   async getMatchDetails(matchId: number) {
     const url = this.matchDetailsUrl + `matchId=${matchId}`;
-    return await this.safeTypeCastFetch<MatchDetails>(url, ConvertMatchDetails.toMatchDetails);
+    return await this.safeTypeCastFetch<MatchDetails>(
+      url,
+      ConvertMatchDetails.toMatchDetails,
+    );
   }
 
   async getWorldNews({ page = 1, lang = "en" } = {}) {
     const url = this.worldNewsUrl + `page=${page}&lang=${lang}`;
-    return await this.safeTypeCastFetch<WorldNews>(url, ConvertWorldNews.toWorldNews);
+    return await this.safeTypeCastFetch<WorldNews>(
+      url,
+      ConvertWorldNews.toWorldNews,
+    );
+  }
+
+  async getTransfers({ page = 1, lang = "en" } = {}) {
+    const url = this.transfersUrl + `page=${page}&lang=${lang}`;
+    return await this.safeTypeCastFetch<Transfers>(
+      url,
+      ConvertTransfers.toTransfers,
+    );
   }
 
   async request<T>(path: string, params: Record<string, string>) {
     const url = `${baseUrl + path}?${new URLSearchParams(params)}`;
-    return await this.safeTypeCastFetch<T>(url, (data) => JSON.parse(data) as T);
+    return await this.safeTypeCastFetch<T>(
+      url,
+      (data) => JSON.parse(data) as T,
+    );
   }
-
 }

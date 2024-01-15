@@ -8,13 +8,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import got from "got";
-import { CastingError } from './type-cast-error';
-import { Convert as ConvertLeague } from './types/league';
-import { Convert as ConvertMatchDetails } from './types/match-details';
-import { Convert as ConvertMatches } from './types/matches';
-import { Convert as ConvertPlayer } from './types/player';
+import { CastingError } from "./type-cast-error";
+import { Convert as ConvertLeague } from "./types/league";
+import { Convert as ConvertMatchDetails, } from "./types/match-details";
+import { Convert as ConvertMatches } from "./types/matches";
+import { Convert as ConvertPlayer } from "./types/player";
 import { Convert as ConvertTeam } from "./types/team";
-import { Convert as ConvertWorldNews } from './types/world-news';
+import { Convert as ConvertWorldNews } from "./types/world-news";
+import { Convert as ConvertTransfers } from "./types/transfers";
 const baseUrl = "https://www.fotmob.com/api/";
 export default class Fotmob {
     constructor() {
@@ -25,6 +26,7 @@ export default class Fotmob {
         this.playerUrl = `${baseUrl}playerData?`;
         this.matchDetailsUrl = `${baseUrl}matchDetails?`;
         this.searchUrl = `${baseUrl}searchapi/`;
+        this.transfersUrl = `${baseUrl}transfers?`;
         this.worldNewsUrl = `${baseUrl}worldnews?`;
     }
     checkDate(date) {
@@ -85,6 +87,12 @@ export default class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.worldNewsUrl + `page=${page}&lang=${lang}`;
             return yield this.safeTypeCastFetch(url, ConvertWorldNews.toWorldNews);
+        });
+    }
+    getTransfers({ page = 1, lang = "en" } = {}) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = this.transfersUrl + `page=${page}&lang=${lang}`;
+            return yield this.safeTypeCastFetch(url, ConvertTransfers.toTransfers);
         });
     }
     request(path, params) {
