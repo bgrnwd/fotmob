@@ -8,7 +8,7 @@ import {
 import { Convert as ConvertMatches, type Matches } from "./types/matches";
 import { Convert as ConvertPlayer, type Player } from "./types/player";
 import { Convert as ConvertTeam, type Team } from "./types/team";
-import { Convert as ConvertWorldNews, WorldNews } from "./types/world-news";
+import { Convert as ConvertWorldNews, type WorldNews } from "./types/world-news";
 import { Convert as ConvertTransfers, type Transfers } from "./types/transfers";
 
 const baseUrl = "https://www.fotmob.com/api/";

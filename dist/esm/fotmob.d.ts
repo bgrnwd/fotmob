@@ -3,7 +3,7 @@ import { type MatchDetails } from "./types/match-details";
 import { type Matches } from "./types/matches";
 import { type Player } from "./types/player";
 import { type Team } from "./types/team";
-import { WorldNews } from "./types/world-news";
+import { type WorldNews } from "./types/world-news";
 import { type Transfers } from "./types/transfers";
 export default class Fotmob {
     matchesUrl: string;
