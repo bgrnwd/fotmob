@@ -15,5 +15,5 @@ describe("WorldNews", () => {
 describe("AllLeagues", () => {
   it("should return AllLeagues", async () => {
     await expect(fot.getAllLeagues()).resolves.not.toThrow();
-  });
+  }, 10000);
 });
