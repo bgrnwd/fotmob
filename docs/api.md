@@ -10,20 +10,11 @@
 
 Dates are formatted like so: `20200814`
 
-### World News
+### All Leagues
 
 `GET`
 
-<https://www.fotmob.com/api/worldnews>
-
-#### URL Parameters
-
-```json
-{
-  "lang": "en",
-  "page": "1",
-}
-```
+<https://www.fotmob.com/api/allLeagues>
 
 ### Leagues
 
@@ -77,7 +68,6 @@ Dates are formatted like so: `20200814`
 
 <https://www.fotmob.com/api/matchDetails?matchId={matchId}>
 
-
 ### World News
 
 `GET`
@@ -92,6 +82,12 @@ Dates are formatted like so: `20200814`
   "page": "1",
 }
 ```
+
+### Transfers
+
+`GET`
+
+<https://www.fotmob.com/api/transfers>
 
 ### Search
 

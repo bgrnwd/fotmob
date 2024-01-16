@@ -5,9 +5,11 @@ import { type Player } from "./types/player";
 import { type Team } from "./types/team";
 import { type WorldNews } from "./types/world-news";
 import { type Transfers } from "./types/transfers";
+import { type AllLeagues } from "./types/all-leagues";
 export default class Fotmob {
     matchesUrl: string;
     leaguesUrl: string;
+    allLeaguesUrl: string;
     teamsUrl: string;
     playerUrl: string;
     matchDetailsUrl: string;
@@ -20,6 +22,7 @@ export default class Fotmob {
     safeTypeCastFetch<T>(url: string, fn: (data: string) => T): Promise<T>;
     getMatchesByDate(date: string): Promise<Matches | undefined>;
     getLeague(id: number, tab?: string, type?: string, timeZone?: string): Promise<League>;
+    getAllLeagues(): Promise<AllLeagues>;
     getTeam(id: number, tab?: string, type?: string, timeZone?: string): Promise<Team>;
     getPlayer(id: number): Promise<Player>;
     getMatchDetails(matchId: number): Promise<MatchDetails>;

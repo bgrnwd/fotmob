@@ -16,12 +16,15 @@ import { Convert as ConvertPlayer } from "./types/player";
 import { Convert as ConvertTeam } from "./types/team";
 import { Convert as ConvertWorldNews } from "./types/world-news";
 import { Convert as ConvertTransfers } from "./types/transfers";
+import { Convert as ConvertWorldNews, } from "./types/world-news";
+import { Convert as ConvertAllLeagues, } from "./types/all-leagues";
 const baseUrl = "https://www.fotmob.com/api/";
 export default class Fotmob {
     constructor() {
         this.map = new Map();
         this.matchesUrl = `${baseUrl}matches?`;
         this.leaguesUrl = `${baseUrl}leagues?`;
+        this.allLeaguesUrl = `${baseUrl}allLeagues?`;
         this.teamsUrl = `${baseUrl}teams?`;
         this.playerUrl = `${baseUrl}playerData?`;
         this.matchDetailsUrl = `${baseUrl}matchDetails?`;
@@ -63,6 +66,12 @@ export default class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
             return yield this.safeTypeCastFetch(url, ConvertLeague.toLeague);
+        });
+    }
+    getAllLeagues() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = this.allLeaguesUrl;
+            return yield this.safeTypeCastFetch(url, ConvertAllLeagues.toAllLeagues);
         });
     }
     getTeam(id, tab = "overview", type = "team", timeZone = "America/New_York") {

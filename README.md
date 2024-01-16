@@ -39,6 +39,7 @@ let player = await fotmob.getPlayer("1071179");
 let details = await fotmob.getMatchDetails("3399269");
 let worldNews = await fotmob.getWorldNews();
 let transfers = await fotmob.getTransfers();
+let AllLeagues = await fotmob.getAllLeagues();
 let myCustomRequest = await fotmob.request("matches", { date: "20201020" });
 ```
 

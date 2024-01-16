@@ -21,12 +21,14 @@ const player_1 = require("./types/player");
 const team_1 = require("./types/team");
 const world_news_1 = require("./types/world-news");
 const transfers_1 = require("./types/transfers");
+const all_leagues_1 = require("./types/all-leagues");
 const baseUrl = "https://www.fotmob.com/api/";
 class Fotmob {
     constructor() {
         this.map = new Map();
         this.matchesUrl = `${baseUrl}matches?`;
         this.leaguesUrl = `${baseUrl}leagues?`;
+        this.allLeaguesUrl = `${baseUrl}allLeagues?`;
         this.teamsUrl = `${baseUrl}teams?`;
         this.playerUrl = `${baseUrl}playerData?`;
         this.matchDetailsUrl = `${baseUrl}matchDetails?`;
@@ -68,6 +70,12 @@ class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
             return yield this.safeTypeCastFetch(url, league_1.Convert.toLeague);
+        });
+    }
+    getAllLeagues() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = this.allLeaguesUrl;
+            return yield this.safeTypeCastFetch(url, all_leagues_1.Convert.toAllLeagues);
         });
     }
     getTeam(id, tab = "overview", type = "team", timeZone = "America/New_York") {

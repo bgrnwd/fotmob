@@ -8,14 +8,22 @@ import {
 import { Convert as ConvertMatches, type Matches } from "./types/matches";
 import { Convert as ConvertPlayer, type Player } from "./types/player";
 import { Convert as ConvertTeam, type Team } from "./types/team";
-import { Convert as ConvertWorldNews, type WorldNews } from "./types/world-news";
+import {
+  Convert as ConvertWorldNews,
+  type WorldNews,
+} from "./types/world-news";
 import { Convert as ConvertTransfers, type Transfers } from "./types/transfers";
+import {
+  Convert as ConvertAllLeagues,
+  type AllLeagues,
+} from "./types/all-leagues";
 
 const baseUrl = "https://www.fotmob.com/api/";
 
 export default class Fotmob {
   matchesUrl: string;
   leaguesUrl: string;
+  allLeaguesUrl: string;
   teamsUrl: string;
   playerUrl: string;
   matchDetailsUrl: string;
@@ -27,6 +35,7 @@ export default class Fotmob {
   constructor() {
     this.matchesUrl = `${baseUrl}matches?`;
     this.leaguesUrl = `${baseUrl}leagues?`;
+    this.allLeaguesUrl = `${baseUrl}allLeagues?`;
     this.teamsUrl = `${baseUrl}teams?`;
     this.playerUrl = `${baseUrl}playerData?`;
     this.matchDetailsUrl = `${baseUrl}matchDetails?`;
@@ -74,6 +83,14 @@ export default class Fotmob {
     const url =
       this.leaguesUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
     return await this.safeTypeCastFetch<League>(url, ConvertLeague.toLeague);
+  }
+
+  async getAllLeagues() {
+    const url = this.allLeaguesUrl;
+    return await this.safeTypeCastFetch<AllLeagues>(
+      url,
+      ConvertAllLeagues.toAllLeagues,
+    );
   }
 
   async getTeam(
