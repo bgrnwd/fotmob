@@ -1298,7 +1298,7 @@ function transform(
       const typ = typs[i];
       try {
         return transform(val, typ, getProps);
-      } catch (_) { }
+      } catch (_) {}
     }
     return invalidValue(typs, val, key, parent);
   }

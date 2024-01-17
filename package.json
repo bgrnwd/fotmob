@@ -1,6 +1,6 @@
 {
   "name": "fotmob",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "A JavaScript wrapper around the unofficial FotMob API",
   "main": "dist/cjs/fotmob.js",
   "types": "dist/esm/fotmob.d.ts",
@@ -10,7 +10,8 @@
     "test": "jest --config=jest.config.js",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --fix --ext .ts",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format:fix": "prettier --write \"src/**/*.ts\"",
+    "format": "prettier --check \"src/**/*.ts\""
   },
   "repository": {
     "type": "git",

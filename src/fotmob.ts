@@ -13,6 +13,11 @@ import {
   Convert as ConvertAllLeagues,
   type AllLeagues,
 } from "./types/all-leagues";
+import { WorldNews, Convert as ConvertWorldNews } from "./types/world-news";
+import {
+  TeamSeasonStats,
+  Convert as ConvertTeamSeasonStats,
+} from "./types/team-season-stats";
 
 const baseUrl = "https://www.fotmob.com/api/";
 

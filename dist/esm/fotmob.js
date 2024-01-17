@@ -16,8 +16,8 @@ import { Convert as ConvertPlayer } from "./types/player";
 import { Convert as ConvertTeam } from "./types/team";
 import { Convert as ConvertTransfers } from "./types/transfers";
 import { Convert as ConvertAllLeagues, } from "./types/all-leagues";
-import { Convert as ConvertWorldNews } from './types/world-news';
-import { Convert as ConvertTeamSeasonStats } from './types/team-season-stats';
+import { Convert as ConvertWorldNews } from "./types/world-news";
+import { Convert as ConvertTeamSeasonStats, } from "./types/team-season-stats";
 const baseUrl = "https://www.fotmob.com/api/";
 export default class Fotmob {
     constructor() {

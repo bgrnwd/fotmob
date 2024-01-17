@@ -5,8 +5,8 @@ import { type Player } from "./types/player";
 import { type Team } from "./types/team";
 import { type Transfers } from "./types/transfers";
 import { type AllLeagues } from "./types/all-leagues";
-import { WorldNews } from './types/world-news';
-import { TeamSeasonStats } from './types/team-season-stats';
+import { WorldNews } from "./types/world-news";
+import { TeamSeasonStats } from "./types/team-season-stats";
 export default class Fotmob {
     matchesUrl: string;
     leaguesUrl: string;
