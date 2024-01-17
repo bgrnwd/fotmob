@@ -1,4 +1,4 @@
-import { CastingError } from '../type-cast-error';
+import { CastingError } from "../type-cast-error";
 export var Long;
 (function (Long) {
     Long["Cancelled"] = "Cancelled";
@@ -61,10 +61,10 @@ export class Convert {
         return JSON.stringify(uncast(value, r("Reason")), null, 2);
     }
 }
-function invalidValue(typ, val, key, parent = '') {
+function invalidValue(typ, val, key, parent = "") {
     const prettyTyp = prettyTypeName(typ);
-    const parentText = parent ? ` on ${parent}` : '';
-    const keyText = key ? ` for key "${key}"` : '';
+    const parentText = parent ? ` on ${parent}` : "";
+    const keyText = key ? ` for key "${key}"` : "";
     throw new CastingError(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
 }
 function prettyTypeName(typ) {
@@ -73,7 +73,11 @@ function prettyTypeName(typ) {
             return `an optional ${prettyTypeName(typ[1])}`;
         }
         else {
-            return `one of [${typ.map(a => { return prettyTypeName(a); }).join(", ")}]`;
+            return `one of [${typ
+                .map((a) => {
+                return prettyTypeName(a);
+            })
+                .join(", ")}]`;
         }
     }
     else if (typeof typ === "object" && typ.literal !== undefined) {
@@ -86,7 +90,7 @@ function prettyTypeName(typ) {
 function jsonToJSProps(typ) {
     if (typ.jsonToJS === undefined) {
         const map = {};
-        typ.props.forEach((p) => map[p.json] = { key: p.js, typ: p.typ });
+        typ.props.forEach((p) => (map[p.json] = { key: p.js, typ: p.typ }));
         typ.jsonToJS = map;
     }
     return typ.jsonToJS;
@@ -94,12 +98,12 @@ function jsonToJSProps(typ) {
 function jsToJSONProps(typ) {
     if (typ.jsToJSON === undefined) {
         const map = {};
-        typ.props.forEach((p) => map[p.js] = { key: p.json, typ: p.typ });
+        typ.props.forEach((p) => (map[p.js] = { key: p.json, typ: p.typ }));
         typ.jsToJSON = map;
     }
     return typ.jsToJSON;
 }
-function transform(val, typ, getProps, key = '', parent = '') {
+function transform(val, typ, getProps, key = "", parent = "") {
     function transformPrimitive(typ, val) {
         if (typeof typ === typeof val)
             return val;
@@ -119,12 +123,14 @@ function transform(val, typ, getProps, key = '', parent = '') {
     function transformEnum(cases, val) {
         if (cases.indexOf(val) !== -1)
             return val;
-        return invalidValue(cases.map(a => { return l(a); }), val, key, parent);
+        return invalidValue(cases.map((a) => {
+            return l(a);
+        }), val, key, parent);
     }
     function transformArray(typ, val) {
         if (!Array.isArray(val))
             return invalidValue(l("array"), val, key, parent);
-        return val.map(el => transform(el, typ, getProps));
+        return val.map((el) => transform(el, typ, getProps));
     }
     function transformDate(val) {
         if (val === null) {
@@ -141,12 +147,14 @@ function transform(val, typ, getProps, key = '', parent = '') {
             return invalidValue(l(ref || "object"), val, key, parent);
         }
         const result = {};
-        Object.getOwnPropertyNames(props).forEach(key => {
+        Object.getOwnPropertyNames(props).forEach((key) => {
             const prop = props[key];
-            const v = Object.prototype.hasOwnProperty.call(val, key) ? val[key] : undefined;
+            const v = Object.prototype.hasOwnProperty.call(val, key)
+                ? val[key]
+                : undefined;
             result[prop.key] = transform(v, prop.typ, getProps, key, ref);
         });
-        Object.getOwnPropertyNames(val).forEach(key => {
+        Object.getOwnPropertyNames(val).forEach((key) => {
             if (!Object.prototype.hasOwnProperty.call(props, key)) {
                 result[key] = val[key];
             }
@@ -170,9 +178,12 @@ function transform(val, typ, getProps, key = '', parent = '') {
     if (Array.isArray(typ))
         return transformEnum(typ, val);
     if (typeof typ === "object") {
-        return typ.hasOwnProperty("unionMembers") ? transformUnion(typ.unionMembers, val)
-            : typ.hasOwnProperty("arrayItems") ? transformArray(typ.arrayItems, val)
-                : typ.hasOwnProperty("props") ? transformObject(getProps(typ), typ.additional, val)
+        return typ.hasOwnProperty("unionMembers")
+            ? transformUnion(typ.unionMembers, val)
+            : typ.hasOwnProperty("arrayItems")
+                ? transformArray(typ.arrayItems, val)
+                : typ.hasOwnProperty("props")
+                    ? transformObject(getProps(typ), typ.additional, val)
                     : invalidValue(typ, val, key, parent);
     }
     if (typ === Date && typeof val !== "number")
@@ -204,11 +215,11 @@ function r(name) {
     return { ref: name };
 }
 const typeMap = {
-    "Matches": o([
+    Matches: o([
         { json: "leagues", js: "leagues", typ: u(undefined, a(r("League"))) },
         { json: "date", js: "date", typ: u(undefined, "") },
     ], false),
-    "League": o([
+    League: o([
         { json: "isGroup", js: "isGroup", typ: u(undefined, true) },
         { json: "groupName", js: "groupName", typ: u(undefined, "") },
         { json: "ccode", js: "ccode", typ: u(undefined, "") },
@@ -217,30 +228,38 @@ const typeMap = {
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "matches", js: "matches", typ: u(undefined, a(r("Match"))) },
         { json: "parentLeagueId", js: "parentLeagueId", typ: u(undefined, 0) },
-        { json: "parentLeagueName", js: "parentLeagueName", typ: u(undefined, "") },
+        {
+            json: "parentLeagueName",
+            js: "parentLeagueName",
+            typ: u(undefined, ""),
+        },
         { json: "internalRank", js: "internalRank", typ: u(undefined, 0) },
         { json: "liveRank", js: "liveRank", typ: u(undefined, 0) },
         { json: "simpleLeague", js: "simpleLeague", typ: u(undefined, true) },
     ], false),
-    "Match": o([
+    Match: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
         { json: "time", js: "time", typ: u(undefined, "") },
         { json: "home", js: "home", typ: u(undefined, r("Away")) },
         { json: "away", js: "away", typ: u(undefined, r("Away")) },
-        { json: "eliminatedTeamId", js: "eliminatedTeamId", typ: u(undefined, null) },
+        {
+            json: "eliminatedTeamId",
+            js: "eliminatedTeamId",
+            typ: u(undefined, null),
+        },
         { json: "statusId", js: "statusId", typ: u(undefined, 0) },
         { json: "tournamentStage", js: "tournamentStage", typ: u(undefined, "") },
         { json: "status", js: "status", typ: u(undefined, r("Status")) },
         { json: "timeTS", js: "timeTS", typ: u(undefined, 0) },
     ], false),
-    "Away": o([
+    Away: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "score", js: "score", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "longName", js: "longName", typ: u(undefined, "") },
     ], false),
-    "Status": o([
+    Status: o([
         { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
         { json: "finished", js: "finished", typ: u(undefined, true) },
         { json: "started", js: "started", typ: u(undefined, true) },
@@ -248,30 +267,14 @@ const typeMap = {
         { json: "scoreStr", js: "scoreStr", typ: u(undefined, "") },
         { json: "reason", js: "reason", typ: u(undefined, r("Reason")) },
     ], false),
-    "Reason": o([
+    Reason: o([
         { json: "short", js: "short", typ: u(undefined, r("Short")) },
         { json: "shortKey", js: "shortKey", typ: u(undefined, r("ShortKey")) },
         { json: "long", js: "long", typ: u(undefined, r("Long")) },
         { json: "longKey", js: "longKey", typ: u(undefined, r("LongKey")) },
     ], false),
-    "Long": [
-        "Cancelled",
-        "Full-Time",
-        "Postponed",
-    ],
-    "LongKey": [
-        "cancelled",
-        "finished",
-        "postponed",
-    ],
-    "Short": [
-        "Can",
-        "FT",
-        "PP",
-    ],
-    "ShortKey": [
-        "cancelled_short",
-        "fulltime_short",
-        "postponed_short",
-    ],
+    Long: ["Cancelled", "Full-Time", "Postponed"],
+    LongKey: ["cancelled", "finished", "postponed"],
+    Short: ["Can", "FT", "PP"],
+    ShortKey: ["cancelled_short", "fulltime_short", "postponed_short"],
 };

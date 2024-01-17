@@ -28,19 +28,15 @@ import Fotmob from "fotmob";
 const fotmob = new Fotmob();
 
 let matches = await fotmob.getMatchesByDate("20201020");
-let league = await fotmob.getLeague(
-  "42",
-  "overview",
-  "league",
-  "America/New_York",
-);
-let team = await fotmob.getTeam("6017", "overview", "team", "America/New_York");
-let player = await fotmob.getPlayer("1071179");
-let details = await fotmob.getMatchDetails("3399269");
-let worldNews = await fotmob.getWorldNews();
+let league = await fotmob.getLeague("42", "overview", "league", "America/New_York")
+let team = await fotmob.getTeam("6017", "overview", "team", "America/New_York")
+let player = await fotmob.getPlayer("1071179")
+let details = await fotmob.getMatchDetails("3399269")
+let worldNews = await fotmob.getWorldNews()
 let transfers = await fotmob.getTransfers();
 let AllLeagues = await fotmob.getAllLeagues();
-let myCustomRequest = await fotmob.request("matches", { date: "20201020" });
+let teamSeasonStats = await fotmob.getTeamSeasonStats()
+let myCustomRequest = await fotmob.request("matches", { date: "20201020" })
 ```
 
 ## Contributing

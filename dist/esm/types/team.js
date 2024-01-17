@@ -1,4 +1,4 @@
-import { CastingError } from '../type-cast-error';
+import { CastingError } from "../type-cast-error";
 export var Country;
 (function (Country) {
     Country["Eng"] = "ENG";
@@ -475,10 +475,10 @@ export class Convert {
         return JSON.stringify(uncast(value, r("Fee")), null, 2);
     }
 }
-function invalidValue(typ, val, key, parent = '') {
+function invalidValue(typ, val, key, parent = "") {
     const prettyTyp = prettyTypeName(typ);
-    const parentText = parent ? ` on ${parent}` : '';
-    const keyText = key ? ` for key "${key}"` : '';
+    const parentText = parent ? ` on ${parent}` : "";
+    const keyText = key ? ` for key "${key}"` : "";
     throw new CastingError(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
 }
 function prettyTypeName(typ) {
@@ -487,7 +487,11 @@ function prettyTypeName(typ) {
             return `an optional ${prettyTypeName(typ[1])}`;
         }
         else {
-            return `one of [${typ.map(a => { return prettyTypeName(a); }).join(", ")}]`;
+            return `one of [${typ
+                .map((a) => {
+                return prettyTypeName(a);
+            })
+                .join(", ")}]`;
         }
     }
     else if (typeof typ === "object" && typ.literal !== undefined) {
@@ -500,7 +504,7 @@ function prettyTypeName(typ) {
 function jsonToJSProps(typ) {
     if (typ.jsonToJS === undefined) {
         const map = {};
-        typ.props.forEach((p) => map[p.json] = { key: p.js, typ: p.typ });
+        typ.props.forEach((p) => (map[p.json] = { key: p.js, typ: p.typ }));
         typ.jsonToJS = map;
     }
     return typ.jsonToJS;
@@ -508,12 +512,12 @@ function jsonToJSProps(typ) {
 function jsToJSONProps(typ) {
     if (typ.jsToJSON === undefined) {
         const map = {};
-        typ.props.forEach((p) => map[p.js] = { key: p.json, typ: p.typ });
+        typ.props.forEach((p) => (map[p.js] = { key: p.json, typ: p.typ }));
         typ.jsToJSON = map;
     }
     return typ.jsToJSON;
 }
-function transform(val, typ, getProps, key = '', parent = '') {
+function transform(val, typ, getProps, key = "", parent = "") {
     function transformPrimitive(typ, val) {
         if (typeof typ === typeof val)
             return val;
@@ -533,12 +537,14 @@ function transform(val, typ, getProps, key = '', parent = '') {
     function transformEnum(cases, val) {
         if (cases.indexOf(val) !== -1)
             return val;
-        return invalidValue(cases.map(a => { return l(a); }), val, key, parent);
+        return invalidValue(cases.map((a) => {
+            return l(a);
+        }), val, key, parent);
     }
     function transformArray(typ, val) {
         if (!Array.isArray(val))
             return invalidValue(l("array"), val, key, parent);
-        return val.map(el => transform(el, typ, getProps));
+        return val.map((el) => transform(el, typ, getProps));
     }
     function transformDate(val) {
         if (val === null) {
@@ -555,12 +561,14 @@ function transform(val, typ, getProps, key = '', parent = '') {
             return invalidValue(l(ref || "object"), val, key, parent);
         }
         const result = {};
-        Object.getOwnPropertyNames(props).forEach(key => {
+        Object.getOwnPropertyNames(props).forEach((key) => {
             const prop = props[key];
-            const v = Object.prototype.hasOwnProperty.call(val, key) ? val[key] : undefined;
+            const v = Object.prototype.hasOwnProperty.call(val, key)
+                ? val[key]
+                : undefined;
             result[prop.key] = transform(v, prop.typ, getProps, key, ref);
         });
-        Object.getOwnPropertyNames(val).forEach(key => {
+        Object.getOwnPropertyNames(val).forEach((key) => {
             if (!Object.prototype.hasOwnProperty.call(props, key)) {
                 result[key] = val[key];
             }
@@ -584,9 +592,12 @@ function transform(val, typ, getProps, key = '', parent = '') {
     if (Array.isArray(typ))
         return transformEnum(typ, val);
     if (typeof typ === "object") {
-        return typ.hasOwnProperty("unionMembers") ? transformUnion(typ.unionMembers, val)
-            : typ.hasOwnProperty("arrayItems") ? transformArray(typ.arrayItems, val)
-                : typ.hasOwnProperty("props") ? transformObject(getProps(typ), typ.additional, val)
+        return typ.hasOwnProperty("unionMembers")
+            ? transformUnion(typ.unionMembers, val)
+            : typ.hasOwnProperty("arrayItems")
+                ? transformArray(typ.arrayItems, val)
+                : typ.hasOwnProperty("props")
+                    ? transformObject(getProps(typ), typ.additional, val)
                     : invalidValue(typ, val, key, parent);
     }
     if (typ === Date && typeof val !== "number")
@@ -618,9 +629,13 @@ function r(name) {
     return { ref: name };
 }
 const typeMap = {
-    "Team": o([
+    Team: o([
         { json: "tabs", js: "tabs", typ: u(undefined, a("")) },
-        { json: "allAvailableSeasons", js: "allAvailableSeasons", typ: u(undefined, a("any")) },
+        {
+            json: "allAvailableSeasons",
+            js: "allAvailableSeasons",
+            typ: u(undefined, a("any")),
+        },
         { json: "details", js: "details", typ: u(undefined, r("Details")) },
         { json: "seostr", js: "seostr", typ: u(undefined, "") },
         { json: "QAData", js: "QAData", typ: u(undefined, a(r("QADatum"))) },
@@ -628,15 +643,23 @@ const typeMap = {
         { json: "transfers", js: "transfers", typ: u(undefined, r("Transfers")) },
         { json: "overview", js: "overview", typ: u(undefined, r("Overview")) },
         { json: "stats", js: "stats", typ: u(undefined, r("TeamStats")) },
-        { json: "fixtures", js: "fixtures", typ: u(undefined, r("TeamFixtures")) },
-        { json: "squad", js: "squad", typ: u(undefined, a(a(u(a(r("SquadClass")), "")))) },
+        {
+            json: "fixtures",
+            js: "fixtures",
+            typ: u(undefined, r("TeamFixtures")),
+        },
+        {
+            json: "squad",
+            js: "squad",
+            typ: u(undefined, a(a(u(a(r("SquadClass")), "")))),
+        },
         { json: "history", js: "history", typ: u(undefined, r("History")) },
     ], false),
-    "QADatum": o([
+    QADatum: o([
         { json: "question", js: "question", typ: u(undefined, "") },
         { json: "answer", js: "answer", typ: u(undefined, "") },
     ], false),
-    "Details": o([
+    Details: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "type", js: "type", typ: u(undefined, "") },
         { json: "name", js: "name", typ: u(undefined, "") },
@@ -644,36 +667,60 @@ const typeMap = {
         { json: "shortName", js: "shortName", typ: u(undefined, "") },
         { json: "country", js: "country", typ: u(undefined, "") },
         { json: "faqJSONLD", js: "faqJSONLD", typ: u(undefined, r("FAQJSONLD")) },
-        { json: "sportsTeamJSONLD", js: "sportsTeamJSONLD", typ: u(undefined, r("SportsTeamJSONLD")) },
-        { json: "breadcrumbJSONLD", js: "breadcrumbJSONLD", typ: u(undefined, r("BreadcrumbJSONLD")) },
-        { json: "canSyncCalendar", js: "canSyncCalendar", typ: u(undefined, true) },
+        {
+            json: "sportsTeamJSONLD",
+            js: "sportsTeamJSONLD",
+            typ: u(undefined, r("SportsTeamJSONLD")),
+        },
+        {
+            json: "breadcrumbJSONLD",
+            js: "breadcrumbJSONLD",
+            typ: u(undefined, r("BreadcrumbJSONLD")),
+        },
+        {
+            json: "canSyncCalendar",
+            js: "canSyncCalendar",
+            typ: u(undefined, true),
+        },
     ], false),
-    "BreadcrumbJSONLD": o([
+    BreadcrumbJSONLD: o([
         { json: "@context", js: "@context", typ: u(undefined, "") },
         { json: "@type", js: "@type", typ: u(undefined, "") },
-        { json: "itemListElement", js: "itemListElement", typ: u(undefined, a(r("ItemListElement"))) },
+        {
+            json: "itemListElement",
+            js: "itemListElement",
+            typ: u(undefined, a(r("ItemListElement"))),
+        },
     ], false),
-    "ItemListElement": o([
+    ItemListElement: o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "position", js: "position", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "item", js: "item", typ: u(undefined, "") },
     ], false),
-    "FAQJSONLD": o([
+    FAQJSONLD: o([
         { json: "@context", js: "@context", typ: u(undefined, "") },
         { json: "@type", js: "@type", typ: u(undefined, "") },
-        { json: "mainEntity", js: "mainEntity", typ: u(undefined, a(r("MainEntity"))) },
+        {
+            json: "mainEntity",
+            js: "mainEntity",
+            typ: u(undefined, a(r("MainEntity"))),
+        },
     ], false),
-    "MainEntity": o([
+    MainEntity: o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "name", js: "name", typ: u(undefined, "") },
-        { json: "acceptedAnswer", js: "acceptedAnswer", typ: u(undefined, r("AcceptedAnswer")) },
+        {
+            json: "acceptedAnswer",
+            js: "acceptedAnswer",
+            typ: u(undefined, r("AcceptedAnswer")),
+        },
     ], false),
-    "AcceptedAnswer": o([
+    AcceptedAnswer: o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "text", js: "text", typ: u(undefined, "") },
     ], false),
-    "SportsTeamJSONLD": o([
+    SportsTeamJSONLD: o([
         { json: "@context", js: "@context", typ: u(undefined, "") },
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "name", js: "name", typ: u(undefined, "") },
@@ -686,73 +733,117 @@ const typeMap = {
         { json: "location", js: "location", typ: u(undefined, r("Location")) },
         { json: "memberOf", js: "memberOf", typ: u(undefined, r("MemberOf")) },
     ], false),
-    "Coach": o([
+    Coach: o([
         { json: "@context", js: "@context", typ: u(undefined, "") },
         { json: "@type", js: "@type", typ: u(undefined, r("CoachType")) },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "url", js: "url", typ: u(undefined, "") },
-        { json: "nationality", js: "nationality", typ: u(undefined, u(r("Nationality"), null)) },
+        {
+            json: "nationality",
+            js: "nationality",
+            typ: u(undefined, u(r("Nationality"), null)),
+        },
         { json: "affiliation", js: "affiliation", typ: u(undefined, null) },
         { json: "height", js: "height", typ: u(undefined, null) },
         { json: "weight", js: "weight", typ: u(undefined, null) },
     ], false),
-    "Nationality": o([
+    Nationality: o([
         { json: "@type", js: "@type", typ: u(undefined, r("NationalityType")) },
         { json: "name", js: "name", typ: u(undefined, "") },
     ], false),
-    "Location": o([
+    Location: o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "address", js: "address", typ: u(undefined, r("Address")) },
         { json: "geo", js: "geo", typ: u(undefined, r("Geo")) },
     ], false),
-    "Address": o([
+    Address: o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "addressCountry", js: "addressCountry", typ: u(undefined, "") },
         { json: "addressLocality", js: "addressLocality", typ: u(undefined, "") },
     ], false),
-    "Geo": o([
+    Geo: o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "latitude", js: "latitude", typ: u(undefined, "") },
         { json: "longitude", js: "longitude", typ: u(undefined, "") },
     ], false),
-    "MemberOf": o([
+    MemberOf: o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "url", js: "url", typ: u(undefined, "") },
     ], false),
-    "TeamFixtures": o([
-        { json: "allFixtures", js: "allFixtures", typ: u(undefined, r("AllFixtures")) },
-        { json: "previousFixturesUrl", js: "previousFixturesUrl", typ: u(undefined, "") },
-        { json: "hasOngoingMatch", js: "hasOngoingMatch", typ: u(undefined, true) },
-        { json: "fixtures", js: "fixtures", typ: u(undefined, r("FixturesFixtures")) },
+    TeamFixtures: o([
+        {
+            json: "allFixtures",
+            js: "allFixtures",
+            typ: u(undefined, r("AllFixtures")),
+        },
+        {
+            json: "previousFixturesUrl",
+            js: "previousFixturesUrl",
+            typ: u(undefined, ""),
+        },
+        {
+            json: "hasOngoingMatch",
+            js: "hasOngoingMatch",
+            typ: u(undefined, true),
+        },
+        {
+            json: "fixtures",
+            js: "fixtures",
+            typ: u(undefined, r("FixturesFixtures")),
+        },
     ], false),
-    "AllFixtures": o([
-        { json: "fixtures", js: "fixtures", typ: u(undefined, a(r("OverviewFixture"))) },
+    AllFixtures: o([
+        {
+            json: "fixtures",
+            js: "fixtures",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
         { json: "nextMatch", js: "nextMatch", typ: u(undefined, r("NextMatch")) },
         { json: "lastMatch", js: "lastMatch", typ: u(undefined, r("LastMatch")) },
     ], false),
-    "OverviewFixture": o([
+    OverviewFixture: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
-        { json: "opponent", js: "opponent", typ: u(undefined, r("OpponentClass")) },
+        {
+            json: "opponent",
+            js: "opponent",
+            typ: u(undefined, r("OpponentClass")),
+        },
         { json: "home", js: "home", typ: u(undefined, r("OpponentClass")) },
         { json: "away", js: "away", typ: u(undefined, r("OpponentClass")) },
-        { json: "displayTournament", js: "displayTournament", typ: u(undefined, true) },
+        {
+            json: "displayTournament",
+            js: "displayTournament",
+            typ: u(undefined, true),
+        },
         { json: "result", js: "result", typ: u(undefined, 0) },
         { json: "notStarted", js: "notStarted", typ: u(undefined, true) },
-        { json: "tournament", js: "tournament", typ: u(undefined, r("Tournament")) },
-        { json: "status", js: "status", typ: u(undefined, r("OverviewFixtureStatus")) },
+        {
+            json: "tournament",
+            js: "tournament",
+            typ: u(undefined, r("Tournament")),
+        },
+        {
+            json: "status",
+            js: "status",
+            typ: u(undefined, r("OverviewFixtureStatus")),
+        },
         { json: "monthYearKey", js: "monthYearKey", typ: u(undefined, "") },
         { json: "isPastMatch", js: "isPastMatch", typ: u(undefined, true) },
-        { json: "lastPlayedMatch", js: "lastPlayedMatch", typ: u(undefined, true) },
+        {
+            json: "lastPlayedMatch",
+            js: "lastPlayedMatch",
+            typ: u(undefined, true),
+        },
     ], false),
-    "OpponentClass": o([
+    OpponentClass: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "score", js: "score", typ: u(undefined, 0) },
     ], false),
-    "OverviewFixtureStatus": o([
+    OverviewFixtureStatus: o([
         { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
         { json: "finished", js: "finished", typ: u(undefined, true) },
         { json: "started", js: "started", typ: u(undefined, true) },
@@ -761,91 +852,191 @@ const typeMap = {
         { json: "reason", js: "reason", typ: u(undefined, r("Reason")) },
         { json: "timezone", js: "timezone", typ: u(undefined, null) },
     ], false),
-    "Reason": o([
+    Reason: o([
         { json: "short", js: "short", typ: u(undefined, r("Short")) },
         { json: "shortKey", js: "shortKey", typ: u(undefined, r("ShortKey")) },
         { json: "long", js: "long", typ: u(undefined, r("Long")) },
         { json: "longKey", js: "longKey", typ: u(undefined, r("LongKey")) },
     ], false),
-    "Tournament": o([
+    Tournament: o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
     ], false),
-    "LastMatch": o([
+    LastMatch: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
-        { json: "opponent", js: "opponent", typ: u(undefined, r("OpponentClass")) },
+        {
+            json: "opponent",
+            js: "opponent",
+            typ: u(undefined, r("OpponentClass")),
+        },
         { json: "home", js: "home", typ: u(undefined, r("OpponentClass")) },
         { json: "away", js: "away", typ: u(undefined, r("OpponentClass")) },
-        { json: "displayTournament", js: "displayTournament", typ: u(undefined, true) },
+        {
+            json: "displayTournament",
+            js: "displayTournament",
+            typ: u(undefined, true),
+        },
         { json: "result", js: "result", typ: u(undefined, 0) },
         { json: "notStarted", js: "notStarted", typ: u(undefined, true) },
-        { json: "tournament", js: "tournament", typ: u(undefined, r("Tournament")) },
-        { json: "status", js: "status", typ: u(undefined, r("OverviewFixtureStatus")) },
+        {
+            json: "tournament",
+            js: "tournament",
+            typ: u(undefined, r("Tournament")),
+        },
+        {
+            json: "status",
+            js: "status",
+            typ: u(undefined, r("OverviewFixtureStatus")),
+        },
     ], false),
-    "NextMatch": o([
+    NextMatch: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
-        { json: "opponent", js: "opponent", typ: u(undefined, r("OpponentClass")) },
+        {
+            json: "opponent",
+            js: "opponent",
+            typ: u(undefined, r("OpponentClass")),
+        },
         { json: "home", js: "home", typ: u(undefined, r("OpponentClass")) },
         { json: "away", js: "away", typ: u(undefined, r("OpponentClass")) },
-        { json: "displayTournament", js: "displayTournament", typ: u(undefined, true) },
+        {
+            json: "displayTournament",
+            js: "displayTournament",
+            typ: u(undefined, true),
+        },
         { json: "notStarted", js: "notStarted", typ: u(undefined, true) },
-        { json: "tournament", js: "tournament", typ: u(undefined, r("Tournament")) },
+        {
+            json: "tournament",
+            js: "tournament",
+            typ: u(undefined, r("Tournament")),
+        },
         { json: "status", js: "status", typ: u(undefined, r("NextMatchStatus")) },
     ], false),
-    "NextMatchStatus": o([
+    NextMatchStatus: o([
         { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
         { json: "timezone", js: "timezone", typ: u(undefined, null) },
         { json: "started", js: "started", typ: u(undefined, true) },
         { json: "cancelled", js: "cancelled", typ: u(undefined, true) },
         { json: "finished", js: "finished", typ: u(undefined, true) },
     ], false),
-    "FixturesFixtures": o([
-        { json: "July 2023", js: "July 2023", typ: u(undefined, a(r("OverviewFixture"))) },
-        { json: "August 2023", js: "August 2023", typ: u(undefined, a(r("OverviewFixture"))) },
-        { json: "September 2023", js: "September 2023", typ: u(undefined, a(r("OverviewFixture"))) },
-        { json: "October 2023", js: "October 2023", typ: u(undefined, a(r("OverviewFixture"))) },
-        { json: "November 2023", js: "November 2023", typ: u(undefined, a(r("OverviewFixture"))) },
-        { json: "December 2023", js: "December 2023", typ: u(undefined, a(r("OverviewFixture"))) },
-        { json: "January 2024", js: "January 2024", typ: u(undefined, a(r("The2024"))) },
-        { json: "February 2024", js: "February 2024", typ: u(undefined, a(r("The2024"))) },
-        { json: "March 2024", js: "March 2024", typ: u(undefined, a(r("The2024"))) },
-        { json: "April 2024", js: "April 2024", typ: u(undefined, a(r("The2024"))) },
+    FixturesFixtures: o([
+        {
+            json: "July 2023",
+            js: "July 2023",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
+        {
+            json: "August 2023",
+            js: "August 2023",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
+        {
+            json: "September 2023",
+            js: "September 2023",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
+        {
+            json: "October 2023",
+            js: "October 2023",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
+        {
+            json: "November 2023",
+            js: "November 2023",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
+        {
+            json: "December 2023",
+            js: "December 2023",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
+        {
+            json: "January 2024",
+            js: "January 2024",
+            typ: u(undefined, a(r("The2024"))),
+        },
+        {
+            json: "February 2024",
+            js: "February 2024",
+            typ: u(undefined, a(r("The2024"))),
+        },
+        {
+            json: "March 2024",
+            js: "March 2024",
+            typ: u(undefined, a(r("The2024"))),
+        },
+        {
+            json: "April 2024",
+            js: "April 2024",
+            typ: u(undefined, a(r("The2024"))),
+        },
         { json: "May 2024", js: "May 2024", typ: u(undefined, a(r("The2024"))) },
     ], false),
-    "The2024": o([
+    The2024: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
         { json: "monthYearKey", js: "monthYearKey", typ: u(undefined, "") },
-        { json: "opponent", js: "opponent", typ: u(undefined, r("OpponentClass")) },
+        {
+            json: "opponent",
+            js: "opponent",
+            typ: u(undefined, r("OpponentClass")),
+        },
         { json: "home", js: "home", typ: u(undefined, r("OpponentClass")) },
         { json: "away", js: "away", typ: u(undefined, r("OpponentClass")) },
-        { json: "displayTournament", js: "displayTournament", typ: u(undefined, true) },
+        {
+            json: "displayTournament",
+            js: "displayTournament",
+            typ: u(undefined, true),
+        },
         { json: "isPastMatch", js: "isPastMatch", typ: u(undefined, true) },
-        { json: "lastPlayedMatch", js: "lastPlayedMatch", typ: u(undefined, true) },
+        {
+            json: "lastPlayedMatch",
+            js: "lastPlayedMatch",
+            typ: u(undefined, true),
+        },
         { json: "notStarted", js: "notStarted", typ: u(undefined, true) },
-        { json: "tournament", js: "tournament", typ: u(undefined, r("Tournament")) },
+        {
+            json: "tournament",
+            js: "tournament",
+            typ: u(undefined, r("Tournament")),
+        },
         { json: "status", js: "status", typ: u(undefined, r("NextMatchStatus")) },
     ], false),
-    "History": o([
-        { json: "trophyList", js: "trophyList", typ: u(undefined, a(r("TrophyList"))) },
-        { json: "historicalTableData", js: "historicalTableData", typ: u(undefined, r("HistoricalTableData")) },
+    History: o([
+        {
+            json: "trophyList",
+            js: "trophyList",
+            typ: u(undefined, a(r("TrophyList"))),
+        },
+        {
+            json: "historicalTableData",
+            js: "historicalTableData",
+            typ: u(undefined, r("HistoricalTableData")),
+        },
         { json: "teamColor", js: "teamColor", typ: u(undefined, "") },
-        { json: "teamColorMap", js: "teamColorMap", typ: u(undefined, r("TeamColorMap")) },
+        {
+            json: "teamColorMap",
+            js: "teamColorMap",
+            typ: u(undefined, r("TeamColorMap")),
+        },
         { json: "tables", js: "tables", typ: u(undefined, r("Tables")) },
     ], false),
-    "HistoricalTableData": o([
-        { json: "divisions", js: "divisions", typ: u(undefined, a(r("Division"))) },
+    HistoricalTableData: o([
+        {
+            json: "divisions",
+            js: "divisions",
+            typ: u(undefined, a(r("Division"))),
+        },
         { json: "ranks", js: "ranks", typ: u(undefined, a(r("Rank"))) },
         { json: "isValid", js: "isValid", typ: u(undefined, true) },
     ], false),
-    "Division": o([
+    Division: o([
         { json: "divisionRank", js: "divisionRank", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "templateId", js: "templateId", typ: u(undefined, 0) },
     ], false),
-    "Rank": o([
+    Rank: o([
         { json: "stageId", js: "stageId", typ: u(undefined, 0) },
         { json: "tournamentName", js: "tournamentName", typ: u(undefined, "") },
         { json: "tournamentId", js: "tournamentId", typ: u(undefined, 0) },
@@ -857,20 +1048,18 @@ const typeMap = {
         { json: "tableLink", js: "tableLink", typ: u(undefined, "") },
         { json: "isConsecutive", js: "isConsecutive", typ: u(undefined, true) },
     ], false),
-    "RankStats": o([
+    RankStats: o([
         { json: "points", js: "points", typ: u(undefined, 0) },
         { json: "wins", js: "wins", typ: u(undefined, 0) },
         { json: "draws", js: "draws", typ: u(undefined, 0) },
         { json: "loss", js: "loss", typ: u(undefined, 0) },
     ], false),
-    "Tables": o([
+    Tables: o([
         { json: "current", js: "current", typ: u(undefined, a(r("Current"))) },
         { json: "historic", js: "historic", typ: u(undefined, a(r("Current"))) },
     ], false),
-    "Current": o([
-        { json: "link", js: "link", typ: u(undefined, a(r("Link"))) },
-    ], false),
-    "Link": o([
+    Current: o([{ json: "link", js: "link", typ: u(undefined, a(r("Link"))) }], false),
+    Link: o([
         { json: "_", js: "_", typ: u(undefined, "") },
         { json: "name", js: "name", typ: u(undefined, a("")) },
         { json: "ccode", js: "ccode", typ: u(undefined, a("")) },
@@ -880,43 +1069,87 @@ const typeMap = {
         { json: "template_id", js: "template_id", typ: u(undefined, a("")) },
         { json: "league_id", js: "league_id", typ: u(undefined, a("")) },
     ], false),
-    "TeamColorMap": o([
+    TeamColorMap: o([
         { json: "color", js: "color", typ: u(undefined, "") },
         { json: "colorAlternate", js: "colorAlternate", typ: u(undefined, "") },
         { json: "colorAway", js: "colorAway", typ: u(undefined, "") },
-        { json: "colorAwayAlternate", js: "colorAwayAlternate", typ: u(undefined, "") },
+        {
+            json: "colorAwayAlternate",
+            js: "colorAwayAlternate",
+            typ: u(undefined, ""),
+        },
     ], false),
-    "TrophyList": o([
+    TrophyList: o([
         { json: "name", js: "name", typ: u(undefined, a("")) },
-        { json: "tournamentTemplateId", js: "tournamentTemplateId", typ: u(undefined, a("")) },
+        {
+            json: "tournamentTemplateId",
+            js: "tournamentTemplateId",
+            typ: u(undefined, a("")),
+        },
         { json: "area", js: "area", typ: u(undefined, a("")) },
         { json: "ccode", js: "ccode", typ: u(undefined, a("")) },
         { json: "won", js: "won", typ: u(undefined, a("")) },
         { json: "runnerup", js: "runnerup", typ: u(undefined, a("")) },
         { json: "season_won", js: "season_won", typ: u(undefined, a("")) },
-        { json: "season_runnerup", js: "season_runnerup", typ: u(undefined, a("")) },
+        {
+            json: "season_runnerup",
+            js: "season_runnerup",
+            typ: u(undefined, a("")),
+        },
     ], false),
-    "Overview": o([
+    Overview: o([
         { json: "season", js: "season", typ: u(undefined, "") },
         { json: "selectedSeason", js: "selectedSeason", typ: u(undefined, "") },
         { json: "table", js: "table", typ: u(undefined, a(r("OverviewTable"))) },
-        { json: "topPlayers", js: "topPlayers", typ: u(undefined, r("TopPlayers")) },
+        {
+            json: "topPlayers",
+            js: "topPlayers",
+            typ: u(undefined, r("TopPlayers")),
+        },
         { json: "venue", js: "venue", typ: u(undefined, r("Venue")) },
-        { json: "overviewFixtures", js: "overviewFixtures", typ: u(undefined, a(r("OverviewFixture"))) },
+        {
+            json: "overviewFixtures",
+            js: "overviewFixtures",
+            typ: u(undefined, a(r("OverviewFixture"))),
+        },
         { json: "nextMatch", js: "nextMatch", typ: u(undefined, r("NextMatch")) },
         { json: "lastMatch", js: "lastMatch", typ: u(undefined, r("LastMatch")) },
         { json: "teamForm", js: "teamForm", typ: u(undefined, a(r("TeamForm"))) },
-        { json: "hasOngoingMatch", js: "hasOngoingMatch", typ: u(undefined, true) },
-        { json: "previousFixturesUrl", js: "previousFixturesUrl", typ: u(undefined, "") },
-        { json: "teamColors", js: "teamColors", typ: u(undefined, r("TeamColors")) },
+        {
+            json: "hasOngoingMatch",
+            js: "hasOngoingMatch",
+            typ: u(undefined, true),
+        },
+        {
+            json: "previousFixturesUrl",
+            js: "previousFixturesUrl",
+            typ: u(undefined, ""),
+        },
+        {
+            json: "teamColors",
+            js: "teamColors",
+            typ: u(undefined, r("TeamColors")),
+        },
     ], false),
-    "OverviewTable": o([
+    OverviewTable: o([
         { json: "data", js: "data", typ: u(undefined, r("TableData")) },
-        { json: "teamForm", js: "teamForm", typ: u(undefined, m(a(r("TeamForm")))) },
-        { json: "nextOpponent", js: "nextOpponent", typ: u(undefined, u(m(a(u(r("NextOpponentClass"), ""))), null)) },
-        { json: "tableHeader", js: "tableHeader", typ: u(undefined, r("TableHeader")) },
+        {
+            json: "teamForm",
+            js: "teamForm",
+            typ: u(undefined, m(a(r("TeamForm")))),
+        },
+        {
+            json: "nextOpponent",
+            js: "nextOpponent",
+            typ: u(undefined, u(m(a(u(r("NextOpponentClass"), ""))), null)),
+        },
+        {
+            json: "tableHeader",
+            js: "tableHeader",
+            typ: u(undefined, r("TableHeader")),
+        },
     ], false),
-    "TableData": o([
+    TableData: o([
         { json: "ccode", js: "ccode", typ: u(undefined, "") },
         { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
@@ -924,28 +1157,36 @@ const typeMap = {
         { json: "legend", js: "legend", typ: u(undefined, a(r("Legend"))) },
         { json: "ongoing", js: "ongoing", typ: u(undefined, a("any")) },
         { json: "table", js: "table", typ: u(undefined, r("PurpleTable")) },
-        { json: "tableFilterTypes", js: "tableFilterTypes", typ: u(undefined, a("")) },
+        {
+            json: "tableFilterTypes",
+            js: "tableFilterTypes",
+            typ: u(undefined, a("")),
+        },
         { json: "composite", js: "composite", typ: u(undefined, true) },
         { json: "tables", js: "tables", typ: u(undefined, a(r("FluffyTable"))) },
     ], false),
-    "Legend": o([
+    Legend: o([
         { json: "title", js: "title", typ: u(undefined, "") },
         { json: "tKey", js: "tKey", typ: u(undefined, "") },
         { json: "color", js: "color", typ: u(undefined, "") },
         { json: "indices", js: "indices", typ: u(undefined, a(0)) },
     ], false),
-    "PurpleTable": o([
+    PurpleTable: o([
         { json: "all", js: "all", typ: u(undefined, a(r("All"))) },
         { json: "home", js: "home", typ: u(undefined, a(r("All"))) },
         { json: "away", js: "away", typ: u(undefined, a(r("All"))) },
         { json: "form", js: "form", typ: u(undefined, a(r("All"))) },
     ], false),
-    "All": o([
+    All: o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "shortName", js: "shortName", typ: u(undefined, "") },
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
-        { json: "featuredInMatch", js: "featuredInMatch", typ: u(undefined, true) },
+        {
+            json: "featuredInMatch",
+            js: "featuredInMatch",
+            typ: u(undefined, true),
+        },
         { json: "deduction", js: "deduction", typ: u(undefined, u(0, null)) },
         { json: "ongoing", js: "ongoing", typ: u(undefined, null) },
         { json: "played", js: "played", typ: u(undefined, 0) },
@@ -958,7 +1199,7 @@ const typeMap = {
         { json: "idx", js: "idx", typ: u(undefined, 0) },
         { json: "qualColor", js: "qualColor", typ: u(undefined, u("", null)) },
     ], false),
-    "FluffyTable": o([
+    FluffyTable: o([
         { json: "ccode", js: "ccode", typ: u(undefined, "") },
         { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
@@ -967,39 +1208,51 @@ const typeMap = {
         { json: "table", js: "table", typ: u(undefined, r("TableTable")) },
         { json: "ongoing", js: "ongoing", typ: u(undefined, a("any")) },
     ], false),
-    "TableTable": o([
+    TableTable: o([
         { json: "all", js: "all", typ: u(undefined, a(r("All"))) },
         { json: "home", js: "home", typ: u(undefined, a(r("All"))) },
         { json: "away", js: "away", typ: u(undefined, a(r("All"))) },
     ], false),
-    "NextOpponentClass": o([
+    NextOpponentClass: o([
         { json: "id", js: "id", typ: u(undefined, "") },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "shortName", js: "shortName", typ: u(undefined, "") },
     ], false),
-    "TableHeader": o([
-        { json: "staticTableHeaders", js: "staticTableHeaders", typ: u(undefined, a("")) },
-        { json: "dynamicTableHeaders", js: "dynamicTableHeaders", typ: u(undefined, a("")) },
+    TableHeader: o([
+        {
+            json: "staticTableHeaders",
+            js: "staticTableHeaders",
+            typ: u(undefined, a("")),
+        },
+        {
+            json: "dynamicTableHeaders",
+            js: "dynamicTableHeaders",
+            typ: u(undefined, a("")),
+        },
     ], false),
-    "TeamForm": o([
+    TeamForm: o([
         { json: "result", js: "result", typ: u(undefined, 0) },
-        { json: "resultString", js: "resultString", typ: u(undefined, r("ResultString")) },
+        {
+            json: "resultString",
+            js: "resultString",
+            typ: u(undefined, r("ResultString")),
+        },
         { json: "imageUrl", js: "imageUrl", typ: u(undefined, "") },
         { json: "linkToMatch", js: "linkToMatch", typ: u(undefined, "") },
         { json: "date", js: "date", typ: u(undefined, u(r("DateClass"), null)) },
         { json: "teamPageUrl", js: "teamPageUrl", typ: u(undefined, "") },
-        { json: "tooltipText", js: "tooltipText", typ: u(undefined, r("TooltipText")) },
+        {
+            json: "tooltipText",
+            js: "tooltipText",
+            typ: u(undefined, r("TooltipText")),
+        },
         { json: "score", js: "score", typ: u(undefined, "") },
         { json: "home", js: "home", typ: u(undefined, r("TeamFormAway")) },
         { json: "away", js: "away", typ: u(undefined, r("TeamFormAway")) },
     ], false),
-    "TeamFormAway": o([
-        { json: "isOurTeam", js: "isOurTeam", typ: u(undefined, true) },
-    ], false),
-    "DateClass": o([
-        { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
-    ], false),
-    "TooltipText": o([
+    TeamFormAway: o([{ json: "isOurTeam", js: "isOurTeam", typ: u(undefined, true) }], false),
+    DateClass: o([{ json: "utcTime", js: "utcTime", typ: u(undefined, Date) }], false),
+    TooltipText: o([
         { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
         { json: "homeTeam", js: "homeTeam", typ: u(undefined, "") },
         { json: "homeTeamId", js: "homeTeamId", typ: u(undefined, 0) },
@@ -1008,23 +1261,27 @@ const typeMap = {
         { json: "awayTeamId", js: "awayTeamId", typ: u(undefined, 0) },
         { json: "awayScore", js: "awayScore", typ: u(undefined, 0) },
     ], false),
-    "TeamColors": o([
+    TeamColors: o([
         { json: "darkMode", js: "darkMode", typ: u(undefined, "") },
         { json: "lightMode", js: "lightMode", typ: u(undefined, "") },
         { json: "fontDarkMode", js: "fontDarkMode", typ: u(undefined, "") },
         { json: "fontLightMode", js: "fontLightMode", typ: u(undefined, "") },
     ], false),
-    "TopPlayers": o([
+    TopPlayers: o([
         { json: "byRating", js: "byRating", typ: u(undefined, r("By")) },
         { json: "byGoals", js: "byGoals", typ: u(undefined, r("By")) },
         { json: "byAssists", js: "byAssists", typ: u(undefined, r("By")) },
         { json: "seeAllUrl", js: "seeAllUrl", typ: u(undefined, "") },
     ], false),
-    "By": o([
-        { json: "players", js: "players", typ: u(undefined, a(r("Participant"))) },
+    By: o([
+        {
+            json: "players",
+            js: "players",
+            typ: u(undefined, a(r("Participant"))),
+        },
         { json: "seeAllLink", js: "seeAllLink", typ: u(undefined, "") },
     ], false),
-    "Participant": o([
+    Participant: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "goals", js: "goals", typ: u(undefined, u(null, "")) },
@@ -1036,26 +1293,38 @@ const typeMap = {
         { json: "teamId", js: "teamId", typ: u(undefined, u(0, null)) },
         { json: "teamName", js: "teamName", typ: u(undefined, u("", null)) },
         { json: "showRole", js: "showRole", typ: u(undefined, u(true, null)) },
-        { json: "showCountryFlag", js: "showCountryFlag", typ: u(undefined, u(true, null)) },
+        {
+            json: "showCountryFlag",
+            js: "showCountryFlag",
+            typ: u(undefined, u(true, null)),
+        },
         { json: "showTeamFlag", js: "showTeamFlag", typ: u(undefined, true) },
-        { json: "excludeFromRanking", js: "excludeFromRanking", typ: u(undefined, true) },
+        {
+            json: "excludeFromRanking",
+            js: "excludeFromRanking",
+            typ: u(undefined, true),
+        },
         { json: "rcards", js: "rcards", typ: u(undefined, "") },
         { json: "ycards", js: "ycards", typ: u(undefined, "") },
-        { json: "teamColors", js: "teamColors", typ: u(undefined, r("TeamColors")) },
+        {
+            json: "teamColors",
+            js: "teamColors",
+            typ: u(undefined, r("TeamColors")),
+        },
         { json: "injured", js: "injured", typ: u(undefined, true) },
         { json: "rank", js: "rank", typ: u(undefined, 0) },
         { json: "value", js: "value", typ: u(undefined, u(3.14, "")) },
     ], false),
-    "Venue": o([
+    Venue: o([
         { json: "widget", js: "widget", typ: u(undefined, r("Widget")) },
         { json: "statPairs", js: "statPairs", typ: u(undefined, a(a(u(0, "")))) },
     ], false),
-    "Widget": o([
+    Widget: o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "location", js: "location", typ: u(undefined, a("")) },
         { json: "city", js: "city", typ: u(undefined, "") },
     ], false),
-    "SquadClass": o([
+    SquadClass: o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "ccode", js: "ccode", typ: u(undefined, "") },
@@ -1063,140 +1332,183 @@ const typeMap = {
         { json: "role", js: "role", typ: u(undefined, r("Role")) },
         { json: "isInjured", js: "isInjured", typ: u(undefined, true) },
     ], false),
-    "TeamStats": o([
+    TeamStats: o([
         { json: "teamId", js: "teamId", typ: u(undefined, "") },
         { json: "primaryLeagueId", js: "primaryLeagueId", typ: u(undefined, 0) },
         { json: "primarySeasonId", js: "primarySeasonId", typ: u(undefined, "") },
         { json: "players", js: "players", typ: u(undefined, a(r("Player"))) },
         { json: "teams", js: "teams", typ: u(undefined, a(r("TeamElement"))) },
         { json: "tournamentId", js: "tournamentId", typ: u(undefined, "") },
-        { json: "tournamentSeasons", js: "tournamentSeasons", typ: u(undefined, a(r("TournamentSeason"))) },
+        {
+            json: "tournamentSeasons",
+            js: "tournamentSeasons",
+            typ: u(undefined, a(r("TournamentSeason"))),
+        },
     ], false),
-    "Player": o([
+    Player: o([
         { json: "header", js: "header", typ: u(undefined, "") },
-        { json: "participant", js: "participant", typ: u(undefined, r("Participant")) },
+        {
+            json: "participant",
+            js: "participant",
+            typ: u(undefined, r("Participant")),
+        },
         { json: "fetchAllUrl", js: "fetchAllUrl", typ: u(undefined, "") },
-        { json: "topThree", js: "topThree", typ: u(undefined, a(r("Participant"))) },
+        {
+            json: "topThree",
+            js: "topThree",
+            typ: u(undefined, a(r("Participant"))),
+        },
         { json: "order", js: "order", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, "") },
-        { json: "localizedTitleId", js: "localizedTitleId", typ: u(undefined, "") },
+        {
+            json: "localizedTitleId",
+            js: "localizedTitleId",
+            typ: u(undefined, ""),
+        },
     ], false),
-    "TeamElement": o([
+    TeamElement: o([
         { json: "header", js: "header", typ: u(undefined, "") },
-        { json: "localizedTitleId", js: "localizedTitleId", typ: u(undefined, "") },
-        { json: "participant", js: "participant", typ: u(undefined, r("Participant")) },
+        {
+            json: "localizedTitleId",
+            js: "localizedTitleId",
+            typ: u(undefined, ""),
+        },
+        {
+            json: "participant",
+            js: "participant",
+            typ: u(undefined, r("Participant")),
+        },
         { json: "fetchAllUrl", js: "fetchAllUrl", typ: u(undefined, "") },
-        { json: "topThree", js: "topThree", typ: u(undefined, a(r("Participant"))) },
+        {
+            json: "topThree",
+            js: "topThree",
+            typ: u(undefined, a(r("Participant"))),
+        },
         { json: "order", js: "order", typ: u(undefined, 0) },
         { json: "stat", js: "stat", typ: u(undefined, "") },
     ], false),
-    "TournamentSeason": o([
+    TournamentSeason: o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "season", js: "season", typ: u(undefined, "") },
         { json: "leagueName", js: "leagueName", typ: u(undefined, "") },
         { json: "tournamentId", js: "tournamentId", typ: u(undefined, "") },
         { json: "parentLeagueId", js: "parentLeagueId", typ: u(undefined, "") },
     ], false),
-    "Transfers": o([
+    Transfers: o([
         { json: "type", js: "type", typ: u(undefined, "") },
         { json: "data", js: "data", typ: u(undefined, r("TransfersData")) },
     ], false),
-    "TransfersData": o([
-        { json: "Players in", js: "Players in", typ: u(undefined, a(r("Players"))) },
-        { json: "Players out", js: "Players out", typ: u(undefined, a(r("Players"))) },
-        { json: "Contract extension", js: "Contract extension", typ: u(undefined, a(r("ContractExtension"))) },
+    TransfersData: o([
+        {
+            json: "Players in",
+            js: "Players in",
+            typ: u(undefined, a(r("Players"))),
+        },
+        {
+            json: "Players out",
+            js: "Players out",
+            typ: u(undefined, a(r("Players"))),
+        },
+        {
+            json: "Contract extension",
+            js: "Contract extension",
+            typ: u(undefined, a(r("ContractExtension"))),
+        },
     ], false),
-    "ContractExtension": o([
+    ContractExtension: o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "playerId", js: "playerId", typ: u(undefined, 0) },
         { json: "position", js: "position", typ: u(undefined, r("Position")) },
         { json: "transferDate", js: "transferDate", typ: u(undefined, Date) },
-        { json: "transferText", js: "transferText", typ: u(undefined, a(u("", 0, null))) },
+        {
+            json: "transferText",
+            js: "transferText",
+            typ: u(undefined, a(u("", 0, null))),
+        },
         { json: "fromClub", js: "fromClub", typ: u(undefined, "") },
         { json: "fromClubId", js: "fromClubId", typ: u(undefined, 0) },
         { json: "toClub", js: "toClub", typ: u(undefined, "") },
         { json: "toClubId", js: "toClubId", typ: u(undefined, 0) },
         { json: "fee", js: "fee", typ: u(undefined, null) },
-        { json: "transferType", js: "transferType", typ: u(undefined, r("TransferType")) },
-        { json: "contractExtension", js: "contractExtension", typ: u(undefined, true) },
+        {
+            json: "transferType",
+            js: "transferType",
+            typ: u(undefined, r("TransferType")),
+        },
+        {
+            json: "contractExtension",
+            js: "contractExtension",
+            typ: u(undefined, true),
+        },
         { json: "onLoan", js: "onLoan", typ: u(undefined, true) },
         { json: "fromDate", js: "fromDate", typ: u(undefined, Date) },
         { json: "toDate", js: "toDate", typ: u(undefined, Date) },
         { json: "marketValue", js: "marketValue", typ: u(undefined, "") },
     ], false),
-    "Position": o([
+    Position: o([
         { json: "label", js: "label", typ: u(undefined, "") },
         { json: "key", js: "key", typ: u(undefined, "") },
     ], false),
-    "TransferType": o([
+    TransferType: o([
         { json: "text", js: "text", typ: u(undefined, r("Text")) },
-        { json: "localizationKey", js: "localizationKey", typ: u(undefined, r("LocalizationKey")) },
+        {
+            json: "localizationKey",
+            js: "localizationKey",
+            typ: u(undefined, r("LocalizationKey")),
+        },
     ], false),
-    "Players": o([
+    Players: o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "playerId", js: "playerId", typ: u(undefined, 0) },
-        { json: "position", js: "position", typ: u(undefined, u(r("Position"), null)) },
+        {
+            json: "position",
+            js: "position",
+            typ: u(undefined, u(r("Position"), null)),
+        },
         { json: "transferDate", js: "transferDate", typ: u(undefined, Date) },
-        { json: "transferText", js: "transferText", typ: u(undefined, a(u(0, ""))) },
+        {
+            json: "transferText",
+            js: "transferText",
+            typ: u(undefined, a(u(0, ""))),
+        },
         { json: "fromClub", js: "fromClub", typ: u(undefined, "") },
         { json: "fromClubId", js: "fromClubId", typ: u(undefined, 0) },
         { json: "toClub", js: "toClub", typ: u(undefined, "") },
         { json: "toClubId", js: "toClubId", typ: u(undefined, 0) },
         { json: "fee", js: "fee", typ: u(undefined, u(r("Fee"), null)) },
-        { json: "transferType", js: "transferType", typ: u(undefined, r("TransferType")) },
-        { json: "contractExtension", js: "contractExtension", typ: u(undefined, true) },
+        {
+            json: "transferType",
+            js: "transferType",
+            typ: u(undefined, r("TransferType")),
+        },
+        {
+            json: "contractExtension",
+            js: "contractExtension",
+            typ: u(undefined, true),
+        },
         { json: "onLoan", js: "onLoan", typ: u(undefined, true) },
         { json: "fromDate", js: "fromDate", typ: u(undefined, Date) },
         { json: "toDate", js: "toDate", typ: u(undefined, Date) },
         { json: "marketValue", js: "marketValue", typ: u(undefined, "") },
     ], false),
-    "Fee": o([
+    Fee: o([
         { json: "feeText", js: "feeText", typ: u(undefined, r("FeeText")) },
-        { json: "localizedFeeText", js: "localizedFeeText", typ: u(undefined, r("LocalizedFeeText")) },
+        {
+            json: "localizedFeeText",
+            js: "localizedFeeText",
+            typ: u(undefined, r("LocalizedFeeText")),
+        },
         { json: "value", js: "value", typ: u(undefined, "") },
     ], false),
-    "CoachType": [
-        "Person",
-    ],
-    "Long": [
-        "Full-Time",
-    ],
-    "LongKey": [
-        "finished",
-    ],
-    "Short": [
-        "FT",
-    ],
-    "ShortKey": [
-        "fulltime_short",
-    ],
-    "ResultString": [
-        "D",
-        "L",
-        "W",
-    ],
-    "Role": [
-        "attackers",
-        "defenders",
-        "goalkeepers",
-        "midfielders",
-    ],
-    "LocalizationKey": [
-        "contract",
-        "on_loan",
-    ],
-    "Text": [
-        "contract",
-        "on loan",
-    ],
-    "FeeText": [
-        "fee",
-        "free transfer",
-        "on loan",
-    ],
-    "LocalizedFeeText": [
-        "on_loan",
-        "transfer_fee",
-        "transfer_type_free_transfer",
-    ],
+    CoachType: ["Person"],
+    Long: ["Full-Time"],
+    LongKey: ["finished"],
+    Short: ["FT"],
+    ShortKey: ["fulltime_short"],
+    ResultString: ["D", "L", "W"],
+    Role: ["attackers", "defenders", "goalkeepers", "midfielders"],
+    LocalizationKey: ["contract", "on_loan"],
+    Text: ["contract", "on loan"],
+    FeeText: ["fee", "free transfer", "on loan"],
+    LocalizedFeeText: ["on_loan", "transfer_fee", "transfer_type_free_transfer"],
 };

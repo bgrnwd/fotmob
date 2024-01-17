@@ -3,15 +3,17 @@ import { type MatchDetails } from "./types/match-details";
 import { type Matches } from "./types/matches";
 import { type Player } from "./types/player";
 import { type Team } from "./types/team";
-import { type WorldNews } from "./types/world-news";
 import { type Transfers } from "./types/transfers";
 import { type AllLeagues } from "./types/all-leagues";
+import { WorldNews } from './types/world-news';
+import { TeamSeasonStats } from './types/team-season-stats';
 export default class Fotmob {
     matchesUrl: string;
     leaguesUrl: string;
     allLeaguesUrl: string;
     teamsUrl: string;
     playerUrl: string;
+    teamsSeasonStatsUrl: string;
     matchDetailsUrl: string;
     searchUrl: string;
     transfersUrl: string;
@@ -24,6 +26,7 @@ export default class Fotmob {
     getLeague(id: number, tab?: string, type?: string, timeZone?: string): Promise<League>;
     getAllLeagues(): Promise<AllLeagues>;
     getTeam(id: number, tab?: string, type?: string, timeZone?: string): Promise<Team>;
+    getTeamSeasonStats(teamId: number, seasonId: number): Promise<TeamSeasonStats>;
     getPlayer(id: number): Promise<Player>;
     getMatchDetails(matchId: number): Promise<MatchDetails>;
     getWorldNews({ page, lang }?: {
