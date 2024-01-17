@@ -418,7 +418,7 @@ export interface Coach {
   events?: CoachesArrEvents;
 }
 
-export interface CoachesArrEvents {}
+export interface CoachesArrEvents { }
 
 export interface LineupElement {
   teamId?: number;
@@ -2076,7 +2076,7 @@ function transform(
       const typ = typs[i];
       try {
         return transform(val, typ, getProps);
-      } catch (_) {}
+      } catch (_) { }
     }
     return invalidValue(typs, val, key, parent);
   }

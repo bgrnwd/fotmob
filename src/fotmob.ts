@@ -13,8 +13,6 @@ import {
   Convert as ConvertAllLeagues,
   type AllLeagues,
 } from "./types/all-leagues";
-import { Convert as ConvertWorldNews, WorldNews } from './types/world-news';
-import { Convert as ConvertTeamSeasonStats, TeamSeasonStats } from './types/team-season-stats';
 
 const baseUrl = "https://www.fotmob.com/api/";
 
@@ -107,7 +105,10 @@ export default class Fotmob {
   async getTeamSeasonStats(teamId: number, seasonId: number) {
     const url =
       this.teamsSeasonStatsUrl + `teamId=${teamId}&tournamentId=${seasonId}`;
-    return await this.safeTypeCastFetch<TeamSeasonStats>(url, ConvertTeamSeasonStats.toTeamSeasonStats);
+    return await this.safeTypeCastFetch<TeamSeasonStats>(
+      url,
+      ConvertTeamSeasonStats.toTeamSeasonStats,
+    );
   }
 
   async getPlayer(id: number) {

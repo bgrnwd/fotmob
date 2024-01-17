@@ -9,7 +9,8 @@
     "build": "rimraf dist && tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
     "test": "jest --config=jest.config.js",
     "lint": "eslint src --ext .ts",
-    "lint:fix": "eslint src --fix --ext .ts"
+    "lint:fix": "eslint src --fix --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "repository": {
     "type": "git",
