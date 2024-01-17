@@ -72,7 +72,7 @@ Dates are formatted like so: `20200814`
 
 `GET`
 
-<https://www.fotmob.com/api/transfer>
+<https://www.fotmob.com/api/worldnews>
 
 #### URL Parameters
 
