@@ -1,39 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Convert = exports.LocalizedFeeText = exports.FeeText = exports.Text = exports.LocalizationKey = exports.Role = exports.FontMode = exports.ResultString = exports.Title = exports.TKey = exports.Color = exports.ShortKey = exports.Short = exports.LongKey = exports.Long = exports.NameElement = exports.AddressCountry = exports.NationalityType = exports.CoachType = exports.ShortNameEnum = exports.Country = void 0;
+exports.Convert = exports.LocalizedFeeText = exports.FeeText = exports.Text = exports.LocalizationKey = exports.Role = exports.ResultString = exports.ShortKey = exports.Short = exports.LongKey = exports.Long = exports.CoachType = exports.Country = void 0;
 const type_cast_error_1 = require("../type-cast-error");
 var Country;
 (function (Country) {
     Country["Eng"] = "ENG";
     Country["Int"] = "INT";
 })(Country || (exports.Country = Country = {}));
-var ShortNameEnum;
-(function (ShortNameEnum) {
-    ShortNameEnum["Liverpool"] = "Liverpool";
-})(ShortNameEnum || (exports.ShortNameEnum = ShortNameEnum = {}));
 var CoachType;
 (function (CoachType) {
     CoachType["Person"] = "Person";
 })(CoachType || (exports.CoachType = CoachType = {}));
-var NationalityType;
-(function (NationalityType) {
-    NationalityType["Country"] = "Country";
-})(NationalityType || (exports.NationalityType = NationalityType = {}));
-var AddressCountry;
-(function (AddressCountry) {
-    AddressCountry["England"] = "England";
-    AddressCountry["Europe"] = "Europe";
-    AddressCountry["World"] = "World";
-})(AddressCountry || (exports.AddressCountry = AddressCountry = {}));
-var NameElement;
-(function (NameElement) {
-    NameElement["ChampionsLeague"] = "Champions League";
-    NameElement["ClubFriendlies"] = "Club Friendlies";
-    NameElement["EFLCup"] = "EFL Cup";
-    NameElement["EuropaLeague"] = "Europa League";
-    NameElement["FACup"] = "FA Cup";
-    NameElement["PremierLeague"] = "Premier League";
-})(NameElement || (exports.NameElement = NameElement = {}));
 var Long;
 (function (Long) {
     Long["FullTime"] = "Full-Time";
@@ -50,40 +27,12 @@ var ShortKey;
 (function (ShortKey) {
     ShortKey["FulltimeShort"] = "fulltime_short";
 })(ShortKey || (exports.ShortKey = ShortKey = {}));
-var Color;
-(function (Color) {
-    Color["Ff4646"] = "#FF4646";
-    Color["Ffd908"] = "#FFD908";
-    Color["The0046A7"] = "#0046A7";
-    Color["The2Ad572"] = "#2AD572";
-})(Color || (exports.Color = Color = {}));
-var TKey;
-(function (TKey) {
-    TKey["Championsleague"] = "championsleague";
-    TKey["Europaleague"] = "europaleague";
-    TKey["Qualeuropaconffinalstage"] = "qualeuropaconffinalstage";
-    TKey["QualificationNextStage"] = "qualification_next_stage";
-    TKey["Relegation"] = "relegation";
-})(TKey || (exports.TKey = TKey = {}));
-var Title;
-(function (Title) {
-    Title["ChampionsLeague"] = "Champions League";
-    Title["EuropaLeague"] = "Europa League";
-    Title["QualificationNextStage"] = "Qualification next stage";
-    Title["QualificationToEuropaConferenceLeagueFinalStage"] = "Qualification to Europa Conference League Final Stage";
-    Title["Relegation"] = "Relegation";
-})(Title || (exports.Title = Title = {}));
 var ResultString;
 (function (ResultString) {
     ResultString["D"] = "D";
     ResultString["L"] = "L";
     ResultString["W"] = "W";
 })(ResultString || (exports.ResultString = ResultString = {}));
-var FontMode;
-(function (FontMode) {
-    FontMode["RGBA25525525510"] = "rgba(255, 255, 255, 1.0)";
-    FontMode["RGBA29292910"] = "rgba(29, 29, 29, 1.0)";
-})(FontMode || (exports.FontMode = FontMode = {}));
 var Role;
 (function (Role) {
     Role["Attackers"] = "attackers";
@@ -694,10 +643,10 @@ const typeMap = {
     "Details": o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "type", js: "type", typ: u(undefined, "") },
-        { json: "name", js: "name", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "latestSeason", js: "latestSeason", typ: u(undefined, "") },
-        { json: "shortName", js: "shortName", typ: u(undefined, r("ShortNameEnum")) },
-        { json: "country", js: "country", typ: u(undefined, r("Country")) },
+        { json: "shortName", js: "shortName", typ: u(undefined, "") },
+        { json: "country", js: "country", typ: u(undefined, "") },
         { json: "faqJSONLD", js: "faqJSONLD", typ: u(undefined, r("FAQJSONLD")) },
         { json: "sportsTeamJSONLD", js: "sportsTeamJSONLD", typ: u(undefined, r("SportsTeamJSONLD")) },
         { json: "breadcrumbJSONLD", js: "breadcrumbJSONLD", typ: u(undefined, r("BreadcrumbJSONLD")) },
@@ -731,7 +680,7 @@ const typeMap = {
     "SportsTeamJSONLD": o([
         { json: "@context", js: "@context", typ: u(undefined, "") },
         { json: "@type", js: "@type", typ: u(undefined, "") },
-        { json: "name", js: "name", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "sport", js: "sport", typ: u(undefined, "") },
         { json: "gender", js: "gender", typ: u(undefined, "") },
         { json: "logo", js: "logo", typ: u(undefined, "") },
@@ -763,8 +712,8 @@ const typeMap = {
     ], false),
     "Address": o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
-        { json: "addressCountry", js: "addressCountry", typ: u(undefined, r("AddressCountry")) },
-        { json: "addressLocality", js: "addressLocality", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "addressCountry", js: "addressCountry", typ: u(undefined, "") },
+        { json: "addressLocality", js: "addressLocality", typ: u(undefined, "") },
     ], false),
     "Geo": o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
@@ -773,7 +722,7 @@ const typeMap = {
     ], false),
     "MemberOf": o([
         { json: "@type", js: "@type", typ: u(undefined, "") },
-        { json: "name", js: "name", typ: u(undefined, r("NameElement")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "url", js: "url", typ: u(undefined, "") },
     ], false),
     "TeamFixtures": o([
@@ -823,7 +772,7 @@ const typeMap = {
         { json: "longKey", js: "longKey", typ: u(undefined, r("LongKey")) },
     ], false),
     "Tournament": o([
-        { json: "name", js: "name", typ: u(undefined, r("NameElement")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
     ], false),
     "LastMatch": o([
@@ -897,12 +846,12 @@ const typeMap = {
     ], false),
     "Division": o([
         { json: "divisionRank", js: "divisionRank", typ: u(undefined, 0) },
-        { json: "name", js: "name", typ: u(undefined, r("NameElement")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "templateId", js: "templateId", typ: u(undefined, 0) },
     ], false),
     "Rank": o([
         { json: "stageId", js: "stageId", typ: u(undefined, 0) },
-        { json: "tournamentName", js: "tournamentName", typ: u(undefined, r("NameElement")) },
+        { json: "tournamentName", js: "tournamentName", typ: u(undefined, "") },
         { json: "tournamentId", js: "tournamentId", typ: u(undefined, 0) },
         { json: "templateId", js: "templateId", typ: u(undefined, 0) },
         { json: "seasonName", js: "seasonName", typ: u(undefined, "") },
@@ -927,8 +876,8 @@ const typeMap = {
     ], false),
     "Link": o([
         { json: "_", js: "_", typ: u(undefined, "") },
-        { json: "name", js: "name", typ: u(undefined, a(r("NameElement"))) },
-        { json: "ccode", js: "ccode", typ: u(undefined, a(r("Country"))) },
+        { json: "name", js: "name", typ: u(undefined, a("")) },
+        { json: "ccode", js: "ccode", typ: u(undefined, a("")) },
         { json: "season", js: "season", typ: u(undefined, a("")) },
         { json: "stage_id", js: "stage_id", typ: u(undefined, a("")) },
         { json: "tournament_id", js: "tournament_id", typ: u(undefined, a("")) },
@@ -944,8 +893,8 @@ const typeMap = {
     "TrophyList": o([
         { json: "name", js: "name", typ: u(undefined, a("")) },
         { json: "tournamentTemplateId", js: "tournamentTemplateId", typ: u(undefined, a("")) },
-        { json: "area", js: "area", typ: u(undefined, a(r("AddressCountry"))) },
-        { json: "ccode", js: "ccode", typ: u(undefined, a(r("Country"))) },
+        { json: "area", js: "area", typ: u(undefined, a("")) },
+        { json: "ccode", js: "ccode", typ: u(undefined, a("")) },
         { json: "won", js: "won", typ: u(undefined, a("")) },
         { json: "runnerup", js: "runnerup", typ: u(undefined, a("")) },
         { json: "season_won", js: "season_won", typ: u(undefined, a("")) },
@@ -972,10 +921,10 @@ const typeMap = {
         { json: "tableHeader", js: "tableHeader", typ: u(undefined, r("TableHeader")) },
     ], false),
     "TableData": o([
-        { json: "ccode", js: "ccode", typ: u(undefined, r("Country")) },
+        { json: "ccode", js: "ccode", typ: u(undefined, "") },
         { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
-        { json: "leagueName", js: "leagueName", typ: u(undefined, r("NameElement")) },
+        { json: "leagueName", js: "leagueName", typ: u(undefined, "") },
         { json: "legend", js: "legend", typ: u(undefined, a(r("Legend"))) },
         { json: "ongoing", js: "ongoing", typ: u(undefined, a("any")) },
         { json: "table", js: "table", typ: u(undefined, r("PurpleTable")) },
@@ -984,9 +933,9 @@ const typeMap = {
         { json: "tables", js: "tables", typ: u(undefined, a(r("FluffyTable"))) },
     ], false),
     "Legend": o([
-        { json: "title", js: "title", typ: u(undefined, r("Title")) },
-        { json: "tKey", js: "tKey", typ: u(undefined, r("TKey")) },
-        { json: "color", js: "color", typ: u(undefined, r("Color")) },
+        { json: "title", js: "title", typ: u(undefined, "") },
+        { json: "tKey", js: "tKey", typ: u(undefined, "") },
+        { json: "color", js: "color", typ: u(undefined, "") },
         { json: "indices", js: "indices", typ: u(undefined, a(0)) },
     ], false),
     "PurpleTable": o([
@@ -1011,10 +960,10 @@ const typeMap = {
         { json: "goalConDiff", js: "goalConDiff", typ: u(undefined, 0) },
         { json: "pts", js: "pts", typ: u(undefined, 0) },
         { json: "idx", js: "idx", typ: u(undefined, 0) },
-        { json: "qualColor", js: "qualColor", typ: u(undefined, u(r("Color"), null)) },
+        { json: "qualColor", js: "qualColor", typ: u(undefined, u("", null)) },
     ], false),
     "FluffyTable": o([
-        { json: "ccode", js: "ccode", typ: u(undefined, r("Country")) },
+        { json: "ccode", js: "ccode", typ: u(undefined, "") },
         { json: "leagueId", js: "leagueId", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
         { json: "leagueName", js: "leagueName", typ: u(undefined, "") },
@@ -1066,8 +1015,8 @@ const typeMap = {
     "TeamColors": o([
         { json: "darkMode", js: "darkMode", typ: u(undefined, "") },
         { json: "lightMode", js: "lightMode", typ: u(undefined, "") },
-        { json: "fontDarkMode", js: "fontDarkMode", typ: u(undefined, r("FontMode")) },
-        { json: "fontLightMode", js: "fontLightMode", typ: u(undefined, r("FontMode")) },
+        { json: "fontDarkMode", js: "fontDarkMode", typ: u(undefined, "") },
+        { json: "fontLightMode", js: "fontLightMode", typ: u(undefined, "") },
     ], false),
     "TopPlayers": o([
         { json: "byRating", js: "byRating", typ: u(undefined, r("By")) },
@@ -1089,7 +1038,7 @@ const typeMap = {
         { json: "ccode", js: "ccode", typ: u(undefined, u(null, "")) },
         { json: "cname", js: "cname", typ: u(undefined, u(null, "")) },
         { json: "teamId", js: "teamId", typ: u(undefined, u(0, null)) },
-        { json: "teamName", js: "teamName", typ: u(undefined, u(r("ShortNameEnum"), null)) },
+        { json: "teamName", js: "teamName", typ: u(undefined, u("", null)) },
         { json: "showRole", js: "showRole", typ: u(undefined, u(true, null)) },
         { json: "showCountryFlag", js: "showCountryFlag", typ: u(undefined, u(true, null)) },
         { json: "showTeamFlag", js: "showTeamFlag", typ: u(undefined, true) },
@@ -1108,7 +1057,7 @@ const typeMap = {
     "Widget": o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "location", js: "location", typ: u(undefined, a("")) },
-        { json: "city", js: "city", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "city", js: "city", typ: u(undefined, "") },
     ], false),
     "SquadClass": o([
         { json: "id", js: "id", typ: u(undefined, 0) },
@@ -1148,7 +1097,7 @@ const typeMap = {
     "TournamentSeason": o([
         { json: "name", js: "name", typ: u(undefined, "") },
         { json: "season", js: "season", typ: u(undefined, "") },
-        { json: "leagueName", js: "leagueName", typ: u(undefined, r("NameElement")) },
+        { json: "leagueName", js: "leagueName", typ: u(undefined, "") },
         { json: "tournamentId", js: "tournamentId", typ: u(undefined, "") },
         { json: "parentLeagueId", js: "parentLeagueId", typ: u(undefined, "") },
     ], false),
@@ -1166,10 +1115,10 @@ const typeMap = {
         { json: "playerId", js: "playerId", typ: u(undefined, 0) },
         { json: "position", js: "position", typ: u(undefined, r("Position")) },
         { json: "transferDate", js: "transferDate", typ: u(undefined, Date) },
-        { json: "transferText", js: "transferText", typ: u(undefined, a(u(r("ShortNameEnum"), 0, null))) },
-        { json: "fromClub", js: "fromClub", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "transferText", js: "transferText", typ: u(undefined, a(u("", 0, null))) },
+        { json: "fromClub", js: "fromClub", typ: u(undefined, "") },
         { json: "fromClubId", js: "fromClubId", typ: u(undefined, 0) },
-        { json: "toClub", js: "toClub", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "toClub", js: "toClub", typ: u(undefined, "") },
         { json: "toClubId", js: "toClubId", typ: u(undefined, 0) },
         { json: "fee", js: "fee", typ: u(undefined, null) },
         { json: "transferType", js: "transferType", typ: u(undefined, r("TransferType")) },
@@ -1210,31 +1159,8 @@ const typeMap = {
         { json: "localizedFeeText", js: "localizedFeeText", typ: u(undefined, r("LocalizedFeeText")) },
         { json: "value", js: "value", typ: u(undefined, "") },
     ], false),
-    "Country": [
-        "ENG",
-        "INT",
-    ],
-    "ShortNameEnum": [
-        "Liverpool",
-    ],
     "CoachType": [
         "Person",
-    ],
-    "NationalityType": [
-        "Country",
-    ],
-    "AddressCountry": [
-        "England",
-        "Europe",
-        "World",
-    ],
-    "NameElement": [
-        "Champions League",
-        "Club Friendlies",
-        "EFL Cup",
-        "Europa League",
-        "FA Cup",
-        "Premier League",
     ],
     "Long": [
         "Full-Time",
@@ -1248,34 +1174,10 @@ const typeMap = {
     "ShortKey": [
         "fulltime_short",
     ],
-    "Color": [
-        "#FF4646",
-        "#FFD908",
-        "#0046A7",
-        "#2AD572",
-    ],
-    "TKey": [
-        "championsleague",
-        "europaleague",
-        "qualeuropaconffinalstage",
-        "qualification_next_stage",
-        "relegation",
-    ],
-    "Title": [
-        "Champions League",
-        "Europa League",
-        "Qualification next stage",
-        "Qualification to Europa Conference League Final Stage",
-        "Relegation",
-    ],
     "ResultString": [
         "D",
         "L",
         "W",
-    ],
-    "FontMode": [
-        "rgba(255, 255, 255, 1.0)",
-        "rgba(29, 29, 29, 1.0)",
     ],
     "Role": [
         "attackers",

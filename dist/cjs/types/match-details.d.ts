@@ -34,12 +34,8 @@ export interface Match {
     away?: MatchAway;
 }
 export interface MatchAway {
-    name?: NameElement;
+    name?: string;
     id?: string;
-}
-export declare enum NameElement {
-    Liverpool = "Liverpool",
-    ManchesterUnited = "Manchester United"
 }
 export interface League {
     name?: string;
@@ -133,12 +129,7 @@ export interface PurpleSub {
 }
 export interface FantasyScoreClass {
     num?: number | null;
-    bgcolor?: BgcolorEnum;
-}
-export declare enum BgcolorEnum {
-    F08022 = "#f08022",
-    Purple = "purple",
-    The1Ec853 = "#1ec853"
+    bgcolor?: string;
 }
 export interface NameClass {
     firstName?: string;
@@ -150,14 +141,8 @@ export declare enum Position {
 }
 export interface BenchArrRating {
     num?: null | string;
-    bgcolor?: Bgcolor;
+    bgcolor?: string;
     isTop?: IsTop;
-}
-export declare enum Bgcolor {
-    F08022 = "#f08022",
-    The0E87E0 = "#0e87e0",
-    The1Ec853 = "#1ec853",
-    The989898 = "#989898"
 }
 export interface IsTop {
     isTopRating?: boolean;
@@ -193,7 +178,7 @@ export interface Shot {
     isOwnGoal?: boolean;
     onGoalShot?: OnGoalShot;
     isSavedOffLine?: boolean;
-    teamColor?: TeamColorEnum;
+    teamColor?: string;
     firstName?: string;
     lastName?: string;
     fullName?: string;
@@ -221,11 +206,6 @@ export declare enum Situation {
     FromCorner = "FromCorner",
     RegularPlay = "RegularPlay",
     SetPiece = "SetPiece"
-}
-export declare enum TeamColorEnum {
-    C70101 = "#C70101",
-    D3171E = "#d3171e",
-    The333333 = "#333333"
 }
 export interface BenchArrStat {
     title?: Title;
@@ -359,7 +339,7 @@ export interface TeamData {
 }
 export interface TeamDataAway {
     id?: number;
-    color?: TeamColorEnum;
+    color?: string;
 }
 export declare enum Side {
     Away = "away",
@@ -388,7 +368,7 @@ export interface CoachesArrEvents {
 }
 export interface LineupElement {
     teamId?: number;
-    teamName?: NameElement;
+    teamName?: string;
     bench?: BenchArrElement[];
     coach?: Coach[];
     players?: Array<PlayerElement[]>;
@@ -399,7 +379,7 @@ export interface LineupElement {
 export interface NaPlayersArr {
     id?: number;
     name?: NameClass;
-    shortName?: ShortName;
+    shortName?: string;
     imageUrl?: string;
     pageUrl?: string;
     isHomeTeam?: boolean;
@@ -419,37 +399,9 @@ export interface NaInfo {
     expectedReturn?: ExpectedReturn;
 }
 export interface ExpectedReturn {
-    expectedReturnKey?: ExpectedReturnKey;
-    expectedReturnDateParam?: ExpectedReturnDateParam | null;
-    expectedReturnFallback?: ExpectedReturnFallback;
-}
-export declare enum ExpectedReturnDateParam {
-    December2023 = "December 2023",
-    February2024 = "February 2024",
-    January2024 = "January 2024"
-}
-export declare enum ExpectedReturnFallback {
-    AFewDays = "A few days",
-    Doubtful = "Doubtful",
-    EarlyJanuary2024 = "Early January 2024",
-    LateDecember2023 = "Late December 2023",
-    LateFebruary2024 = "Late February 2024",
-    MidJanuary2024 = "Mid January 2024",
-    OutForSeason = "Out for season",
-    Unknown = "Unknown"
-}
-export declare enum ExpectedReturnKey {
-    ExpectedReturnDateDoubtful = "expected_return_date_doubtful",
-    ExpectedReturnDateEarly = "expected_return_date_early",
-    ExpectedReturnDateFewDays = "expected_return_date_few_days",
-    ExpectedReturnDateLate = "expected_return_date_late",
-    ExpectedReturnDateMid = "expected_return_date_mid",
-    ExpectedReturnDateOutForSeason = "expected_return_date_out_for_season",
-    ExpectedReturnDateUnknown = "expected_return_date_unknown"
-}
-export declare enum ShortName {
-    MACAllister = "Mac Allister",
-    Thiago = "Thiago"
+    expectedReturnKey?: string;
+    expectedReturnDateParam?: string | null;
+    expectedReturnFallback?: string;
 }
 export interface OptaLineup {
     bench?: BenchArrElement[];
@@ -496,7 +448,7 @@ export interface FluffySub {
 }
 export interface FantasyScore {
     num?: number | string;
-    bgcolor?: BgcolorEnum;
+    bgcolor?: string;
 }
 export interface PositionLabel {
     label?: string;
@@ -570,7 +522,7 @@ export interface TeamRatings {
 }
 export interface Liveticker {
     langs?: string;
-    teams?: NameElement[];
+    teams?: string[];
 }
 export interface MatchFacts {
     matchId?: number;
@@ -655,7 +607,7 @@ export interface Referee {
 }
 export interface Stadium {
     name?: string;
-    city?: NameElement;
+    city?: string;
     country?: string;
     lat?: number;
     long?: number;
@@ -679,7 +631,7 @@ export interface Insight {
     localizedTextId?: string;
     statValues?: StatValue[];
     text?: string;
-    color?: TeamColorEnum;
+    color?: string;
 }
 export interface StatValue {
     value?: number;
@@ -717,7 +669,7 @@ export interface Datum {
 export interface PlayerOfTheMatch {
     id?: number;
     name?: NameClass;
-    teamName?: NameElement;
+    teamName?: string;
     teamId?: number;
     rating?: PlayerOfTheMatchRating;
     minutesPlayed?: number;
@@ -785,7 +737,7 @@ export interface Oddspoll {
     MatchId?: number;
     HomeTeamId?: number;
     AwayTeamId?: number;
-    HomeTeam?: NameElement;
+    HomeTeam?: string;
     AwayTeam?: string;
     Facts?: Fact[];
 }
@@ -848,7 +800,7 @@ export interface TopPlayer {
     playerId?: number;
     name?: NameClass;
     playerRatingRounded?: string;
-    color?: BgcolorEnum;
+    color?: string;
     manOfTheMatch?: boolean;
     teamId?: string;
     positionLabel?: PositionLabel;
@@ -924,12 +876,8 @@ export interface TeamColors {
     fontLightMode?: Mode;
 }
 export interface Mode {
-    home?: Home;
+    home?: string;
     away?: string;
-}
-export declare enum Home {
-    D3171E = "#d3171e",
-    RGBA25525525510 = "rgba(255, 255, 255, 1.0)"
 }
 export interface Superlive {
     superLiveUrl?: string;
@@ -968,7 +916,7 @@ export interface General {
     finished?: boolean;
 }
 export interface GeneralAwayTeam {
-    name?: NameElement;
+    name?: string;
     id?: number;
 }
 export interface Header {
@@ -977,7 +925,7 @@ export interface Header {
     events?: null;
 }
 export interface Team {
-    name?: NameElement;
+    name?: string;
     id?: number;
     score?: number;
     imageUrl?: string;
@@ -1025,7 +973,7 @@ export interface EventJSONLD {
 export interface EventJSONLDAwayTeam {
     "@context"?: string;
     "@type"?: string;
-    name?: NameElement;
+    name?: string;
     sport?: string;
     logo?: string;
     url?: string;
