@@ -48,33 +48,9 @@ export interface AllMatch {
     status?: Status;
 }
 export interface NextOpponentClass {
-    name?: TeamNameEnum;
+    name?: string;
     shortName?: string;
     id?: string;
-}
-export declare enum TeamNameEnum {
-    AFCBournemouth = "AFC Bournemouth",
-    Arsenal = "Arsenal",
-    AstonVilla = "Aston Villa",
-    Bournemouth = "Bournemouth",
-    Brentford = "Brentford",
-    BrightonAndHoveAlbion = "Brighton and Hove Albion",
-    BrightonHoveAlbion = "Brighton & Hove Albion",
-    Burnley = "Burnley",
-    Chelsea = "Chelsea",
-    CrystalPalace = "Crystal Palace",
-    Everton = "Everton",
-    Fulham = "Fulham",
-    Liverpool = "Liverpool",
-    LutonTown = "Luton Town",
-    ManchesterCity = "Manchester City",
-    ManchesterUnited = "Manchester United",
-    NewcastleUnited = "Newcastle United",
-    NottinghamForest = "Nottingham Forest",
-    SheffieldUnited = "Sheffield United",
-    TottenhamHotspur = "Tottenham Hotspur",
-    WestHamUnited = "West Ham United",
-    WolverhamptonWanderers = "Wolverhampton Wanderers"
 }
 export interface Status {
     utcTime?: Date;
@@ -137,30 +113,8 @@ export interface LeagueOverviewMatch {
 }
 export interface OpponentClass {
     id?: string;
-    name?: ShortNameEnum;
+    name?: string;
     score?: number;
-}
-export declare enum ShortNameEnum {
-    Arsenal = "Arsenal",
-    AstonVilla = "Aston Villa",
-    Bournemouth = "Bournemouth",
-    Brentford = "Brentford",
-    Brighton = "Brighton",
-    Burnley = "Burnley",
-    Chelsea = "Chelsea",
-    CrystalPalace = "Crystal Palace",
-    Everton = "Everton",
-    Fulham = "Fulham",
-    Liverpool = "Liverpool",
-    Luton = "Luton",
-    ManCity = "Man City",
-    ManUnited = "Man United",
-    Newcastle = "Newcastle",
-    NottmForest = "Nottm Forest",
-    SheffUtd = "Sheff Utd",
-    Tottenham = "Tottenham",
-    WestHam = "West Ham",
-    Wolves = "Wolves"
 }
 export interface Tournament {
 }
@@ -190,13 +144,8 @@ export interface Data {
 export interface Legend {
     title?: string;
     tKey?: string;
-    color?: Color;
+    color?: string;
     indices?: number[];
-}
-export declare enum Color {
-    Ff4646 = "#FF4646",
-    The0046A7 = "#0046A7",
-    The2Ad572 = "#2AD572"
 }
 export interface DataTable {
     all?: All[];
@@ -205,8 +154,8 @@ export interface DataTable {
     form?: All[];
 }
 export interface All {
-    name?: TeamNameEnum;
-    shortName?: ShortNameEnum;
+    name?: string;
+    shortName?: string;
     id?: number;
     pageUrl?: string;
     deduction?: number | null;
@@ -219,7 +168,7 @@ export interface All {
     goalConDiff?: number;
     pts?: number;
     idx?: number;
-    qualColor?: Color | null;
+    qualColor?: string | null;
     featuredInMatch?: boolean;
 }
 export interface TableHeader {
@@ -248,10 +197,10 @@ export declare enum ResultString {
 }
 export interface TooltipText {
     utcTime?: Date;
-    homeTeam?: TeamNameEnum;
+    homeTeam?: string;
     homeTeamId?: number;
     homeScore?: number;
-    awayTeam?: TeamNameEnum;
+    awayTeam?: string;
     awayTeamId?: number;
     awayScore?: number;
 }
@@ -272,7 +221,7 @@ export interface By {
     ccode?: null;
     cname?: null;
     teamId?: number;
-    teamName?: TeamNameEnum;
+    teamName?: string;
     showRole?: null;
     showCountryFlag?: null;
     showTeamFlag?: boolean;
@@ -306,7 +255,7 @@ export interface Participant {
     ccode?: null;
     cname?: null;
     teamId?: number;
-    teamName?: TeamNameEnum | null;
+    teamName?: string | null;
     showRole?: null;
     showCountryFlag?: null;
     showTeamFlag?: boolean;
@@ -317,12 +266,8 @@ export interface Participant {
 export interface TeamColors {
     darkMode?: string;
     lightMode?: string;
-    fontDarkMode?: FontMode;
-    fontLightMode?: FontMode;
-}
-export declare enum FontMode {
-    RGBA25525525510 = "rgba(255, 255, 255, 1.0)",
-    RGBA29292910 = "rgba(29, 29, 29, 1.0)"
+    fontDarkMode?: string;
+    fontLightMode?: string;
 }
 export interface SeasonStatLink {
     Name?: string;

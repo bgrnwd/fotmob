@@ -1,32 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Convert = exports.Text = exports.LocalizationKey = exports.LocalizedFeeText = exports.FeeText = exports.FontMode = exports.ResultString = exports.Color = exports.ShortNameEnum = exports.ShortKey = exports.Short = exports.LongKey = exports.Long = exports.TeamNameEnum = void 0;
+exports.Convert = exports.Text = exports.LocalizationKey = exports.LocalizedFeeText = exports.FeeText = exports.ResultString = exports.ShortKey = exports.Short = exports.LongKey = exports.Long = void 0;
 const type_cast_error_1 = require("../type-cast-error");
-var TeamNameEnum;
-(function (TeamNameEnum) {
-    TeamNameEnum["AFCBournemouth"] = "AFC Bournemouth";
-    TeamNameEnum["Arsenal"] = "Arsenal";
-    TeamNameEnum["AstonVilla"] = "Aston Villa";
-    TeamNameEnum["Bournemouth"] = "Bournemouth";
-    TeamNameEnum["Brentford"] = "Brentford";
-    TeamNameEnum["BrightonAndHoveAlbion"] = "Brighton and Hove Albion";
-    TeamNameEnum["BrightonHoveAlbion"] = "Brighton & Hove Albion";
-    TeamNameEnum["Burnley"] = "Burnley";
-    TeamNameEnum["Chelsea"] = "Chelsea";
-    TeamNameEnum["CrystalPalace"] = "Crystal Palace";
-    TeamNameEnum["Everton"] = "Everton";
-    TeamNameEnum["Fulham"] = "Fulham";
-    TeamNameEnum["Liverpool"] = "Liverpool";
-    TeamNameEnum["LutonTown"] = "Luton Town";
-    TeamNameEnum["ManchesterCity"] = "Manchester City";
-    TeamNameEnum["ManchesterUnited"] = "Manchester United";
-    TeamNameEnum["NewcastleUnited"] = "Newcastle United";
-    TeamNameEnum["NottinghamForest"] = "Nottingham Forest";
-    TeamNameEnum["SheffieldUnited"] = "Sheffield United";
-    TeamNameEnum["TottenhamHotspur"] = "Tottenham Hotspur";
-    TeamNameEnum["WestHamUnited"] = "West Ham United";
-    TeamNameEnum["WolverhamptonWanderers"] = "Wolverhampton Wanderers";
-})(TeamNameEnum || (exports.TeamNameEnum = TeamNameEnum = {}));
 var Long;
 (function (Long) {
     Long["Abandoned"] = "Abandoned";
@@ -51,46 +26,12 @@ var ShortKey;
     ShortKey["FulltimeShort"] = "fulltime_short";
     ShortKey["PostponedShort"] = "postponed_short";
 })(ShortKey || (exports.ShortKey = ShortKey = {}));
-var ShortNameEnum;
-(function (ShortNameEnum) {
-    ShortNameEnum["Arsenal"] = "Arsenal";
-    ShortNameEnum["AstonVilla"] = "Aston Villa";
-    ShortNameEnum["Bournemouth"] = "Bournemouth";
-    ShortNameEnum["Brentford"] = "Brentford";
-    ShortNameEnum["Brighton"] = "Brighton";
-    ShortNameEnum["Burnley"] = "Burnley";
-    ShortNameEnum["Chelsea"] = "Chelsea";
-    ShortNameEnum["CrystalPalace"] = "Crystal Palace";
-    ShortNameEnum["Everton"] = "Everton";
-    ShortNameEnum["Fulham"] = "Fulham";
-    ShortNameEnum["Liverpool"] = "Liverpool";
-    ShortNameEnum["Luton"] = "Luton";
-    ShortNameEnum["ManCity"] = "Man City";
-    ShortNameEnum["ManUnited"] = "Man United";
-    ShortNameEnum["Newcastle"] = "Newcastle";
-    ShortNameEnum["NottmForest"] = "Nottm Forest";
-    ShortNameEnum["SheffUtd"] = "Sheff Utd";
-    ShortNameEnum["Tottenham"] = "Tottenham";
-    ShortNameEnum["WestHam"] = "West Ham";
-    ShortNameEnum["Wolves"] = "Wolves";
-})(ShortNameEnum || (exports.ShortNameEnum = ShortNameEnum = {}));
-var Color;
-(function (Color) {
-    Color["Ff4646"] = "#FF4646";
-    Color["The0046A7"] = "#0046A7";
-    Color["The2Ad572"] = "#2AD572";
-})(Color || (exports.Color = Color = {}));
 var ResultString;
 (function (ResultString) {
     ResultString["D"] = "D";
     ResultString["L"] = "L";
     ResultString["W"] = "W";
 })(ResultString || (exports.ResultString = ResultString = {}));
-var FontMode;
-(function (FontMode) {
-    FontMode["RGBA25525525510"] = "rgba(255, 255, 255, 1.0)";
-    FontMode["RGBA29292910"] = "rgba(29, 29, 29, 1.0)";
-})(FontMode || (exports.FontMode = FontMode = {}));
 var FeeText;
 (function (FeeText) {
     FeeText["Fee"] = "fee";
@@ -531,7 +472,7 @@ const typeMap = {
         { json: "status", js: "status", typ: u(undefined, r("Status")) },
     ], false),
     "NextOpponentClass": o([
-        { json: "name", js: "name", typ: u(undefined, r("TeamNameEnum")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "shortName", js: "shortName", typ: u(undefined, "") },
         { json: "id", js: "id", typ: u(undefined, "") },
     ], false),
@@ -576,7 +517,7 @@ const typeMap = {
     ], false),
     "OpponentClass": o([
         { json: "id", js: "id", typ: u(undefined, "") },
-        { json: "name", js: "name", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "score", js: "score", typ: u(undefined, 0) },
     ], false),
     "Tournament": o([], false),
@@ -602,7 +543,7 @@ const typeMap = {
     "Legend": o([
         { json: "title", js: "title", typ: u(undefined, "") },
         { json: "tKey", js: "tKey", typ: u(undefined, "") },
-        { json: "color", js: "color", typ: u(undefined, r("Color")) },
+        { json: "color", js: "color", typ: u(undefined, "") },
         { json: "indices", js: "indices", typ: u(undefined, a(0)) },
     ], false),
     "DataTable": o([
@@ -612,8 +553,8 @@ const typeMap = {
         { json: "form", js: "form", typ: u(undefined, a(r("All"))) },
     ], false),
     "All": o([
-        { json: "name", js: "name", typ: u(undefined, r("TeamNameEnum")) },
-        { json: "shortName", js: "shortName", typ: u(undefined, r("ShortNameEnum")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
+        { json: "shortName", js: "shortName", typ: u(undefined, "") },
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
         { json: "deduction", js: "deduction", typ: u(undefined, u(0, null)) },
@@ -626,7 +567,7 @@ const typeMap = {
         { json: "goalConDiff", js: "goalConDiff", typ: u(undefined, 0) },
         { json: "pts", js: "pts", typ: u(undefined, 0) },
         { json: "idx", js: "idx", typ: u(undefined, 0) },
-        { json: "qualColor", js: "qualColor", typ: u(undefined, u(r("Color"), null)) },
+        { json: "qualColor", js: "qualColor", typ: u(undefined, u("", null)) },
         { json: "featuredInMatch", js: "featuredInMatch", typ: u(undefined, true) },
     ], false),
     "TableHeader": o([
@@ -650,10 +591,10 @@ const typeMap = {
     ], false),
     "TooltipText": o([
         { json: "utcTime", js: "utcTime", typ: u(undefined, Date) },
-        { json: "homeTeam", js: "homeTeam", typ: u(undefined, r("TeamNameEnum")) },
+        { json: "homeTeam", js: "homeTeam", typ: u(undefined, "") },
         { json: "homeTeamId", js: "homeTeamId", typ: u(undefined, 0) },
         { json: "homeScore", js: "homeScore", typ: u(undefined, 0) },
-        { json: "awayTeam", js: "awayTeam", typ: u(undefined, r("TeamNameEnum")) },
+        { json: "awayTeam", js: "awayTeam", typ: u(undefined, "") },
         { json: "awayTeamId", js: "awayTeamId", typ: u(undefined, 0) },
         { json: "awayScore", js: "awayScore", typ: u(undefined, 0) },
     ], false),
@@ -674,7 +615,7 @@ const typeMap = {
         { json: "ccode", js: "ccode", typ: u(undefined, null) },
         { json: "cname", js: "cname", typ: u(undefined, null) },
         { json: "teamId", js: "teamId", typ: u(undefined, 0) },
-        { json: "teamName", js: "teamName", typ: u(undefined, r("TeamNameEnum")) },
+        { json: "teamName", js: "teamName", typ: u(undefined, "") },
         { json: "showRole", js: "showRole", typ: u(undefined, null) },
         { json: "showCountryFlag", js: "showCountryFlag", typ: u(undefined, null) },
         { json: "showTeamFlag", js: "showTeamFlag", typ: u(undefined, true) },
@@ -708,7 +649,7 @@ const typeMap = {
         { json: "ccode", js: "ccode", typ: u(undefined, null) },
         { json: "cname", js: "cname", typ: u(undefined, null) },
         { json: "teamId", js: "teamId", typ: u(undefined, 0) },
-        { json: "teamName", js: "teamName", typ: u(undefined, u(r("TeamNameEnum"), null)) },
+        { json: "teamName", js: "teamName", typ: u(undefined, u("", null)) },
         { json: "showRole", js: "showRole", typ: u(undefined, null) },
         { json: "showCountryFlag", js: "showCountryFlag", typ: u(undefined, null) },
         { json: "showTeamFlag", js: "showTeamFlag", typ: u(undefined, true) },
@@ -719,8 +660,8 @@ const typeMap = {
     "TeamColors": o([
         { json: "darkMode", js: "darkMode", typ: u(undefined, "") },
         { json: "lightMode", js: "lightMode", typ: u(undefined, "") },
-        { json: "fontDarkMode", js: "fontDarkMode", typ: u(undefined, r("FontMode")) },
-        { json: "fontLightMode", js: "fontLightMode", typ: u(undefined, r("FontMode")) },
+        { json: "fontDarkMode", js: "fontDarkMode", typ: u(undefined, "") },
+        { json: "fontLightMode", js: "fontLightMode", typ: u(undefined, "") },
     ], false),
     "SeasonStatLink": o([
         { json: "Name", js: "Name", typ: u(undefined, "") },
@@ -778,30 +719,6 @@ const typeMap = {
         { json: "text", js: "text", typ: u(undefined, r("Text")) },
         { json: "localizationKey", js: "localizationKey", typ: u(undefined, r("LocalizationKey")) },
     ], false),
-    "TeamNameEnum": [
-        "AFC Bournemouth",
-        "Arsenal",
-        "Aston Villa",
-        "Bournemouth",
-        "Brentford",
-        "Brighton and Hove Albion",
-        "Brighton & Hove Albion",
-        "Burnley",
-        "Chelsea",
-        "Crystal Palace",
-        "Everton",
-        "Fulham",
-        "Liverpool",
-        "Luton Town",
-        "Manchester City",
-        "Manchester United",
-        "Newcastle United",
-        "Nottingham Forest",
-        "Sheffield United",
-        "Tottenham Hotspur",
-        "West Ham United",
-        "Wolverhampton Wanderers",
-    ],
     "Long": [
         "Abandoned",
         "Full-Time",
@@ -822,41 +739,10 @@ const typeMap = {
         "fulltime_short",
         "postponed_short",
     ],
-    "ShortNameEnum": [
-        "Arsenal",
-        "Aston Villa",
-        "Bournemouth",
-        "Brentford",
-        "Brighton",
-        "Burnley",
-        "Chelsea",
-        "Crystal Palace",
-        "Everton",
-        "Fulham",
-        "Liverpool",
-        "Luton",
-        "Man City",
-        "Man United",
-        "Newcastle",
-        "Nottm Forest",
-        "Sheff Utd",
-        "Tottenham",
-        "West Ham",
-        "Wolves",
-    ],
-    "Color": [
-        "#FF4646",
-        "#0046A7",
-        "#2AD572",
-    ],
     "ResultString": [
         "D",
         "L",
         "W",
-    ],
-    "FontMode": [
-        "rgba(255, 255, 255, 1.0)",
-        "rgba(29, 29, 29, 1.0)",
     ],
     "FeeText": [
         "fee",

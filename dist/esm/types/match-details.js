@@ -1,8 +1,3 @@
-export var NameElement;
-(function (NameElement) {
-    NameElement["Liverpool"] = "Liverpool";
-    NameElement["ManchesterUnited"] = "Manchester United";
-})(NameElement || (NameElement = {}));
 export var Long;
 (function (Long) {
     Long["Abandoned"] = "Abandoned";
@@ -23,23 +18,10 @@ export var ShortKey;
     ShortKey["AbortedShort"] = "aborted_short";
     ShortKey["FulltimeShort"] = "fulltime_short";
 })(ShortKey || (ShortKey = {}));
-export var BgcolorEnum;
-(function (BgcolorEnum) {
-    BgcolorEnum["F08022"] = "#f08022";
-    BgcolorEnum["Purple"] = "purple";
-    BgcolorEnum["The1Ec853"] = "#1ec853";
-})(BgcolorEnum || (BgcolorEnum = {}));
 export var Position;
 (function (Position) {
     Position["Substitute"] = "Substitute";
 })(Position || (Position = {}));
-export var Bgcolor;
-(function (Bgcolor) {
-    Bgcolor["F08022"] = "#f08022";
-    Bgcolor["The0E87E0"] = "#0e87e0";
-    Bgcolor["The1Ec853"] = "#1ec853";
-    Bgcolor["The989898"] = "#989898";
-})(Bgcolor || (Bgcolor = {}));
 export var Role;
 (function (Role) {
     Role["Attacker"] = "Attacker";
@@ -70,12 +52,6 @@ export var Situation;
     Situation["RegularPlay"] = "RegularPlay";
     Situation["SetPiece"] = "SetPiece";
 })(Situation || (Situation = {}));
-export var TeamColorEnum;
-(function (TeamColorEnum) {
-    TeamColorEnum["C70101"] = "#C70101";
-    TeamColorEnum["D3171E"] = "#d3171e";
-    TeamColorEnum["The333333"] = "#333333";
-})(TeamColorEnum || (TeamColorEnum = {}));
 export var StatKey;
 (function (StatKey) {
     StatKey["Attack"] = "attack";
@@ -153,38 +129,6 @@ export var Side;
     Side["Equal"] = "equal";
     Side["Home"] = "home";
 })(Side || (Side = {}));
-export var ExpectedReturnDateParam;
-(function (ExpectedReturnDateParam) {
-    ExpectedReturnDateParam["December2023"] = "December 2023";
-    ExpectedReturnDateParam["February2024"] = "February 2024";
-    ExpectedReturnDateParam["January2024"] = "January 2024";
-})(ExpectedReturnDateParam || (ExpectedReturnDateParam = {}));
-export var ExpectedReturnFallback;
-(function (ExpectedReturnFallback) {
-    ExpectedReturnFallback["AFewDays"] = "A few days";
-    ExpectedReturnFallback["Doubtful"] = "Doubtful";
-    ExpectedReturnFallback["EarlyJanuary2024"] = "Early January 2024";
-    ExpectedReturnFallback["LateDecember2023"] = "Late December 2023";
-    ExpectedReturnFallback["LateFebruary2024"] = "Late February 2024";
-    ExpectedReturnFallback["MidJanuary2024"] = "Mid January 2024";
-    ExpectedReturnFallback["OutForSeason"] = "Out for season";
-    ExpectedReturnFallback["Unknown"] = "Unknown";
-})(ExpectedReturnFallback || (ExpectedReturnFallback = {}));
-export var ExpectedReturnKey;
-(function (ExpectedReturnKey) {
-    ExpectedReturnKey["ExpectedReturnDateDoubtful"] = "expected_return_date_doubtful";
-    ExpectedReturnKey["ExpectedReturnDateEarly"] = "expected_return_date_early";
-    ExpectedReturnKey["ExpectedReturnDateFewDays"] = "expected_return_date_few_days";
-    ExpectedReturnKey["ExpectedReturnDateLate"] = "expected_return_date_late";
-    ExpectedReturnKey["ExpectedReturnDateMid"] = "expected_return_date_mid";
-    ExpectedReturnKey["ExpectedReturnDateOutForSeason"] = "expected_return_date_out_for_season";
-    ExpectedReturnKey["ExpectedReturnDateUnknown"] = "expected_return_date_unknown";
-})(ExpectedReturnKey || (ExpectedReturnKey = {}));
-export var ShortName;
-(function (ShortName) {
-    ShortName["MACAllister"] = "Mac Allister";
-    ShortName["Thiago"] = "Thiago";
-})(ShortName || (ShortName = {}));
 export var EventTypeEnum;
 (function (EventTypeEnum) {
     EventTypeEnum["AddedTime"] = "AddedTime";
@@ -204,11 +148,6 @@ export var StatType;
     StatType["Text"] = "text";
     StatType["Title"] = "title";
 })(StatType || (StatType = {}));
-export var Home;
-(function (Home) {
-    Home["D3171E"] = "#d3171e";
-    Home["RGBA25525525510"] = "rgba(255, 255, 255, 1.0)";
-})(Home || (Home = {}));
 export var Type;
 (function (Type) {
     Type["ListItem"] = "ListItem";
@@ -1036,7 +975,7 @@ const typeMap = {
         { json: "away", js: "away", typ: u(undefined, r("MatchAway")) },
     ], false),
     "MatchAway": o([
-        { json: "name", js: "name", typ: u(undefined, r("NameElement")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "id", js: "id", typ: u(undefined, "") },
     ], false),
     "League": o([
@@ -1115,7 +1054,7 @@ const typeMap = {
     ], false),
     "FantasyScoreClass": o([
         { json: "num", js: "num", typ: u(undefined, u(3.14, null)) },
-        { json: "bgcolor", js: "bgcolor", typ: u(undefined, r("BgcolorEnum")) },
+        { json: "bgcolor", js: "bgcolor", typ: u(undefined, "") },
     ], false),
     "NameClass": o([
         { json: "firstName", js: "firstName", typ: u(undefined, "") },
@@ -1124,7 +1063,7 @@ const typeMap = {
     ], false),
     "BenchArrRating": o([
         { json: "num", js: "num", typ: u(undefined, u(null, "")) },
-        { json: "bgcolor", js: "bgcolor", typ: u(undefined, r("Bgcolor")) },
+        { json: "bgcolor", js: "bgcolor", typ: u(undefined, "") },
         { json: "isTop", js: "isTop", typ: u(undefined, r("IsTop")) },
     ], false),
     "IsTop": o([
@@ -1155,7 +1094,7 @@ const typeMap = {
         { json: "isOwnGoal", js: "isOwnGoal", typ: u(undefined, true) },
         { json: "onGoalShot", js: "onGoalShot", typ: u(undefined, r("OnGoalShot")) },
         { json: "isSavedOffLine", js: "isSavedOffLine", typ: u(undefined, true) },
-        { json: "teamColor", js: "teamColor", typ: u(undefined, r("TeamColorEnum")) },
+        { json: "teamColor", js: "teamColor", typ: u(undefined, "") },
         { json: "firstName", js: "firstName", typ: u(undefined, "") },
         { json: "lastName", js: "lastName", typ: u(undefined, "") },
         { json: "fullName", js: "fullName", typ: u(undefined, "") },
@@ -1230,7 +1169,7 @@ const typeMap = {
     ], false),
     "TeamDataAway": o([
         { json: "id", js: "id", typ: u(undefined, 0) },
-        { json: "color", js: "color", typ: u(undefined, r("TeamColorEnum")) },
+        { json: "color", js: "color", typ: u(undefined, "") },
     ], false),
     "Coaches": o([
         { json: "sides", js: "sides", typ: u(undefined, a(r("Side"))) },
@@ -1253,7 +1192,7 @@ const typeMap = {
     "CoachesArrEvents": o([], false),
     "LineupElement": o([
         { json: "teamId", js: "teamId", typ: u(undefined, 0) },
-        { json: "teamName", js: "teamName", typ: u(undefined, r("NameElement")) },
+        { json: "teamName", js: "teamName", typ: u(undefined, "") },
         { json: "bench", js: "bench", typ: u(undefined, a(r("BenchArrElement"))) },
         { json: "coach", js: "coach", typ: u(undefined, a(r("Coach"))) },
         { json: "players", js: "players", typ: u(undefined, a(a(r("PlayerElement")))) },
@@ -1264,7 +1203,7 @@ const typeMap = {
     "NaPlayersArr": o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, r("NameClass")) },
-        { json: "shortName", js: "shortName", typ: u(undefined, r("ShortName")) },
+        { json: "shortName", js: "shortName", typ: u(undefined, "") },
         { json: "imageUrl", js: "imageUrl", typ: u(undefined, "") },
         { json: "pageUrl", js: "pageUrl", typ: u(undefined, "") },
         { json: "isHomeTeam", js: "isHomeTeam", typ: u(undefined, true) },
@@ -1284,9 +1223,9 @@ const typeMap = {
         { json: "expectedReturn", js: "expectedReturn", typ: u(undefined, r("ExpectedReturn")) },
     ], false),
     "ExpectedReturn": o([
-        { json: "expectedReturnKey", js: "expectedReturnKey", typ: u(undefined, r("ExpectedReturnKey")) },
-        { json: "expectedReturnDateParam", js: "expectedReturnDateParam", typ: u(undefined, u(r("ExpectedReturnDateParam"), null)) },
-        { json: "expectedReturnFallback", js: "expectedReturnFallback", typ: u(undefined, r("ExpectedReturnFallback")) },
+        { json: "expectedReturnKey", js: "expectedReturnKey", typ: u(undefined, "") },
+        { json: "expectedReturnDateParam", js: "expectedReturnDateParam", typ: u(undefined, u("", null)) },
+        { json: "expectedReturnFallback", js: "expectedReturnFallback", typ: u(undefined, "") },
     ], false),
     "OptaLineup": o([
         { json: "bench", js: "bench", typ: u(undefined, a(r("BenchArrElement"))) },
@@ -1333,7 +1272,7 @@ const typeMap = {
     ], false),
     "FantasyScore": o([
         { json: "num", js: "num", typ: u(undefined, u(0, "")) },
-        { json: "bgcolor", js: "bgcolor", typ: u(undefined, r("BgcolorEnum")) },
+        { json: "bgcolor", js: "bgcolor", typ: u(undefined, "") },
     ], false),
     "PositionLabel": o([
         { json: "label", js: "label", typ: u(undefined, "") },
@@ -1407,7 +1346,7 @@ const typeMap = {
     ], false),
     "Liveticker": o([
         { json: "langs", js: "langs", typ: u(undefined, "") },
-        { json: "teams", js: "teams", typ: u(undefined, a(r("NameElement"))) },
+        { json: "teams", js: "teams", typ: u(undefined, a("")) },
     ], false),
     "MatchFacts": o([
         { json: "matchId", js: "matchId", typ: u(undefined, 0) },
@@ -1486,7 +1425,7 @@ const typeMap = {
     ], false),
     "Stadium": o([
         { json: "name", js: "name", typ: u(undefined, "") },
-        { json: "city", js: "city", typ: u(undefined, r("NameElement")) },
+        { json: "city", js: "city", typ: u(undefined, "") },
         { json: "country", js: "country", typ: u(undefined, "") },
         { json: "lat", js: "lat", typ: u(undefined, 3.14) },
         { json: "long", js: "long", typ: u(undefined, 3.14) },
@@ -1510,7 +1449,7 @@ const typeMap = {
         { json: "localizedTextId", js: "localizedTextId", typ: u(undefined, "") },
         { json: "statValues", js: "statValues", typ: u(undefined, a(r("StatValue"))) },
         { json: "text", js: "text", typ: u(undefined, "") },
-        { json: "color", js: "color", typ: u(undefined, r("TeamColorEnum")) },
+        { json: "color", js: "color", typ: u(undefined, "") },
     ], false),
     "StatValue": o([
         { json: "value", js: "value", typ: u(undefined, 3.14) },
@@ -1548,7 +1487,7 @@ const typeMap = {
     "PlayerOfTheMatch": o([
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, r("NameClass")) },
-        { json: "teamName", js: "teamName", typ: u(undefined, r("NameElement")) },
+        { json: "teamName", js: "teamName", typ: u(undefined, "") },
         { json: "teamId", js: "teamId", typ: u(undefined, 0) },
         { json: "rating", js: "rating", typ: u(undefined, r("PlayerOfTheMatchRating")) },
         { json: "minutesPlayed", js: "minutesPlayed", typ: u(undefined, 0) },
@@ -1616,7 +1555,7 @@ const typeMap = {
         { json: "MatchId", js: "MatchId", typ: u(undefined, 0) },
         { json: "HomeTeamId", js: "HomeTeamId", typ: u(undefined, 0) },
         { json: "AwayTeamId", js: "AwayTeamId", typ: u(undefined, 0) },
-        { json: "HomeTeam", js: "HomeTeam", typ: u(undefined, r("NameElement")) },
+        { json: "HomeTeam", js: "HomeTeam", typ: u(undefined, "") },
         { json: "AwayTeam", js: "AwayTeam", typ: u(undefined, "") },
         { json: "Facts", js: "Facts", typ: u(undefined, a(r("Fact"))) },
     ], false),
@@ -1674,7 +1613,7 @@ const typeMap = {
         { json: "playerId", js: "playerId", typ: u(undefined, 0) },
         { json: "name", js: "name", typ: u(undefined, r("NameClass")) },
         { json: "playerRatingRounded", js: "playerRatingRounded", typ: u(undefined, "") },
-        { json: "color", js: "color", typ: u(undefined, r("BgcolorEnum")) },
+        { json: "color", js: "color", typ: u(undefined, "") },
         { json: "manOfTheMatch", js: "manOfTheMatch", typ: u(undefined, true) },
         { json: "teamId", js: "teamId", typ: u(undefined, "") },
         { json: "positionLabel", js: "positionLabel", typ: u(undefined, r("PositionLabel")) },
@@ -1745,7 +1684,7 @@ const typeMap = {
         { json: "fontLightMode", js: "fontLightMode", typ: u(undefined, r("Mode")) },
     ], false),
     "Mode": o([
-        { json: "home", js: "home", typ: u(undefined, r("Home")) },
+        { json: "home", js: "home", typ: u(undefined, "") },
         { json: "away", js: "away", typ: u(undefined, "") },
     ], false),
     "Superlive": o([
@@ -1785,7 +1724,7 @@ const typeMap = {
         { json: "finished", js: "finished", typ: u(undefined, true) },
     ], false),
     "GeneralAwayTeam": o([
-        { json: "name", js: "name", typ: u(undefined, r("NameElement")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "id", js: "id", typ: u(undefined, 0) },
     ], false),
     "Header": o([
@@ -1794,7 +1733,7 @@ const typeMap = {
         { json: "events", js: "events", typ: u(undefined, null) },
     ], false),
     "Team": o([
-        { json: "name", js: "name", typ: u(undefined, r("NameElement")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "id", js: "id", typ: u(undefined, 0) },
         { json: "score", js: "score", typ: u(undefined, 0) },
         { json: "imageUrl", js: "imageUrl", typ: u(undefined, "") },
@@ -1839,7 +1778,7 @@ const typeMap = {
     "EventJSONLDAwayTeam": o([
         { json: "@context", js: "@context", typ: u(undefined, "") },
         { json: "@type", js: "@type", typ: u(undefined, "") },
-        { json: "name", js: "name", typ: u(undefined, r("NameElement")) },
+        { json: "name", js: "name", typ: u(undefined, "") },
         { json: "sport", js: "sport", typ: u(undefined, "") },
         { json: "logo", js: "logo", typ: u(undefined, "") },
         { json: "url", js: "url", typ: u(undefined, "") },
@@ -1878,10 +1817,6 @@ const typeMap = {
         { json: "@type", js: "@type", typ: u(undefined, "") },
         { json: "text", js: "text", typ: u(undefined, "") },
     ], false),
-    "NameElement": [
-        "Liverpool",
-        "Manchester United",
-    ],
     "Long": [
         "Abandoned",
         "Full-Time",
@@ -1898,19 +1833,8 @@ const typeMap = {
         "aborted_short",
         "fulltime_short",
     ],
-    "BgcolorEnum": [
-        "#f08022",
-        "purple",
-        "#1ec853",
-    ],
     "Position": [
         "Substitute",
-    ],
-    "Bgcolor": [
-        "#f08022",
-        "#0e87e0",
-        "#1ec853",
-        "#989898",
     ],
     "Role": [
         "Attacker",
@@ -1936,11 +1860,6 @@ const typeMap = {
         "FromCorner",
         "RegularPlay",
         "SetPiece",
-    ],
-    "TeamColorEnum": [
-        "#C70101",
-        "#d3171e",
-        "#333333",
     ],
     "StatKey": [
         "attack",
@@ -2014,30 +1933,6 @@ const typeMap = {
         "equal",
         "home",
     ],
-    "ExpectedReturnDateParam": [
-        "December 2023",
-        "February 2024",
-        "January 2024",
-    ],
-    "ExpectedReturnFallback": [
-        "A few days",
-        "Doubtful",
-        "Early January 2024",
-        "Late December 2023",
-        "Late February 2024",
-        "Mid January 2024",
-        "Out for season",
-        "Unknown",
-    ],
-    "ExpectedReturnKey": [
-        "expected_return_date_doubtful",
-        "expected_return_date_early",
-        "expected_return_date_few_days",
-        "expected_return_date_late",
-        "expected_return_date_mid",
-        "expected_return_date_out_for_season",
-        "expected_return_date_unknown",
-    ],
     "ShortName": [
         "Mac Allister",
         "Thiago",
@@ -2057,10 +1952,6 @@ const typeMap = {
         "graph",
         "text",
         "title",
-    ],
-    "Home": [
-        "#d3171e",
-        "rgba(255, 255, 255, 1.0)",
     ],
     "Type": [
         "ListItem",

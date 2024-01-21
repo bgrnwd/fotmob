@@ -19,9 +19,9 @@ export interface QADatum {
 export interface Details {
     id?: number;
     type?: string;
-    name?: ShortNameEnum;
+    name?: string;
     latestSeason?: string;
-    shortName?: ShortNameEnum;
+    shortName?: string;
     country?: Country;
     faqJSONLD?: FAQJSONLD;
     sportsTeamJSONLD?: SportsTeamJSONLD;
@@ -57,13 +57,10 @@ export interface AcceptedAnswer {
     "@type"?: string;
     text?: string;
 }
-export declare enum ShortNameEnum {
-    Liverpool = "Liverpool"
-}
 export interface SportsTeamJSONLD {
     "@context"?: string;
     "@type"?: string;
-    name?: ShortNameEnum;
+    name?: string;
     sport?: string;
     gender?: string;
     logo?: string;
@@ -87,11 +84,8 @@ export declare enum CoachType {
     Person = "Person"
 }
 export interface Nationality {
-    "@type"?: NationalityType;
+    "@type"?: string;
     name?: string;
-}
-export declare enum NationalityType {
-    Country = "Country"
 }
 export interface Location {
     "@type"?: string;
@@ -101,13 +95,8 @@ export interface Location {
 }
 export interface Address {
     "@type"?: string;
-    addressCountry?: AddressCountry;
-    addressLocality?: ShortNameEnum;
-}
-export declare enum AddressCountry {
-    England = "England",
-    Europe = "Europe",
-    World = "World"
+    addressCountry?: string;
+    addressLocality?: string;
 }
 export interface Geo {
     "@type"?: string;
@@ -116,16 +105,8 @@ export interface Geo {
 }
 export interface MemberOf {
     "@type"?: string;
-    name?: NameElement;
+    name?: string;
     url?: string;
-}
-export declare enum NameElement {
-    ChampionsLeague = "Champions League",
-    ClubFriendlies = "Club Friendlies",
-    EFLCup = "EFL Cup",
-    EuropaLeague = "Europa League",
-    FACup = "FA Cup",
-    PremierLeague = "Premier League"
 }
 export interface TeamFixtures {
     allFixtures?: AllFixtures;
@@ -186,7 +167,7 @@ export declare enum ShortKey {
     FulltimeShort = "fulltime_short"
 }
 export interface Tournament {
-    name?: NameElement;
+    name?: string;
     leagueId?: number;
 }
 export interface LastMatch {
@@ -260,12 +241,12 @@ export interface HistoricalTableData {
 }
 export interface Division {
     divisionRank?: number;
-    name?: NameElement;
+    name?: string;
     templateId?: number;
 }
 export interface Rank {
     stageId?: number;
-    tournamentName?: NameElement;
+    tournamentName?: string;
     tournamentId?: number;
     templateId?: number;
     seasonName?: string;
@@ -290,8 +271,8 @@ export interface Current {
 }
 export interface Link {
     _?: string;
-    name?: NameElement[];
-    ccode?: Country[];
+    name?: string[];
+    ccode?: string[];
     season?: string[];
     stage_id?: string[];
     tournament_id?: string[];
@@ -307,8 +288,8 @@ export interface TeamColorMap {
 export interface TrophyList {
     name?: string[];
     tournamentTemplateId?: string[];
-    area?: AddressCountry[];
-    ccode?: Country[];
+    area?: string[];
+    ccode?: string[];
     won?: string[];
     runnerup?: string[];
     season_won?: string[];
@@ -339,10 +320,10 @@ export interface OverviewTable {
     tableHeader?: TableHeader;
 }
 export interface TableData {
-    ccode?: Country;
+    ccode?: string;
     leagueId?: number;
     pageUrl?: string;
-    leagueName?: NameElement;
+    leagueName?: string;
     legend?: Legend[];
     ongoing?: any[];
     table?: PurpleTable;
@@ -351,30 +332,10 @@ export interface TableData {
     tables?: FluffyTable[];
 }
 export interface Legend {
-    title?: Title;
-    tKey?: TKey;
-    color?: Color;
+    title?: string;
+    tKey?: string;
+    color?: string;
     indices?: number[];
-}
-export declare enum Color {
-    Ff4646 = "#FF4646",
-    Ffd908 = "#FFD908",
-    The0046A7 = "#0046A7",
-    The2Ad572 = "#2AD572"
-}
-export declare enum TKey {
-    Championsleague = "championsleague",
-    Europaleague = "europaleague",
-    Qualeuropaconffinalstage = "qualeuropaconffinalstage",
-    QualificationNextStage = "qualification_next_stage",
-    Relegation = "relegation"
-}
-export declare enum Title {
-    ChampionsLeague = "Champions League",
-    EuropaLeague = "Europa League",
-    QualificationNextStage = "Qualification next stage",
-    QualificationToEuropaConferenceLeagueFinalStage = "Qualification to Europa Conference League Final Stage",
-    Relegation = "Relegation"
 }
 export interface PurpleTable {
     all?: All[];
@@ -398,10 +359,10 @@ export interface All {
     goalConDiff?: number;
     pts?: number;
     idx?: number;
-    qualColor?: Color | null;
+    qualColor?: string | null;
 }
 export interface FluffyTable {
-    ccode?: Country;
+    ccode?: string;
     leagueId?: number;
     pageUrl?: string;
     leagueName?: string;
@@ -458,12 +419,8 @@ export interface TooltipText {
 export interface TeamColors {
     darkMode?: string;
     lightMode?: string;
-    fontDarkMode?: FontMode;
-    fontLightMode?: FontMode;
-}
-export declare enum FontMode {
-    RGBA25525525510 = "rgba(255, 255, 255, 1.0)",
-    RGBA29292910 = "rgba(29, 29, 29, 1.0)"
+    fontDarkMode?: string;
+    fontLightMode?: string;
 }
 export interface TopPlayers {
     byRating?: By;
@@ -485,7 +442,7 @@ export interface Participant {
     ccode?: null | string;
     cname?: null | string;
     teamId?: number | null;
-    teamName?: ShortNameEnum | null;
+    teamName?: string | null;
     showRole?: boolean | null;
     showCountryFlag?: boolean | null;
     showTeamFlag?: boolean;
@@ -504,7 +461,7 @@ export interface Venue {
 export interface Widget {
     name?: string;
     location?: string[];
-    city?: ShortNameEnum;
+    city?: string;
 }
 export interface SquadClass {
     id?: number;
@@ -550,7 +507,7 @@ export interface TeamElement {
 export interface TournamentSeason {
     name?: string;
     season?: string;
-    leagueName?: NameElement;
+    leagueName?: string;
     tournamentId?: string;
     parentLeagueId?: string;
 }
@@ -568,10 +525,10 @@ export interface ContractExtension {
     playerId?: number;
     position?: Position;
     transferDate?: Date;
-    transferText?: Array<ShortNameEnum | number | null>;
-    fromClub?: ShortNameEnum;
+    transferText?: Array<string | number | null>;
+    fromClub?: string;
     fromClubId?: number;
-    toClub?: ShortNameEnum;
+    toClub?: string;
     toClubId?: number;
     fee?: null;
     transferType?: TransferType;
