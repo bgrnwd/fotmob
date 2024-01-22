@@ -14,8 +14,9 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        node: [14, 16, 18, 20]
+        node: [16, 18, 20, 21]
 
     steps:
       - uses: actions/checkout@v4
@@ -24,5 +25,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - run: npm ci
+      - run: npm run lint
+      - run: npm run format
       - run: npm run build --if-present
       - run: npm test

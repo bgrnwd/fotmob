@@ -19,9 +19,10 @@ const match_details_1 = require("./types/match-details");
 const matches_1 = require("./types/matches");
 const player_1 = require("./types/player");
 const team_1 = require("./types/team");
-const world_news_1 = require("./types/world-news");
 const transfers_1 = require("./types/transfers");
 const all_leagues_1 = require("./types/all-leagues");
+const world_news_1 = require("./types/world-news");
+const team_season_stats_1 = require("./types/team-season-stats");
 const baseUrl = "https://www.fotmob.com/api/";
 class Fotmob {
     constructor() {
@@ -30,6 +31,7 @@ class Fotmob {
         this.leaguesUrl = `${baseUrl}leagues?`;
         this.allLeaguesUrl = `${baseUrl}allLeagues?`;
         this.teamsUrl = `${baseUrl}teams?`;
+        this.teamsSeasonStatsUrl = `${baseUrl}/teamseasonstats?`;
         this.playerUrl = `${baseUrl}playerData?`;
         this.matchDetailsUrl = `${baseUrl}matchDetails?`;
         this.searchUrl = `${baseUrl}searchapi/`;
@@ -82,6 +84,12 @@ class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
             return yield this.safeTypeCastFetch(url, team_1.Convert.toTeam);
+        });
+    }
+    getTeamSeasonStats(teamId, seasonId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = this.teamsSeasonStatsUrl + `teamId=${teamId}&tournamentId=${seasonId}`;
+            return yield this.safeTypeCastFetch(url, team_season_stats_1.Convert.toTeamSeasonStats);
         });
     }
     getPlayer(id) {

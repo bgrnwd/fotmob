@@ -1441,7 +1441,6 @@ const typeMap: any = {
     ],
     false,
   ),
-
   Long: ["Abandoned", "Full-Time", "Postponed"],
   LongKey: ["aborted", "finished", "postponed"],
   Short: ["Ab", "FT", "PP"],

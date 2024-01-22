@@ -14,9 +14,10 @@ import { Convert as ConvertMatchDetails, } from "./types/match-details";
 import { Convert as ConvertMatches } from "./types/matches";
 import { Convert as ConvertPlayer } from "./types/player";
 import { Convert as ConvertTeam } from "./types/team";
-import { Convert as ConvertWorldNews, } from "./types/world-news";
 import { Convert as ConvertTransfers } from "./types/transfers";
 import { Convert as ConvertAllLeagues, } from "./types/all-leagues";
+import { Convert as ConvertWorldNews } from "./types/world-news";
+import { Convert as ConvertTeamSeasonStats, } from "./types/team-season-stats";
 const baseUrl = "https://www.fotmob.com/api/";
 export default class Fotmob {
     constructor() {
@@ -25,6 +26,7 @@ export default class Fotmob {
         this.leaguesUrl = `${baseUrl}leagues?`;
         this.allLeaguesUrl = `${baseUrl}allLeagues?`;
         this.teamsUrl = `${baseUrl}teams?`;
+        this.teamsSeasonStatsUrl = `${baseUrl}/teamseasonstats?`;
         this.playerUrl = `${baseUrl}playerData?`;
         this.matchDetailsUrl = `${baseUrl}matchDetails?`;
         this.searchUrl = `${baseUrl}searchapi/`;
@@ -77,6 +79,12 @@ export default class Fotmob {
         return __awaiter(this, void 0, void 0, function* () {
             const url = this.teamsUrl + `id=${id}&tab=${tab}&type=${type}&timeZone=${timeZone}`;
             return yield this.safeTypeCastFetch(url, ConvertTeam.toTeam);
+        });
+    }
+    getTeamSeasonStats(teamId, seasonId) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const url = this.teamsSeasonStatsUrl + `teamId=${teamId}&tournamentId=${seasonId}`;
+            return yield this.safeTypeCastFetch(url, ConvertTeamSeasonStats.toTeamSeasonStats);
         });
     }
     getPlayer(id) {
