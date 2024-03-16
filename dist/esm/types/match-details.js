@@ -1,3 +1,4 @@
+import { CastingError } from '../type-cast-error';
 export var Long;
 (function (Long) {
     Long["Abandoned"] = "Abandoned";
@@ -800,7 +801,7 @@ function invalidValue(typ, val, key, parent = "") {
     const prettyTyp = prettyTypeName(typ);
     const parentText = parent ? ` on ${parent}` : "";
     const keyText = key ? ` for key "${key}"` : "";
-    throw Error(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
+    throw new CastingError(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
 }
 function prettyTypeName(typ) {
     if (Array.isArray(typ)) {
