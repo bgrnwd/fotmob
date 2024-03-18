@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Convert = exports.Type = exports.StatType = exports.ResultString = exports.EventTypeEnum = exports.Side = exports.Title = exports.AssistsKey = exports.AccurateCrossesKey = exports.StatKey = exports.Situation = exports.ShotType = exports.Period = exports.EventType = exports.Role = exports.Position = exports.ShortKey = exports.Short = exports.LongKey = exports.Long = void 0;
+const type_cast_error_1 = require("../type-cast-error");
 var Long;
 (function (Long) {
     Long["Abandoned"] = "Abandoned";
@@ -804,7 +805,7 @@ function invalidValue(typ, val, key, parent = "") {
     const prettyTyp = prettyTypeName(typ);
     const parentText = parent ? ` on ${parent}` : "";
     const keyText = key ? ` for key "${key}"` : "";
-    throw Error(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
+    throw new type_cast_error_1.CastingError(`Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(val)}`);
 }
 function prettyTypeName(typ) {
     if (Array.isArray(typ)) {

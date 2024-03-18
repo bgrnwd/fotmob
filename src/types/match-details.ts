@@ -7,6 +7,8 @@
 // These functions will throw an error if the JSON doesn't
 // match the expected interface, even if the JSON is valid.
 
+import { CastingError } from "../type-cast-error";
+
 export interface MatchDetails {
   general?: General;
   header?: Header;
@@ -2014,7 +2016,7 @@ function invalidValue(typ: any, val: any, key: any, parent: any = ""): never {
   const prettyTyp = prettyTypeName(typ);
   const parentText = parent ? ` on ${parent}` : "";
   const keyText = key ? ` for key "${key}"` : "";
-  throw Error(
+  throw new CastingError(
     `Invalid value${keyText}${parentText}. Expected ${prettyTyp} but got ${JSON.stringify(
       val,
     )}`,
