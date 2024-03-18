@@ -20,7 +20,7 @@ npm install fotmob
 ```
 
 ## Usage
-
+This package is meant to be used in the backend (Node.js) due to CORS limitations.
 All methods return a promise that resolves to the JSON response from FotMob, with type definitions for the response included.
 
 ```ts
