@@ -145,7 +145,10 @@ export default class Fotmob {
     );
   }
 
-  async request<T = Record<string, unknown>>(path: string, params: Record<string, string>) {
+  async request<T = Record<string, unknown>>(
+    path: string,
+    params: Record<string, string>,
+  ) {
     const url = `${baseUrl + path}?${new URLSearchParams(params)}`;
     return await this.safeTypeCastFetch<T>(
       url,
