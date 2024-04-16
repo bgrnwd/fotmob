@@ -1,5 +1,9 @@
 import got from "got";
 import { CastingError } from "./type-cast-error";
+import {
+  Convert as ConvertAllLeagues,
+  type AllLeagues,
+} from "./types/all-leagues";
 import { Convert as ConvertLeague, type League } from "./types/league";
 import {
   Convert as ConvertMatchDetails,
@@ -8,16 +12,12 @@ import {
 import { Convert as ConvertMatches, type Matches } from "./types/matches";
 import { Convert as ConvertPlayer, type Player } from "./types/player";
 import { Convert as ConvertTeam, type Team } from "./types/team";
-import { Convert as ConvertTransfers, type Transfers } from "./types/transfers";
 import {
-  Convert as ConvertAllLeagues,
-  type AllLeagues,
-} from "./types/all-leagues";
-import { WorldNews, Convert as ConvertWorldNews } from "./types/world-news";
-import {
-  TeamSeasonStats,
   Convert as ConvertTeamSeasonStats,
+  TeamSeasonStats,
 } from "./types/team-season-stats";
+import { Convert as ConvertTransfers, type Transfers } from "./types/transfers";
+import { Convert as ConvertWorldNews, WorldNews } from "./types/world-news";
 
 const baseUrl = "https://www.fotmob.com/api/";
 
@@ -145,7 +145,7 @@ export default class Fotmob {
     );
   }
 
-  async request<T>(path: string, params: Record<string, string>) {
+  async request<T = Record<string, unknown>>(path: string, params: Record<string, string>) {
     const url = `${baseUrl + path}?${new URLSearchParams(params)}`;
     return await this.safeTypeCastFetch<T>(
       url,

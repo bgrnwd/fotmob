@@ -1,21 +1,21 @@
 import got from "got";
 import Fotmob from "../src/fotmob";
-import { Convert as ConvertLeague, type League } from "../src/types/league";
-import { Convert as ConvertTeam, type Team } from "../src/types/team";
-import { Convert as ConvertPlayer, type Player } from "../src/types/player";
-import {
-  Convert as ConvertMatchDetails,
-  type MatchDetails,
-} from "../src/types/match-details";
 import {
   Convert as ConvertAllLeagues,
   type AllLeagues,
 } from "../src/types/all-leagues";
+import { Convert as ConvertLeague, type League } from "../src/types/league";
+import {
+  Convert as ConvertMatchDetails,
+  type MatchDetails,
+} from "../src/types/match-details";
+import { Convert as ConvertPlayer, type Player } from "../src/types/player";
+import { Convert as ConvertTeam, type Team } from "../src/types/team";
+import allLeaguesJSON from "./data/allLeagues.json";
 import leagueJSON from "./data/league.json";
 import matchDetailsJSON from "./data/matchDetails.json";
-import teamJSON from "./data/team.json";
 import playerJSON from "./data/player.json";
-import allLeaguesJSON from "./data/allLeagues.json";
+import teamJSON from "./data/team.json";
 const fot = new Fotmob();
 jest.mock("got");
 
@@ -106,5 +106,23 @@ describe("safeTypeCastFetch", () => {
         ConvertAllLeagues.toAllLeagues,
       ),
     ).resolves.not.toThrow();
+  });
+  it("Should return JSON on casting error", async () => {
+    const mock = jest.mocked(got);
+    mock.get = jest.fn().mockReturnValue({
+      body: JSON.stringify(allLeaguesJSON),
+    } as any);
+    await expect(
+      fot.safeTypeCastFetch<Team>(
+        "https://www.fotmob.com/api/tltable?leagueId=9907",
+        ConvertTeam.toTeam,
+      ),
+    ).resolves.not.toThrow();
+    const res = await fot.safeTypeCastFetch<Team>(
+      "https://www.fotmob.com/api/tltable?leagueId=9907",
+      ConvertTeam.toTeam,
+    )
+    expect(res).toEqual(allLeaguesJSON)
+    expect(typeof res).toBe("object")
   });
 });
