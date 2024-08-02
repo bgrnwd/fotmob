@@ -37,6 +37,7 @@ let transfers = await fotmob.getTransfers();
 let AllLeagues = await fotmob.getAllLeagues();
 let teamSeasonStats = await fotmob.getTeamSeasonStats()
 let myCustomRequest = await fotmob.request("matches", { date: "20201020" })
+let autocompletion = await fotmob.search("arsenal")
 ```
 
 ## Contributing
