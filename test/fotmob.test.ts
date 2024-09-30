@@ -57,3 +57,11 @@ describe("getMatchDetails", () => {
         expect("content" in Object(data)).toBeTruthy();
     })
 })
+
+describe("getITCommentary", () => {
+    it('should load match commentary', async () => {
+        const data = await fot.getLTC(4506319,["Manchester United","Tottenham Hotspur"]);
+        expect(data).toBeInstanceOf(Object);
+        expect("events" in Object(data)).toBeTruthy();
+    })
+})

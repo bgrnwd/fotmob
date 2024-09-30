@@ -36,6 +36,7 @@ let worldNews = await fotmob.getWorldNews()
 let transfers = await fotmob.getTransfers();
 let AllLeagues = await fotmob.getAllLeagues();
 let teamSeasonStats = await fotmob.getTeamSeasonStats()
+let matchCommentary = await fotmob.getLTC(4506319,["Manchester United","Tottenham Hotspur"]);
 let myCustomRequest = await fotmob.request("matches", { date: "20201020" })
 ```
 

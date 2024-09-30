@@ -18,6 +18,7 @@ import {
 } from "./types/team-season-stats";
 import { Convert as ConvertTransfers, type Transfers } from "./types/transfers";
 import { Convert as ConvertWorldNews, WorldNews } from "./types/world-news";
+import { LTC } from "./types/ltc";
 
 const baseUrl = "https://www.fotmob.com/api/";
 
@@ -32,6 +33,7 @@ export default class Fotmob {
   searchUrl: string;
   transfersUrl: string;
   worldNewsUrl: string;
+  ltcUrl: string;
   map = new Map();
 
   constructor() {
@@ -45,6 +47,7 @@ export default class Fotmob {
     this.searchUrl = `${baseUrl}searchapi/`;
     this.transfersUrl = `${baseUrl}transfers?`;
     this.worldNewsUrl = `${baseUrl}worldnews?`;
+    this.ltcUrl =  `${baseUrl}ltc`
   }
 
   checkDate(date: string) {
@@ -144,6 +147,22 @@ export default class Fotmob {
       ConvertTransfers.toTransfers,
     );
   }
+
+  async getLTC<T = LTC>(matchid: number, teams: string[]) {
+    const params = new URLSearchParams({
+        ltcUrl: `data.fotmob.com/webcl/ltc/gsm/${matchid}_en.json.gz`,
+        teams: JSON.stringify(teams)
+    });
+
+    const url = `${this.ltcUrl}?${params.toString()}`;
+    console.log(url);
+
+    return await this.safeTypeCastFetch<T>(
+        url,
+        (data) => JSON.parse(data) as T,
+    );
+}
+
 
   async request<T = Record<string, unknown>>(
     path: string,
