@@ -64,8 +64,7 @@ export default class Fotmob {
       if (err instanceof CastingError) {
         if (res) {
           return JSON.parse(res.body) satisfies T;
-        }
-        else {
+        } else {
           throw err;
         }
       }
