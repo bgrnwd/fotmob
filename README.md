@@ -2,7 +2,7 @@
 
 [![license](https://img.shields.io/github/license/bgrnwd/fotmob.svg)](LICENSE) [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme) ![npm](https://img.shields.io/npm/v/fotmob?color=green) [![npm download month](https://img.shields.io/npm/dm/fotmob.svg)](https://www.npmjs.com/package/fotmob) ![Node.js CI](https://github.com/bgrnwd/fotmob/workflows/Node.js%20CI/badge.svg)
 
-A JavaScript wrapper around the unofficial [FotMob](https://www.fotmob.com/) API
+A zero dependencies JavaScript wrapper around the unofficial [FotMob](https://www.fotmob.com/) API
 
 ## Table of Contents
 
@@ -26,6 +26,7 @@ All methods return a promise that resolves to the JSON response from FotMob, wit
 ```ts
 import Fotmob from "fotmob";
 const fotmob = new Fotmob();
+// use new Fotmob(true); to force caching
 
 let matches = await fotmob.getMatchesByDate("20201020");
 let league = await fotmob.getLeague("42", "overview", "league", "America/New_York")

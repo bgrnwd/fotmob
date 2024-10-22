@@ -1,6 +1,6 @@
 {
   "name": "fotmob",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "A JavaScript wrapper around the unofficial FotMob API",
   "main": "dist/cjs/fotmob.js",
   "types": "dist/esm/fotmob.d.ts",
@@ -29,9 +29,6 @@
     "url": "https://github.com/bgrnwd/fotmob/issues"
   },
   "homepage": "https://github.com/bgrnwd/fotmob#readme",
-  "dependencies": {
-    "got": "11.8.5"
-  },
   "devDependencies": {
     "@types/jest": "^29.5.11",
     "@types/node": "^22.0.2",

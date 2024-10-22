@@ -1,4 +1,3 @@
-import got from "got";
 import Fotmob from "../src/fotmob";
 import {
   Convert as ConvertAllLeagues,
@@ -17,14 +16,24 @@ import matchDetailsJSON from "./data/matchDetails.json";
 import playerJSON from "./data/player.json";
 import teamJSON from "./data/team.json";
 const fot = new Fotmob();
-jest.mock("got");
+let fetchMock: ReturnType<typeof jest.spyOn>;
+const getMockedText = (data: string) => jest.fn(
+  () => Promise.resolve({
+    text: () => Promise.resolve(data),
+    ok: true,
+  }),
+);
+const getMockedJson = (data: Record<string, unknown>) => getMockedText(JSON.stringify(data));
 
+beforeAll(() => {
+  fetchMock = jest.spyOn(global, "fetch");
+});
+afterAll(() => {
+  fetchMock.mockRestore();
+})
 describe("safeTypeCastFetch", () => {
   it("MatchDetails should throw on empty", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: "",
-    } as any);
+    fetchMock.mockImplementation(getMockedText(""));
 
     await expect(
       fot.safeTypeCastFetch<MatchDetails>(
@@ -34,10 +43,7 @@ describe("safeTypeCastFetch", () => {
     ).rejects.toThrow();
   });
   it("MatchDetails should throw on error", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: JSON.stringify({ error: "error" }),
-    } as any);
+    fetchMock.mockImplementation(getMockedJson({ error: "error" }));
 
     await expect(
       fot.safeTypeCastFetch<MatchDetails>(
@@ -48,10 +54,8 @@ describe("safeTypeCastFetch", () => {
   });
 
   it("League should return League", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: JSON.stringify(leagueJSON),
-    } as any);
+    fetchMock.mockImplementation(getMockedJson(leagueJSON));
+
     await expect(
       fot.safeTypeCastFetch<League>(
         "https://www.fotmob.com/api/leagues?id=47",
@@ -60,10 +64,7 @@ describe("safeTypeCastFetch", () => {
     ).resolves.not.toThrow();
   });
   it("League should return MatchDetails", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: JSON.stringify(matchDetailsJSON),
-    } as any);
+    fetchMock.mockImplementation(getMockedJson(matchDetailsJSON));
     await expect(
       fot.safeTypeCastFetch<MatchDetails>(
         "https://www.fotmob.com/api/matchDetails?matchId=4193696",
@@ -72,10 +73,7 @@ describe("safeTypeCastFetch", () => {
     ).resolves.not.toThrow();
   });
   it("League should return Team", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: JSON.stringify(teamJSON),
-    } as any);
+    fetchMock.mockImplementation(getMockedJson(teamJSON));
     await expect(
       fot.safeTypeCastFetch<Team>(
         "https://www.fotmob.com/api/leagues?id=47",
@@ -84,10 +82,7 @@ describe("safeTypeCastFetch", () => {
     ).resolves.not.toThrow();
   });
   it("League should return Player", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: JSON.stringify(playerJSON),
-    } as any);
+    fetchMock.mockImplementation(getMockedJson(playerJSON));
     await expect(
       fot.safeTypeCastFetch<Player>(
         "https://www.fotmob.com/api/playerData?id=30893",
@@ -96,10 +91,7 @@ describe("safeTypeCastFetch", () => {
     ).resolves.not.toThrow();
   });
   it("League should return AllLeagues", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: JSON.stringify(allLeaguesJSON),
-    } as any);
+    fetchMock.mockImplementation(getMockedJson(allLeaguesJSON));
     await expect(
       fot.safeTypeCastFetch<AllLeagues>(
         "https://www.fotmob.com/api/tltable?leagueId=9907",
@@ -108,10 +100,8 @@ describe("safeTypeCastFetch", () => {
     ).resolves.not.toThrow();
   });
   it("Should return JSON on casting error", async () => {
-    const mock = jest.mocked(got);
-    mock.get = jest.fn().mockReturnValue({
-      body: JSON.stringify(allLeaguesJSON),
-    } as any);
+    const mock = jest.mocked(fetch);
+    fetchMock.mockImplementation(getMockedJson(allLeaguesJSON));
     await expect(
       fot.safeTypeCastFetch<Team>(
         "https://www.fotmob.com/api/tltable?leagueId=9907",
