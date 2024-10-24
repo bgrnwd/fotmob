@@ -56,7 +56,9 @@ export default class Fotmob {
     return re.exec(date);
   }
   async safeTypeCastFetch<T>(url: string, fn: (data: string) => T): Promise<T> {
-    const res = await fetch(url, { cache: this.forceCache ? "force-cache" : undefined });
+    const res = await fetch(url, {
+      cache: this.forceCache ? "force-cache" : undefined,
+    });
     if (!res.ok) {
       throw new Error(res.statusText);
     }
