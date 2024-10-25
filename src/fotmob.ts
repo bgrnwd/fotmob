@@ -1,4 +1,3 @@
-import got from "got";
 import { CastingError } from "./type-cast-error";
 import {
   Convert as ConvertAllLeagues,
@@ -32,9 +31,14 @@ export default class Fotmob {
   searchUrl: string;
   transfersUrl: string;
   worldNewsUrl: string;
-  map = new Map();
+  forceCache: boolean;
 
-  constructor() {
+  /**
+   * Constructs a new instance of the Fotmob class.
+   * @param {boolean} [forceCache=false] - Whether to use the cache for requests.
+   */
+  constructor(forceCache = false) {
+    this.forceCache = forceCache;
     this.matchesUrl = `${baseUrl}matches?`;
     this.leaguesUrl = `${baseUrl}leagues?`;
     this.allLeaguesUrl = `${baseUrl}allLeagues?`;
@@ -52,16 +56,22 @@ export default class Fotmob {
     return re.exec(date);
   }
   async safeTypeCastFetch<T>(url: string, fn: (data: string) => T): Promise<T> {
-    const res = await got.get(url, { cache: this.map });
-    const json = JSON.parse(res.body);
+    const res = await fetch(url, {
+      cache: this.forceCache ? "force-cache" : undefined,
+    });
+    if (!res.ok) {
+      throw new Error(res.statusText);
+    }
+    const text = await res.text();
+    const json = JSON.parse(text);
     if (json?.error) {
       throw new Error(json);
     }
     try {
-      return fn(res.body) as T;
+      return fn(text) as T;
     } catch (err) {
       if (err instanceof CastingError) {
-        return JSON.parse(res.body) satisfies T;
+        return json satisfies T;
       }
       throw err;
     }
