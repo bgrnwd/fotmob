@@ -39,7 +39,7 @@ export default class Fotmob {
     this.leaguesUrl = `${baseUrl}leagues?`;
     this.allLeaguesUrl = `${baseUrl}allLeagues?`;
     this.teamsUrl = `${baseUrl}teams?`;
-    this.teamsSeasonStatsUrl = `${baseUrl}/teamseasonstats?`;
+    this.teamsSeasonStatsUrl = `${baseUrl}teamseasonstats?`;
     this.playerUrl = `${baseUrl}playerData?`;
     this.matchDetailsUrl = `${baseUrl}matchDetails?`;
     this.searchUrl = `${baseUrl}searchapi/`;
@@ -52,16 +52,21 @@ export default class Fotmob {
     return re.exec(date);
   }
   async safeTypeCastFetch<T>(url: string, fn: (data: string) => T): Promise<T> {
-    const res = await got.get(url, { cache: this.map });
-    const json = JSON.parse(res.body);
-    if (json?.error) {
-      throw new Error(json);
-    }
+    let res;
     try {
+      res = await got.get(url, { cache: this.map });
+      const json = JSON.parse(res.body);
+      if (json?.error) {
+        throw new Error(json);
+      }
       return fn(res.body) as T;
     } catch (err) {
       if (err instanceof CastingError) {
-        return JSON.parse(res.body) satisfies T;
+        if (res) {
+          return JSON.parse(res.body) satisfies T;
+        } else {
+          throw err;
+        }
       }
       throw err;
     }
