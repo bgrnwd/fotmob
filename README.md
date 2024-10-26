@@ -39,6 +39,7 @@ let AllLeagues = await fotmob.getAllLeagues();
 let teamSeasonStats = await fotmob.getTeamSeasonStats()
 let myCustomRequest = await fotmob.request("matches", { date: "20201020" })
 ```
+[![Play with fotmob-apis on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/p/devbox/jwm3kx?embed=1&file=%2Fapp%2Fpage.tsx)
 
 ## Contributing
 
